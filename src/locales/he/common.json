@@ -1,0 +1,23 @@
+{
+  "HEADER": {
+    "NAV_BAR": {
+      "HOME_PAGE": "דף הבית",
+      "ENROLL_TO_KESEM": "הרשמה למרכז קסם",
+      "ONLINE_LESSONS": "שיעורים מקוונים",
+      "COME_JOIN_US": "בואו להיות מורים",
+      "OUR_PARTNERS": "השותפים שלנו",
+      "YOUR_WAY_TO_SUCCESS": "הדרך שלך להצלחה",
+      "TO_ENROLL": "להרשמה",
+      "CONTACT_US": "יצירת קשר"
+    }
+  },
+  "HOME_PAGE": {
+    "WELCOME_TO_KESEM": "ברוכים הבאים למרכז קסם",
+    "EDUCATIONAL_CENTER_FOR_YOU": "מרכז ללימודי מתמטיקה המותאם בשבילך",
+    "ADD_ME_TO_SUCCESS": "צרפו אותי להצלחה"
+  },
+  "ENROLL_PAGE": {
+    "JOIN_US_TO_KESEM": "הצטרפו לקסם",
+    "SEND": "שליחה"
+  }
+}

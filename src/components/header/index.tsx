@@ -1,33 +1,82 @@
 "use client";
 import Link from "next/link";
 import {
-  ContainerStyle,
+  HeaderContainer,
   Nav,
   LogoContainer,
   LinkContainer,
   LogoText,
+  ButtonsContainer,
 } from "./Header.styles";
 import Image from "next/image";
 import logo from "@/../public/images/logo.png";
+import { theme } from "@/theme";
+import { useTranslation } from "react-i18next";
+import { useParams } from "next/navigation";
+import { useState } from "react";
+
+type LinkType = {
+  href: string;
+  name: string;
+};
 
 const Header = () => {
+  const { t } = useTranslation("common");
+  const params = useParams();
+  const lng = typeof params.lng === "string" ? params.lng : "he";
+  const [language, setLanguage] = useState<string>(lng);
+
+  console.log("LANG:", lng);
+  console.log("t", t("HEADER.NAV_BAR.HOME_PAGE"));
+
+  const links = [
+    { href: `/${lng}`, name: t("HEADER.NAV_BAR.HOME_PAGE") },
+    { href: `/${lng}/enroll`, name: t("HEADER.NAV_BAR.ENROLL_TO_KESEM") },
+    { href: `/${lng}/lessons`, name: t("HEADER.NAV_BAR.ONLINE_LESSONS") },
+    { href: `/${lng}/come-join-us`, name: t("HEADER.NAV_BAR.COME_JOIN_US") },
+    { href: `/${lng}/our-partners`, name: t("HEADER.NAV_BAR.OUR_PARTNERS") },
+  ];
+
+  const renderLinks = links.map((oneLink: LinkType) => {
+    return (
+      <Link key={oneLink.name} href={oneLink.href}>
+        {oneLink.name}
+      </Link>
+    );
+  });
+
+  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedLang = e.target.value;
+    setLanguage(selectedLang);
+    window.location.href = `/${selectedLang}`; // Navigate to the selected language by updating the URL
+  };
+
   return (
-    <ContainerStyle>
+    <HeaderContainer>
       <LogoContainer>
-        <Image src={logo} alt="לוגו" width={120} height={60} />
-        <LogoText>הדרך שלך להצלחה</LogoText>
+        <Image src={logo} alt="logo" width={120} height={60} />
+        <LogoText>{t("HEADER.NAV_BAR.YOUR_WAY_TO_SUCCESS")}</LogoText>
       </LogoContainer>
-      <Nav>
-        <Link href="/">דף הבית</Link>
-        <Link href="/enroll">הרשמה למרכז קסם</Link>
-        <Link href="/lessons">שיעורים בוידאו</Link>
-        <Link href="/come-join-us">בואו להיות מורים</Link>
-        <Link href="/our-partners">השותפים שלנו</Link>
-      </Nav>
-      <LinkContainer>
-        <Link href="/enroll">להרשמה</Link>
-      </LinkContainer>
-    </ContainerStyle>
+      <Nav>{renderLinks}</Nav>
+      <ButtonsContainer>
+        <LinkContainer
+          href={`/${lng}/enroll`}
+          $backgroundColor={theme.colors.gold}
+        >
+          {t("HEADER.NAV_BAR.TO_ENROLL")}
+        </LinkContainer>
+        <LinkContainer
+          $backgroundColor={theme.colors.turquoise}
+          href={`${lng}/enroll`}
+        >
+          {t("HEADER.NAV_BAR.CONTACT_US")}
+        </LinkContainer>
+        <select value={language} onChange={handleLanguageChange}>
+          <option value="he">HE</option>
+          <option value="en">EN</option>
+        </select>
+      </ButtonsContainer>
+    </HeaderContainer>
   );
 };
 
