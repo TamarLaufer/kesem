@@ -8,7 +8,8 @@
       "OUR_PARTNERS": "Our Partners",
       "YOUR_WAY_TO_SUCCESS": "Your Way to Success",
       "TO_ENROLL": "Enroll",
-      "CONTACT_US": "Contact Us"
+      "CONTACT_US": "Contact Us",
+      "ABOUT_US": "About US"
     }
   },
   "HOME_PAGE": {
@@ -19,5 +20,8 @@
   "ENROLL_PAGE": {
     "JOIN_US_TO_KESEM": "Join Kesem",
     "SEND": "Send"
+  },
+  "ABOUT_US_PAGE": {
+    "ABOUT_TEXT": ""
   }
 }

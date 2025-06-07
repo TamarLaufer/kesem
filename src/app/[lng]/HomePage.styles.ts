@@ -4,7 +4,12 @@ import styled from "styled-components";
 export const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   min-height: 100vh;
+  padding-top: 8rem;
+  position: relative;
+  overflow: hidden;
 `;
 
 export const BackgroundVideo = styled.video`
@@ -15,6 +20,7 @@ export const BackgroundVideo = styled.video`
   height: calc(100% - var(--header-height));
   object-fit: cover;
   z-index: -1;
+  pointer-events: none;
 `;
 
 export const BackgroundVideoOverlay = styled.div`
@@ -25,6 +31,7 @@ export const BackgroundVideoOverlay = styled.div`
   height: calc(100% - var(--header-height));
   background: rgba(0, 0, 0, 0.4);
   z-index: -1;
+  pointer-events: none;
 `;
 
 export const Text = styled.p`
@@ -42,13 +49,16 @@ export const SecondaryText = styled.p`
 `;
 
 export const ContentContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  z-index: 1;
   color: ${({ theme }) => theme.colors.white};
-  padding: 10rem 6rem;
-
-  h1 {
-    font-size: 3rem;
-    // margin-bottom: 1rem;
-  }
+  text-align: center;
+  padding: 6rem 2rem;
 `;
 
 export const EnrollButton = styled(Link)`
@@ -58,10 +68,10 @@ export const EnrollButton = styled(Link)`
   border-color: ${({ theme }) => theme.colors.white};
   border-width: 3px;
   background-color: ${({ theme }) => theme.colors.turquoise};
-  margin-top: 3rem;
   color: ${({ theme }) => theme.colors.white};
   font-size: 21px;
   font-weight: 300;
+  margin-top: 1rem;
 
   &:hover {
     cursor: pointer;

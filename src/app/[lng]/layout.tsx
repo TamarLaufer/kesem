@@ -4,6 +4,7 @@ import { Providers } from "@/Providers";
 import Header from "@/components/header";
 import { Assistant } from "next/font/google";
 import "@/app/globals.css";
+import Footer from "@/components/footer/Footer";
 
 const assistant = Assistant({
   subsets: ["hebrew"],
@@ -30,7 +31,7 @@ export default async function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Rubik+Dirt&family=Suez+One&family=Playpen+Sans+Hebrew:wght@100..800&display=swap&subset=hebrew"
+          href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Rubik+Dirt&family=Suez+One&family=Playpen+Sans+Hebrew:wght@100..800&display=swap&subset=hebrew"
           rel="stylesheet"
         />
       </head>
@@ -38,6 +39,7 @@ export default async function RootLayout({
         <Providers>
           <Header />
           <main>{children}</main>
+          <Footer />
         </Providers>
       </body>
     </html>

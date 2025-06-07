@@ -6,6 +6,7 @@ interface LinkContainerProps {
 }
 
 export const HeaderContainer = styled.div`
+  position: fixed;
   width: 100vw;
   background-color: ${({ theme }) => theme.colors.white};
   display: flex;
@@ -13,6 +14,7 @@ export const HeaderContainer = styled.div`
   align-items: center;
   padding: 0.5rem 2rem;
   direction: rtl;
+  z-index: 10;
 `;
 
 export const LogoContainer = styled.div`

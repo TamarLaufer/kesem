@@ -35,6 +35,7 @@ const Header = () => {
     { href: `/${lng}/lessons`, name: t("HEADER.NAV_BAR.ONLINE_LESSONS") },
     { href: `/${lng}/come-join-us`, name: t("HEADER.NAV_BAR.COME_JOIN_US") },
     { href: `/${lng}/our-partners`, name: t("HEADER.NAV_BAR.OUR_PARTNERS") },
+    { href: `/${lng}/about-us`, name: t("HEADER.NAV_BAR.ABOUT_US") },
   ];
 
   const renderLinks = links.map((oneLink: LinkType) => {
