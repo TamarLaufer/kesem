@@ -8,7 +8,7 @@ import {
   Text,
   IconLink,
 } from "./Footer.styles";
-import { Facebook, Youtube, Instegram } from "@/assets/icons";
+import { Facebook, Youtube, Instegram, WhatsApp } from "@/assets/icons";
 
 type SocialLinksType = {
   Icon: React.FC<React.SVGProps<SVGSVGElement>>;
@@ -27,6 +27,7 @@ const Footer = () => {
       url: "https://www.youtube.com/@%D7%A7%D7%A1%D7%9D-%D7%9E%D7%A8%D7%9B%D7%96-%D7%9C%D7%9E%D7%99%D7%93%D7%94",
     },
     { Icon: Instegram, url: "https://www.instagram.com/kesem_gs/" },
+    { Icon: WhatsApp, url: "https://wa.me/972542218057" },
   ];
 
   const text = t("FOOTER");
