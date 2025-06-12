@@ -42,5 +42,8 @@
   "CENTER_HOURS": "",
   "CENTER_LOCATION": "",
   "CENTER_EMAIL": "",
-  "CENTER_PHONE": ""
+  "CENTER_PHONE": "",
+  "ONLINE_LESSONS": {
+    "FUN_WITH_ONLINE_LESSONS_HEADER": "Learning with Joy – Handpicked Videos Just for You"
+  }
 }

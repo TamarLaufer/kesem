@@ -10,6 +10,7 @@ import {
   SendButton,
   InputHeader,
   ErrorSpan,
+  FieldGroup,
 } from "./Enroll.styles";
 import { useTranslation } from "react-i18next";
 import React, { useCallback, useState } from "react";
@@ -165,7 +166,7 @@ const Enroll = () => {
       <InputContainer>
         {fields.map((field) => {
           return (
-            <React.Fragment key={field.label}>
+            <FieldGroup key={field.label}>
               <InputHeader>{field.label}</InputHeader>
               <Input
                 key={field.name}
@@ -178,7 +179,7 @@ const Enroll = () => {
                   {errors[field.name]?.message}
                 </ErrorSpan>
               )}
-            </React.Fragment>
+            </FieldGroup>
           );
         })}
       </InputContainer>

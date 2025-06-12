@@ -12,8 +12,8 @@ import { useParams } from "next/navigation";
 
 const HomePage = () => {
   const { lng } = useParams();
-
   const { t } = useTranslation("common");
+
   return (
     <HomeContainer>
       <BackgroundVideo

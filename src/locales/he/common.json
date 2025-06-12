@@ -18,7 +18,7 @@
     "ADD_ME_TO_SUCCESS": "צרפו אותי להצלחה"
   },
   "ENROLL_PAGE": {
-    "JOIN_US_TO_KESEM": "בואו הצטרפו אלינו!",
+    "JOIN_US_TO_KESEM": "הצטרפו לקסם, אנחנו מחכים לכם :)",
     "SEND": "שליחה",
     "FIRST_NAME": "שם פרטי:",
     "LAST_NAME": "שם משפחה:",
@@ -44,5 +44,8 @@
   "CENTER_HOURS": "שעות הפעילות של המרכז: ימי רביעי 16:00-20:00",
   "CENTER_LOCATION": "מיקום: אולם אודיטוריום ע\"ש זמיר, גבעת שמואל",
   "CENTER_EMAIL": "דואר אלקטרוני: kesem.gs@gmail.com",
-  "CENTER_PHONE": "יאיר : 054-2218057"
+  "CENTER_PHONE": "יאיר : 054-2218057",
+  "ONLINE_LESSONS": {
+    "FUN_WITH_ONLINE_LESSONS_HEADER": "לומדים בכיף – סרטונים מומלצים במיוחד בשבילכם"
+  }
 }

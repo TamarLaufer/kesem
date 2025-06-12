@@ -5,5 +5,10 @@ export const PartnersContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: rgb(206, 225, 224);
+  background-image: url("/images/enroll_background3.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
 `;
