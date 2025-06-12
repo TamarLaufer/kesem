@@ -1,7 +1,7 @@
 import { dir } from "i18next";
 import { languages } from "@/i18n/settings";
 import { Providers } from "@/Providers";
-import Header from "@/components/header";
+import Header from "@/components/header/Header";
 import { Assistant } from "next/font/google";
 import "@/app/globals.css";
 import Footer from "@/components/footer/Footer";

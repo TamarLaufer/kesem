@@ -8,46 +8,83 @@ import {
   Text,
   IconLink,
 } from "./Footer.styles";
-import { Facebook, Youtube, Instegram, WhatsApp } from "@/assets/icons";
+import {
+  Facebook,
+  Youtube,
+  Instegram,
+  WhatsApp,
+  Clock,
+  SmartPhone,
+  Location,
+  Email,
+  Notes,
+} from "@/assets/icons";
 
 type SocialLinksType = {
-  Icon: React.FC<React.SVGProps<SVGSVGElement>>;
+  SocialIcon: React.FC<React.SVGProps<SVGSVGElement>>;
   url: string;
+};
+
+type IconType = React.FC<React.SVGProps<SVGSVGElement>>;
+
+const iconMap: Record<string, IconType> = {
+  Clock,
+  Email,
+  Location,
+  SmartPhone,
+  Notes,
 };
 
 const Footer = () => {
   const { t } = useTranslation("common");
   const socialLinks: SocialLinksType[] = [
     {
-      Icon: Facebook,
+      SocialIcon: Facebook,
       url: "https://www.facebook.com/profile.php?id=61566827575213",
     },
     {
-      Icon: Youtube,
+      SocialIcon: Youtube,
       url: "https://www.youtube.com/@%D7%A7%D7%A1%D7%9D-%D7%9E%D7%A8%D7%9B%D7%96-%D7%9C%D7%9E%D7%99%D7%93%D7%94",
     },
-    { Icon: Instegram, url: "https://www.instagram.com/kesem_gs/" },
-    { Icon: WhatsApp, url: "https://wa.me/972542218057" },
+    { SocialIcon: Instegram, url: "https://www.instagram.com/kesem_gs/" },
+    { SocialIcon: WhatsApp, url: "https://wa.me/972542218057" },
   ];
 
-  const text = t("FOOTER");
+  const footerInfo: { icon: keyof typeof iconMap | null; text: string }[] = [
+    { icon: "Clock", text: t("CENTER_HOURS") },
+    { icon: "Location", text: t("CENTER_LOCATION") },
+    { icon: "Notes", text: t("CENTER_DETAIL") },
+    { icon: "Email", text: t("CENTER_EMAIL") },
+    { icon: "SmartPhone", text: t("CENTER_PHONE") },
+  ];
+
+  // "FOOTER": "שעות הפעילות של המרכז: 16:00-20:00\nמיקום: אולם אודיטוריום ע\"ש זמיר\nלפרטים ולקבלת מערכת שעות ניתן לדבר איתנו\nיאיר : 054-2218057"
 
   return (
     <FooterContainer>
       <LeftContent>
-        {text.split("\n").map((line, index) => {
-          return <Text key={index}>{line}</Text>;
+        {footerInfo.map(({ icon, text }, idx) => {
+          const Icon = icon && iconMap[icon];
+          return (
+            <div
+              key={idx}
+              style={{ display: "flex", alignItems: "center", gap: "1rem" }}
+            >
+              {Icon && <Icon width={22} height={22} />}
+              <Text>{text}</Text>
+            </div>
+          );
         })}
       </LeftContent>
       <RightContent>
-        {socialLinks.map(({ Icon, url }, index) => (
+        {socialLinks.map(({ SocialIcon, url }, index) => (
           <IconLink
             key={index}
             href={url}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Icon width={50} height={50} />
+            <SocialIcon width={50} height={50} />
           </IconLink>
         ))}
       </RightContent>

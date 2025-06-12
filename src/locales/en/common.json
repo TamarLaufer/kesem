@@ -19,10 +19,28 @@
   },
   "ENROLL_PAGE": {
     "JOIN_US_TO_KESEM": "Join Kesem",
-    "SEND": "Send"
+    "SEND": "Send",
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name",
+    "CITY": "City",
+    "SCHOOL_NAME": "School name",
+    "GRADE": "Grade",
+    "GRADE_NUMBER": "Grade number",
+    "STUDENT_PHONE": "Student phone",
+    "PARENT_NAME": "Parent name",
+    "PARENT_PHONE": "Parent phone",
+    "EMAIL": "Email",
+    "HERE_ABOUT_US": "How did you here about us?",
+    "COMMENTS_REQUESTS": "Comments/requests",
+    "DETAILS_SENT_SUCCESSFULLY": "Your details sent successfully",
+    "THANK_YOU": "Great, Thank you"
   },
   "ABOUT_US_PAGE": {
     "ABOUT_TEXT": ""
   },
-  "FOOTER": ""
+  "CENTER_DETAIL": "",
+  "CENTER_HOURS": "",
+  "CENTER_LOCATION": "",
+  "CENTER_EMAIL": "",
+  "CENTER_PHONE": ""
 }

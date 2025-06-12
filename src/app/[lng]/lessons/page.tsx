@@ -1,5 +1,8 @@
+"use client";
+import { LessonsContainer } from "./Lessons.styles";
+
 const Lessons = () => {
-  return <div>Lessons</div>;
+  return <LessonsContainer>Lessons</LessonsContainer>;
 };
 
 export default Lessons;

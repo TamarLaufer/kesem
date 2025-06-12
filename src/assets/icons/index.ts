@@ -2,3 +2,8 @@ export { default as Instegram } from "./icons8-instagram.svg";
 export { default as Facebook } from "./icons8-facebook.svg";
 export { default as Youtube } from "./icons8-youtube.svg";
 export { default as WhatsApp } from "./icons8-whatsapp.svg";
+export { default as Location } from "./location.svg";
+export { default as Email } from "./email.svg";
+export { default as SmartPhone } from "./smartphone.svg";
+export { default as Clock } from "./clock.svg";
+export { default as Notes } from "./notes.svg";

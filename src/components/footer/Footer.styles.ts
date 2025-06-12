@@ -9,6 +9,8 @@ export const FooterContainer = styled.div`
   gap: 2rem;
 `;
 
+export const IconAndTextContainer = styled.div``;
+
 export const Text = styled.div`
   color: ${({ theme }) => theme.colors.white};
 `;

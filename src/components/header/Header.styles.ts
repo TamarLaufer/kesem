@@ -15,6 +15,9 @@ export const HeaderContainer = styled.div`
   padding: 0.5rem 2rem;
   direction: rtl;
   z-index: 10;
+  box-shadow: 0px 3px 18px 0px rgba(0, 0, 0, 0.56);
+  -webkit-box-shadow: 0px 3px 18px 0px rgba(0, 0, 0, 0.56);
+  -moz-box-shadow: 0px 3px 18px 0px rgba(0, 0, 0, 0.56);
 `;
 
 export const LogoContainer = styled.div`
@@ -30,7 +33,7 @@ export const LogoText = styled.p`
 
 export const Nav = styled.nav`
   display: flex;
-  gap: 1rem;
+  gap: 0.3rem;
   align-items: center;
 
   a {
@@ -42,7 +45,7 @@ export const Nav = styled.nav`
     font-size: 18px;
 
     &:hover {
-      background-color: ${({ theme }) => theme.colors.gray};
+      background-color: ${({ theme }) => theme.colors.grey};
       border-radius: 8px;
     }
   }
