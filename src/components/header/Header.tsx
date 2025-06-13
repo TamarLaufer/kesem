@@ -9,7 +9,6 @@ import {
   ButtonsContainer,
 } from "./Header.styles";
 import Image from "next/image";
-import logo from "@/../public/images/logo.png";
 import { theme } from "@/theme";
 import { useTranslation } from "react-i18next";
 import { useParams } from "next/navigation";
@@ -55,7 +54,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <LogoContainer>
-        <Image src={logo} alt="logo" width={120} height={60} />
+        <Image src="/images/logo.png" alt="logo" width={120} height={60} />
         <LogoText>{t("HEADER.NAV_BAR.YOUR_WAY_TO_SUCCESS")}</LogoText>
       </LogoContainer>
       <Nav>{renderLinks}</Nav>
