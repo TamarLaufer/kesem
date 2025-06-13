@@ -148,9 +148,10 @@ const Enroll = () => {
       await addDoc(collection(db, "students"), formData);
       setOpenPopup(true);
       reset();
-    } catch (error: any) {
-      setOpenPopup(true);
-      alert("שגיאה: " + (error?.message || "לא ידועה"));
+    } catch (error: unknown) {
+      const firebaseError = error as Error;
+      console.error("🔥 Firestore submission error:", firebaseError);
+      alert("שגיאה: " + (firebaseError.message || "לא ידועה"));
     }
   };
 
