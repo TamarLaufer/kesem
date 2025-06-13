@@ -37,6 +37,7 @@ const iconMap: Record<string, IconType> = {
 
 const Footer = () => {
   const { t } = useTranslation("common");
+
   const socialLinks: SocialLinksType[] = [
     {
       SocialIcon: Facebook,
@@ -57,8 +58,6 @@ const Footer = () => {
     { icon: "Email", text: t("CENTER_EMAIL") },
     { icon: "SmartPhone", text: t("CENTER_PHONE") },
   ];
-
-  // "FOOTER": "שעות הפעילות של המרכז: 16:00-20:00\nמיקום: אולם אודיטוריום ע\"ש זמיר\nלפרטים ולקבלת מערכת שעות ניתן לדבר איתנו\nיאיר : 054-2218057"
 
   return (
     <FooterContainer>

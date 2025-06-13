@@ -1,22 +1,38 @@
 import styled from "styled-components";
 
+export const BackgroundWrapper = styled.div`
+  background-image: url("/images/enroll_background4.png");
+  background-repeat: repeat-y;
+  background-size: contain;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+`;
+
 export const AboutUsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
   padding: 10rem 21rem;
-  scroll-y: auto;
-  line-height: 36px;
-  height: 100vh;
-  background-image: url("/images/enroll_background4.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;
 `;
 
 export const AboutUsText = styled.p`
   font-family: "Varela Round", sans-serif;
   flex-wrap: wrap;
   font-size: 22px;
+  line-height: 38px;
+`;
+
+export const TextContainer = styled.div`
+  margin-bottom: 1rem;
+`;
+
+export const ImagesContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const KesemImages = styled.img`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
