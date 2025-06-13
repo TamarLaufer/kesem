@@ -83,7 +83,7 @@ export const Input = styled.input`
 
 export const SendButton = styled.button`
   grid-column: span 2;
-  margin: 2rem;
+  margin: 4rem;
   padding: 1rem 8rem;
   border: none;
   border-radius: 30px;
