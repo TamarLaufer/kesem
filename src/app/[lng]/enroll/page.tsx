@@ -14,8 +14,7 @@ import {
 } from "./Enroll.styles";
 import { useTranslation } from "react-i18next";
 import React, { useCallback, useState } from "react";
-import { addDoc, collection } from "firebase/firestore";
-import { db, firebaseConfig } from "@/firebase/firebaseConfig";
+import { firebaseConfig } from "@/firebase/firebaseConfig";
 import Popup from "@/components/popup/Popup";
 import { CheckCircle } from "lucide-react";
 
@@ -145,7 +144,21 @@ const Enroll = () => {
 
   const onSubmit = async (formData: FormDataType) => {
     try {
-      await addDoc(collection(db, "students"), formData);
+      const response = await fetch("/api/enroll", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Unknown error");
+      }
+
+      const result = await response.json();
+      console.log("✅ Enroll succeeded:", result);
       setOpenPopup(true);
       reset();
     } catch (error: unknown) {
