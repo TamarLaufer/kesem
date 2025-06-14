@@ -14,7 +14,6 @@ import {
 } from "./Enroll.styles";
 import { useTranslation } from "react-i18next";
 import React, { useCallback, useState } from "react";
-import { firebaseConfig } from "@/firebase/firebaseConfig";
 import Popup from "@/components/popup/Popup";
 import { CheckCircle } from "lucide-react";
 
