@@ -77,4 +77,9 @@ export const EnrollButton = styled(Link)`
     cursor: pointer;
     background-color: ${({ theme }) => theme.colors.gray};
   }
+
+  @media (max-width: 767px) {
+    padding: 1rem 2.5rem;
+    font-size: 18px;
+  }
 `;

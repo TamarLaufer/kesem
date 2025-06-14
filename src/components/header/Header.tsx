@@ -7,6 +7,8 @@ import {
   LinkContainer,
   LogoText,
   ButtonsContainer,
+  Hamburger,
+  MobileMenu,
 } from "./Header.styles";
 import Image from "next/image";
 import { theme } from "@/theme";
@@ -24,6 +26,7 @@ const Header = () => {
   const params = useParams();
   const lng = typeof params.lng === "string" ? params.lng : "he";
   const [language, setLanguage] = useState<string>(lng);
+  const [isOpen, setIsOpen] = useState(false);
 
   console.log("LANG:", lng);
   console.log("t", t("HEADER.NAV_BAR.HOME_PAGE"));
@@ -37,9 +40,13 @@ const Header = () => {
     { href: `/${lng}/about-us`, name: t("HEADER.NAV_BAR.ABOUT_US") },
   ];
 
+  const handleLInkPress = () => {
+    setIsOpen(!isOpen);
+  };
+
   const renderLinks = links.map((oneLink: LinkType) => {
     return (
-      <Link key={oneLink.name} href={oneLink.href}>
+      <Link key={oneLink.name} href={oneLink.href} onClick={handleLInkPress}>
         {oneLink.name}
       </Link>
     );
@@ -48,15 +55,17 @@ const Header = () => {
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedLang = e.target.value;
     setLanguage(selectedLang);
-    window.location.href = `/${selectedLang}`; // Navigate to the selected language by updating the URL
+    window.location.href = `/${selectedLang}`;
   };
 
   return (
-    <HeaderContainer>
+    <HeaderContainer className="hamburger">
+      <Hamburger onClick={() => setIsOpen(!isOpen)}>☰</Hamburger>
       <LogoContainer>
         <Image src="/images/logo.png" alt="logo" width={120} height={60} />
         <LogoText>{t("HEADER.NAV_BAR.YOUR_WAY_TO_SUCCESS")}</LogoText>
       </LogoContainer>
+      {isOpen && <MobileMenu>{renderLinks}</MobileMenu>}
       <Nav>{renderLinks}</Nav>
       <ButtonsContainer>
         <LinkContainer

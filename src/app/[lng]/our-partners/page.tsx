@@ -1,19 +1,27 @@
 "use client";
 
-import { PartnersContainer } from "./OurPartners.styles";
+import { ImageWrapper, PartnersContainer } from "./OurPartners.styles";
 import Image from "next/image";
 
 const OurPartners = () => {
   return (
     <PartnersContainer>
-      <Image src="/images/gs.jpeg" alt="logo1" width={200} height={200} />
-      <Image
-        src="/images/hachevra_lematnasim.jpeg"
-        alt="logo2"
-        width={500}
-        height={150}
-        style={{ margin: 50 }}
-      />
+      <ImageWrapper>
+        <Image
+          src="/images/gs.jpeg"
+          alt="logo1"
+          fill
+          style={{ objectFit: "contain" }}
+        />
+      </ImageWrapper>
+      <ImageWrapper>
+        <Image
+          src="/images/hachevra_lematnasim.jpeg"
+          alt="logo2"
+          fill
+          style={{ objectFit: "contain" }}
+        />
+      </ImageWrapper>
     </PartnersContainer>
   );
 };

@@ -168,8 +168,6 @@ const Enroll = () => {
     }
   };
 
-  console.log("✅ Firebase config:", firebaseConfig);
-
   const handleClosePopup = useCallback(() => {
     setOpenPopup(false);
   }, []);

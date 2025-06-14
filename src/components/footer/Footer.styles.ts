@@ -7,12 +7,19 @@ export const FooterContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.dark_grey};
   height: 15rem;
   gap: 2rem;
-`;
 
-export const IconAndTextContainer = styled.div``;
+  @media (max-width: 767px) {
+    flex-direction: column;
+    height: auto;
+    padding: 2rem 0;
+  }
+`;
 
 export const Text = styled.div`
   color: ${({ theme }) => theme.colors.white};
+  @media (max-width: 767px) {
+    font-size: 18px;
+  }
 `;
 
 export const LeftContent = styled.div`

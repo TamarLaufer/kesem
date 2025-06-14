@@ -7,13 +7,12 @@ export const FormContainer = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding-top: 10rem;
+  padding-top: 8rem;
   overflow: hidden;
   background-image: url("/images/enroll_background3.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;
   width: 100%;
 `;
 
@@ -42,6 +41,16 @@ export const HeaderText = styled.p`
   padding: 2rem 0;
   font-family: "Suez One", serif;
   font-size: 28px;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+    align-items: center
+    justify-content: center;
+    text-align: center;
+    padding: 0 5.5rem;
+    padding-bottom: 1.5rem;
+    flex-direction: column;
+  }
 `;
 
 export const FieldGroup = styled.div`
@@ -54,8 +63,8 @@ export const InputContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
 
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
   }
 `;
 
@@ -64,6 +73,11 @@ export const InputHeader = styled.h2`
   margin-bottom: 0.5rem;
   display: block;
   color: ${({ theme }) => theme.colors.dark_grey};
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    font-weight: none;
+  }
 `;
 
 export const Input = styled.input`
@@ -78,6 +92,12 @@ export const Input = styled.input`
     outline: none;
     border-color: ${({ theme }) => theme.colors.turquoise};
     box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.turquoise + "33"};
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    font-weight: none;
+    width: 15rem;
   }
 `;
 
@@ -98,6 +118,7 @@ export const SendButton = styled.button`
 
   @media (max-width: 767px) {
     grid-column: span 1;
+    padding: 1rem 6.5rem;
   }
 `;
 
