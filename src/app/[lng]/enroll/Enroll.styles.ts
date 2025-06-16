@@ -58,18 +58,20 @@ export const FieldGroup = styled.div`
   flex-direction: column;
 `;
 
-export const InputContainer = styled.div`
+export const InputContainer = styled.fieldset`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
+  border: none;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
 `;
 
-export const InputHeader = styled.h2`
+export const InputHeader = styled.legend`
   font-weight: bold;
+  font-family: "M PLUS Rounded 1c", sans-serif;
   margin-bottom: 0.5rem;
   display: block;
   color: ${({ theme }) => theme.colors.dark_grey};
@@ -81,7 +83,7 @@ export const InputHeader = styled.h2`
 `;
 
 export const Input = styled.input`
-  width: 100%;
+  width: 25rem;
   padding: 0.75rem;
   border-radius: 12px;
   border: 1px solid #ccc;
@@ -97,7 +99,7 @@ export const Input = styled.input`
   @media (max-width: 768px) {
     font-size: 14px;
     font-weight: none;
-    width: 15rem;
+    width: 17rem;
   }
 `;
 

@@ -7,10 +7,12 @@
       "COME_JOIN_US": "Join Us as Teachers",
       "OUR_PARTNERS": "Our Partners",
       "YOUR_WAY_TO_SUCCESS": "Your Way to Success",
-      "TO_ENROLL": "Enroll",
-      "CONTACT_US": "Contact Us",
       "ABOUT_US": "About US"
-    }
+    },
+    "TO_ENROLL": "Enroll",
+    "CONTACT_US": "Contact Us",
+    "HEBREW": "עברית",
+    "ENGLISH": "English"
   },
   "HOME_PAGE": {
     "WELCOME_TO_KESEM": "Welcome to Kesem Center",

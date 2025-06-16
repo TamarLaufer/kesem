@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import {
   HomeContainer,
   BackgroundVideo,
-  Text,
+  Header,
   ContentContainer,
   SecondaryText,
   EnrollButton,
@@ -22,9 +22,10 @@ const HomePage = () => {
         muted
         loop
         playsInline
+        aria-hidden="true"
       />
       <ContentContainer>
-        <Text>{t("HOME_PAGE.WELCOME_TO_KESEM")}</Text>
+        <Header>{t("HOME_PAGE.WELCOME_TO_KESEM")}</Header>
         <SecondaryText>
           {t("HOME_PAGE.EDUCATIONAL_CENTER_FOR_YOU")}
         </SecondaryText>

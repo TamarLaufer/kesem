@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-export const HomeContainer = styled.div`
+export const HomeContainer = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,14 +34,14 @@ export const BackgroundVideoOverlay = styled.div`
   pointer-events: none;
 `;
 
-export const Text = styled.p`
+export const Header = styled.h1`
   font-family: "Suez One", serif;
   font-weight: 500;
   font-size: 3rem;
   color: ${({ theme }) => theme.colors.white};
 `;
 
-export const SecondaryText = styled.p`
+export const SecondaryText = styled.h2`
   font-family: "Suez One", serif;
   font-weight: 500;
   font-size: 2rem;

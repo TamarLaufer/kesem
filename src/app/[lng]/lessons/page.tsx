@@ -29,23 +29,25 @@ const Lessons = () => {
   const { t } = useTranslation("common");
 
   return (
-    <LessonsGridContainer>
+    <>
       <LessonsHeader>
         {t("ONLINE_LESSONS.FUN_WITH_ONLINE_LESSONS_HEADER")}
       </LessonsHeader>
-      {videoListIds.map((id) => {
-        return (
-          <VideoWrapper key={id}>
-            <StyledIframe
-              src={`https://www.youtube.com/embed/${id}`}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              title={`YouTube video ${id}`}
-            />
-          </VideoWrapper>
-        );
-      })}
-    </LessonsGridContainer>
+      <LessonsGridContainer>
+        {videoListIds.map((id) => {
+          return (
+            <VideoWrapper key={id}>
+              <StyledIframe
+                src={`https://www.youtube.com/embed/${id}`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title={`YouTube video ${id}`}
+              />
+            </VideoWrapper>
+          );
+        })}
+      </LessonsGridContainer>
+    </>
   );
 };
 

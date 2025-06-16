@@ -9,6 +9,8 @@ import {
   ButtonsContainer,
   Hamburger,
   MobileMenu,
+  Select,
+  Option,
 } from "./Header.styles";
 import Image from "next/image";
 import { theme } from "@/theme";
@@ -27,6 +29,7 @@ const Header = () => {
   const lng = typeof params.lng === "string" ? params.lng : "he";
   const [language, setLanguage] = useState<string>(lng);
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   console.log("LANG:", lng);
   console.log("t", t("HEADER.NAV_BAR.HOME_PAGE"));
@@ -41,7 +44,7 @@ const Header = () => {
   ];
 
   const handleLInkPress = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(isMobile && !isOpen);
   };
 
   const renderLinks = links.map((oneLink: LinkType) => {
@@ -60,7 +63,14 @@ const Header = () => {
 
   return (
     <HeaderContainer className="hamburger">
-      <Hamburger onClick={() => setIsOpen(!isOpen)}>☰</Hamburger>
+      <Hamburger
+        onClick={() => {
+          setIsOpen(!isOpen);
+          setIsMobile(!isMobile);
+        }}
+      >
+        ☰
+      </Hamburger>
       <LogoContainer>
         <Image src="/images/logo.png" alt="logo" width={120} height={60} />
         <LogoText>{t("HEADER.NAV_BAR.YOUR_WAY_TO_SUCCESS")}</LogoText>
@@ -72,18 +82,18 @@ const Header = () => {
           href={`/${lng}/enroll`}
           $backgroundColor={theme.colors.gold}
         >
-          {t("HEADER.NAV_BAR.TO_ENROLL")}
+          {t("HEADER.TO_ENROLL")}
         </LinkContainer>
         <LinkContainer
           $backgroundColor={theme.colors.turquoise}
           href={`${lng}/enroll`}
         >
-          {t("HEADER.NAV_BAR.CONTACT_US")}
+          {t("HEADER.CONTACT_US")}
         </LinkContainer>
-        <select value={language} onChange={handleLanguageChange}>
-          <option value="he">HE</option>
-          <option value="en">EN</option>
-        </select>
+        <Select value={language} onChange={handleLanguageChange}>
+          <Option value="he">{t("HEADER.HEBREW")}</Option>
+          <Option value="en">{t("HEADER.ENGLISH")}</Option>
+        </Select>
       </ButtonsContainer>
     </HeaderContainer>
   );

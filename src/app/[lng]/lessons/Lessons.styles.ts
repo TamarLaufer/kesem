@@ -1,3 +1,4 @@
+import { theme } from "@/theme";
 import styled from "styled-components";
 
 export const LessonsGridContainer = styled.div`
@@ -5,7 +6,6 @@ export const LessonsGridContainer = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
   padding: 2rem;
-  margin-top: 8rem;
 `;
 
 export const VideoWrapper = styled.div`
@@ -27,5 +27,13 @@ export const StyledIframe = styled.iframe`
 `;
 
 export const LessonsHeader = styled.h1`
-  font-family: "Rubik Dirt", sans-serif;
+  margin-top: 8rem;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 26px;
+  color: ${({}) => theme.colors.turquoise};
+  text-align: center;
+
+  @media (max-width: 768px) {
+    padding: 0 2rem;
+  }
 `;

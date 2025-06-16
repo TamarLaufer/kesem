@@ -1,3 +1,4 @@
+import { theme } from "@/theme";
 import Link from "next/link";
 import styled from "styled-components";
 
@@ -5,11 +6,12 @@ interface LinkContainerProps {
   $backgroundColor: string;
 }
 
-export const HeaderContainer = styled.header`
+export const HeaderContainer = styled.menu`
   position: fixed;
   width: 100vw;
   background-color: ${({ theme }) => theme.colors.white};
   display: flex;
+  font-family: "M PLUS Rounded 1c", sans-serif;
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 2rem;
@@ -32,7 +34,7 @@ export const HeaderContainer = styled.header`
   }
 `;
 
-export const MobileMenu = styled.div`
+export const MobileMenu = styled.menu`
   position: absolute;
   top: 100%;
   right: 0;
@@ -50,6 +52,7 @@ export const MobileMenu = styled.div`
     text-decoration: none;
     font-weight: bold;
     padding: 0.5rem 0;
+    font-family: "M PLUS Rounded 1c", sans-serif;
     font-size: 18px;
     width: 100%;
 
@@ -71,7 +74,7 @@ export const Hamburger = styled.button`
 
   @media (max-width: 768px) {
     display: block;
-    font-size: 3rem;
+    font-size: 2rem;
     background: none;
     border: none;
     cursor: pointer;
@@ -139,3 +142,16 @@ export const ButtonsContainer = styled.div`
   justify-content: center;
   gap: 0.5rem;
 `;
+
+export const Select = styled.select`
+  border-radius: 30px;
+  padding: 0.5rem 1rem;
+  background-color: ${({ theme }) => theme.colors.white};
+  color: : ${({ theme }) => theme.colors.black};
+
+  &:arrow {
+    padding: 1rem;
+  }
+`;
+
+export const Option = styled.option``;

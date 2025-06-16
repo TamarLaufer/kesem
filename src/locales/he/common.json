@@ -7,10 +7,13 @@
       "COME_JOIN_US": "בואו להיות מורים",
       "OUR_PARTNERS": "השותפים שלנו",
       "YOUR_WAY_TO_SUCCESS": "הדרך שלך להצלחה",
-      "TO_ENROLL": "להרשמה",
-      "CONTACT_US": "יצירת קשר",
       "ABOUT_US": "מי אנחנו?"
-    }
+    },
+
+    "TO_ENROLL": "להרשמה",
+    "CONTACT_US": "יצירת קשר",
+    "HEBREW": "עברית",
+    "ENGLISH": "English"
   },
   "HOME_PAGE": {
     "WELCOME_TO_KESEM": "ברוכים הבאים למרכז קסם",
@@ -44,7 +47,7 @@
   "CENTER_HOURS": "שעות הפעילות של המרכז: ימי רביעי 16:00-20:00",
   "CENTER_LOCATION": "מיקום: אולם אודיטוריום ע\"ש זמיר, גבעת שמואל",
   "CENTER_EMAIL": "דואר אלקטרוני: kesem.gs@gmail.com",
-  "CENTER_PHONE": "יאיר : 054-2218057",
+  "CENTER_PHONE": "מרכז קסם : 053-5566509",
   "ONLINE_LESSONS": {
     "FUN_WITH_ONLINE_LESSONS_HEADER": "לומדים בכיף – סרטונים מומלצים במיוחד בשבילכם"
   }
