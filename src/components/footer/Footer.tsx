@@ -1,6 +1,4 @@
 "use client";
-
-import { useTranslation } from "react-i18next";
 import {
   FooterContainer,
   LeftContent,
@@ -19,6 +17,7 @@ import {
   Email,
   Notes,
 } from "@/assets/icons";
+import { STRINGS } from "@/strings/common";
 
 type SocialLinksType = {
   SocialIcon: React.FC<React.SVGProps<SVGSVGElement>>;
@@ -36,8 +35,6 @@ const iconMap: Record<string, IconType> = {
 };
 
 const Footer = () => {
-  const { t } = useTranslation("common");
-
   const socialLinks: SocialLinksType[] = [
     {
       SocialIcon: Facebook,
@@ -52,11 +49,11 @@ const Footer = () => {
   ];
 
   const footerInfo: { icon: keyof typeof iconMap | null; text: string }[] = [
-    { icon: "Clock", text: t("CENTER_HOURS") },
-    { icon: "Location", text: t("CENTER_LOCATION") },
-    { icon: "Notes", text: t("CENTER_DETAIL") },
-    { icon: "Email", text: t("CENTER_EMAIL") },
-    { icon: "SmartPhone", text: t("CENTER_PHONE") },
+    { icon: "Clock", text: STRINGS.CENTER_HOURS },
+    { icon: "Location", text: STRINGS.CENTER_LOCATION },
+    { icon: "Notes", text: STRINGS.CENTER_DETAIL },
+    { icon: "Email", text: STRINGS.CENTER_EMAIL },
+    { icon: "SmartPhone", text: STRINGS.CENTER_PHONE },
   ];
 
   return (

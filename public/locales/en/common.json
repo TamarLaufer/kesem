@@ -47,5 +47,22 @@
   "CENTER_PHONE": "",
   "ONLINE_LESSONS": {
     "FUN_WITH_ONLINE_LESSONS_HEADER": "Learning with Joy – Handpicked Videos Just for You"
+  },
+  "CONTACT_PAGE": {
+    "WE_WANT_TO_HERE_FROM_YOU": "",
+    "CENTER_DETAIL": "",
+    "CENTER_HOURS": "",
+    "CENTER_LOCATION": "",
+    "CENTER_EMAIL": "Email: kesem.gs@gmail.com",
+    "FORM": {
+      "FULL_NAME": "Full name:",
+      "PHONE": "Phone:",
+      "GRADE": "Grade:",
+      "CITY": "City:",
+      "EMAIL": "Email:",
+      "CONTACT_SUBJECT": "",
+      "CONTACT_SUBJECT_DETAILS": "",
+      "DONE_SEND_REQUEST": ""
+    }
   }
 }

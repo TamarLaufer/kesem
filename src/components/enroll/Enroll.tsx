@@ -12,10 +12,10 @@ import {
   ErrorSpan,
   FieldGroup,
 } from "./Enroll.styles";
-import { useTranslation } from "react-i18next";
 import React, { useCallback, useState } from "react";
 import Popup from "@/components/popup/Popup";
 import { CheckCircle } from "lucide-react";
+import { STRINGS } from "@/strings/common";
 
 type FormDataType = {
   firstName: string;
@@ -63,83 +63,92 @@ const Enroll = () => {
   } = useForm<FormDataType>({
     resolver: zodResolver(formSchema),
   });
-  const { t } = useTranslation("common");
+
   const [openPopup, setOpenPopup] = useState(false);
 
   const fields: InputType[] = [
     {
       name: "firstName",
-      placeholder: t("ENROLL_PAGE.FIRST_NAME"),
-      label: t("ENROLL_PAGE.FIRST_NAME"),
+      placeholder: STRINGS.ENROLL_PAGE.FIRST_NAME,
+      label: STRINGS.ENROLL_PAGE.FIRST_NAME,
       type: "text",
     },
     {
       name: "lastName",
-      placeholder: t("ENROLL_PAGE.LAST_NAME"),
-      label: t("ENROLL_PAGE.LAST_NAME"),
+      placeholder: STRINGS.ENROLL_PAGE.LAST_NAME,
+      label: STRINGS.ENROLL_PAGE.LAST_NAME,
       type: "text",
     },
     {
       name: "city",
-      placeholder: t("ENROLL_PAGE.CITY"),
-      label: t("ENROLL_PAGE.CITY"),
+      placeholder: STRINGS.ENROLL_PAGE.CITY,
+      label: STRINGS.ENROLL_PAGE.CITY,
       type: "text",
     },
     {
       name: "schoolName",
-      placeholder: t("ENROLL_PAGE.SCHOOL_NAME"),
-      label: t("ENROLL_PAGE.SCHOOL_NAME"),
+      placeholder: STRINGS.ENROLL_PAGE.SCHOOL_NAME,
+      label: STRINGS.ENROLL_PAGE.SCHOOL_NAME,
       type: "text",
     },
     {
       name: "grade",
-      placeholder: t("ENROLL_PAGE.GRADE"),
-      label: t("ENROLL_PAGE.GRADE"),
+      placeholder: STRINGS.ENROLL_PAGE.GRADE,
+      label: STRINGS.ENROLL_PAGE.GRADE,
       type: "text",
     },
     {
       name: "gradeNumber",
-      placeholder: t("ENROLL_PAGE.GRADE_NUMBER"),
-      label: t("ENROLL_PAGE.GRADE_NUMBER"),
+      placeholder: STRINGS.ENROLL_PAGE.GRADE_NUMBER,
+      label: STRINGS.ENROLL_PAGE.GRADE_NUMBER,
       type: "text",
     },
     {
       name: "studentPhone",
-      placeholder: t("ENROLL_PAGE.STUDENT_PHONE"),
-      label: `${t("ENROLL_PAGE.STUDENT_PHONE")}`,
+      placeholder: STRINGS.ENROLL_PAGE.STUDENT_PHONE,
+      label: STRINGS.ENROLL_PAGE.STUDENT_PHONE,
       type: "tel",
     },
     {
       name: "parentName",
-      placeholder: t("ENROLL_PAGE.PARENT_NAME"),
-      label: `${t("ENROLL_PAGE.PARENT_NAME")}`,
+      placeholder: STRINGS.ENROLL_PAGE.PARENT_NAME,
+      label: STRINGS.ENROLL_PAGE.PARENT_NAME,
       type: "text",
     },
     {
       name: "parentPhone",
-      placeholder: t("ENROLL_PAGE.PARENT_PHONE"),
-      label: `${t("ENROLL_PAGE.PARENT_PHONE")}`,
+      placeholder: STRINGS.ENROLL_PAGE.PARENT_PHONE,
+      label: STRINGS.ENROLL_PAGE.PARENT_PHONE,
       type: "tel",
     },
     {
       name: "email",
-      placeholder: t("ENROLL_PAGE.EMAIL"),
-      label: t("ENROLL_PAGE.EMAIL"),
+      placeholder: STRINGS.ENROLL_PAGE.EMAIL,
+      label: STRINGS.ENROLL_PAGE.EMAIL,
       type: "email",
     },
     {
       name: "howDidYouHereAboutUs",
-      placeholder: t("ENROLL_PAGE.HERE_ABOUT_US"),
-      label: t("ENROLL_PAGE.HERE_ABOUT_US"),
+      placeholder: STRINGS.ENROLL_PAGE.HERE_ABOUT_US,
+      label: STRINGS.ENROLL_PAGE.HERE_ABOUT_US,
       type: "text",
     },
     {
       name: "comments",
-      placeholder: t("ENROLL_PAGE.COMMENTS_REQUESTS"),
-      label: t("ENROLL_PAGE.COMMENTS_REQUESTS"),
+      placeholder: STRINGS.ENROLL_PAGE.COMMENTS_REQUESTS,
+      label: STRINGS.ENROLL_PAGE.COMMENTS_REQUESTS,
       type: "text",
     },
   ];
+
+  const handleClosePopup = useCallback(() => {
+    setOpenPopup(false);
+  }, []);
+
+  if (!navigator.onLine) {
+    alert("נראה שאין חיבור לאינטרנט");
+    return;
+  }
 
   const onSubmit = async (formData: FormDataType) => {
     try {
@@ -167,13 +176,9 @@ const Enroll = () => {
     }
   };
 
-  const handleClosePopup = useCallback(() => {
-    setOpenPopup(false);
-  }, []);
-
   return (
     <FormContainer as="form" onSubmit={handleSubmit(onSubmit)}>
-      <HeaderText>{t("ENROLL_PAGE.JOIN_US_TO_KESEM")}</HeaderText>
+      <HeaderText>{STRINGS.ENROLL_PAGE.JOIN_US_TO_KESEM}</HeaderText>
       <InputContainer>
         {fields.map((field) => {
           return (
@@ -194,13 +199,13 @@ const Enroll = () => {
           );
         })}
       </InputContainer>
-      <SendButton type="submit">{t("ENROLL_PAGE.SEND")}</SendButton>
+      <SendButton type="submit">{STRINGS.ENROLL_PAGE.SEND}</SendButton>
       {openPopup && (
         <Popup
           icon={<CheckCircle />}
-          title={t("ENROLL_PAGE.SUCCESS_TITLE")}
-          text={t("ENROLL_PAGE.DETAILS_SENT_SUCCESSFULLY")}
-          buttonText={t("ENROLL_PAGE.THANK_YOU")}
+          title={STRINGS.ENROLL_PAGE.SUCCESS_TITLE}
+          text={STRINGS.ENROLL_PAGE.DETAILS_SENT_SUCCESSFULLY}
+          buttonText={STRINGS.ENROLL_PAGE.THANK_YOU}
           onClick={handleClosePopup}
         />
       )}

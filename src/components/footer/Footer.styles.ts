@@ -17,8 +17,10 @@ export const FooterContainer = styled.div`
 
 export const Text = styled.div`
   color: ${({ theme }) => theme.colors.white};
+  font-family: "M PLUS Rounded 1c", sans-serif;
+
   @media (max-width: 767px) {
-    font-size: 18px;
+    font-size: 16px;
   }
 `;
 
@@ -30,6 +32,11 @@ export const LeftContent = styled.div`
   flex: 1;
   gap: 1rem;
   padding: 0 10rem;
+
+  @media (max-width: 767px) {
+    font-size: 17px;
+    padding: 2rem;
+  }
 `;
 
 export const RightContent = styled.div`

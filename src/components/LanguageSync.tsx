@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useParams } from "next/navigation";
-import i18n from "@/i18n";
+import i18n from "i18next";
 
 const LanguageSync = () => {
   const params = useParams();
@@ -14,7 +14,7 @@ const LanguageSync = () => {
     }
   }, [lng]);
 
-  return null; // Nothing to render
+  return null;
 };
 
 export default LanguageSync;

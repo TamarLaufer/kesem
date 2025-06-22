@@ -1,0 +1,210 @@
+"use client";
+import {
+  ContactContainer,
+  ErrorSpan,
+  FieldGroup,
+  Header,
+  Input,
+  InputHeader,
+  Text,
+  FieldsContainer,
+  FormContainer,
+  IframeContainer,
+  Iframe,
+  TextContainer,
+  Textarea,
+  DetailsContainer,
+} from "./Contact.styles";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import Popup from "@/components/popup/Popup";
+import Button from "@/components/Button/Button";
+import { theme } from "@/theme";
+import { STRINGS } from "@/strings/common";
+
+type ContactDataType = {
+  fullName: string;
+  city: string;
+  grade: string;
+  phone: string;
+  email: string;
+  subject: string;
+};
+
+type InputType = {
+  name: keyof ContactDataType;
+  placeholder: string;
+  label: string;
+  type: string;
+};
+
+const contactSchema = z.object({
+  fullName: z.string().min(1, "יש להזין שם מלא"),
+  city: z.string().min(1, "יש להזין עיר"),
+  grade: z.string().min(1, "יש להזין כיתה"),
+  phone: z.string().min(9, "יש להזין טלפון תקין"),
+  email: z.string().email("יש להזין אימייל תקין"),
+  subject: z
+    .string()
+    .min(2, "יש לפרט את נושא הפניה")
+    .max(250, "עד 250 תווים בלבד"),
+});
+
+const Contact = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm<ContactDataType>({
+    resolver: zodResolver(contactSchema),
+  });
+
+  const [openPopup, setOpenPopup] = useState(false);
+
+  const fields: InputType[] = [
+    {
+      name: "fullName",
+      placeholder: STRINGS.CONTACT_PAGE.FORM.FULL_NAME,
+      label: STRINGS.CONTACT_PAGE.FORM.FULL_NAME,
+      type: "text",
+    },
+    {
+      name: "city",
+      placeholder: STRINGS.CONTACT_PAGE.FORM.CITY,
+      label: STRINGS.CONTACT_PAGE.FORM.CITY,
+      type: "text",
+    },
+    {
+      name: "grade",
+      placeholder: STRINGS.CONTACT_PAGE.FORM.GRADE,
+      label: STRINGS.CONTACT_PAGE.FORM.GRADE,
+      type: "text",
+    },
+    {
+      name: "phone",
+      placeholder: STRINGS.CONTACT_PAGE.FORM.PHONE,
+      label: STRINGS.CONTACT_PAGE.FORM.PHONE,
+      type: "text",
+    },
+    {
+      name: "email",
+      placeholder: STRINGS.CONTACT_PAGE.FORM.EMAIL,
+      label: STRINGS.CONTACT_PAGE.FORM.EMAIL,
+      type: "text",
+    },
+    {
+      name: "subject",
+      placeholder: STRINGS.CONTACT_PAGE.FORM.CONTACT_SUBJECT_DETAILS,
+      label: STRINGS.CONTACT_PAGE.FORM.CONTACT_SUBJECT,
+      type: "text",
+    },
+  ];
+
+  const onSubmit = async (formData: ContactDataType) => {
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Unknown error");
+      }
+
+      const result = await response.json();
+      console.log("✅ Enroll succeeded:", result);
+      setOpenPopup(true);
+      reset();
+    } catch (error: unknown) {
+      const firebaseError = error as Error;
+      console.error("🔥 Firestore submission error:", firebaseError);
+      alert("שגיאה: " + (firebaseError.message || "לא ידועה"));
+    }
+  };
+
+  return (
+    <ContactContainer as="form" onSubmit={handleSubmit(onSubmit)}>
+      <TextContainer>
+        <Header>{STRINGS.CONTACT_PAGE.WE_WANT_TO_HERE_FROM_YOU}</Header>
+      </TextContainer>
+      <FormContainer>
+        <FieldsContainer>
+          {fields.map((field) => {
+            return (
+              <FieldGroup key={field.label}>
+                <InputHeader>{field.label}</InputHeader>
+                {field.name === "subject" ? (
+                  <>
+                    <Textarea
+                      placeholder={field.placeholder}
+                      maxLength={250}
+                      {...register(field.name)}
+                      onChange={(e) => {
+                        register(field.name).onChange(e);
+                      }}
+                    />
+                    <Text
+                      style={{
+                        fontSize: "0.75rem",
+                        color: theme.colors.grey,
+                        marginTop: "4px",
+                      }}
+                    >
+                      {watch("subject")?.length || 0}/250
+                    </Text>
+                  </>
+                ) : (
+                  <Input
+                    key={field.name}
+                    type={field.type}
+                    placeholder={field.placeholder}
+                    {...register(field.name, { required: true })}
+                  />
+                )}
+                {errors[field.name] && (
+                  <ErrorSpan style={{ color: "red" }}>
+                    {errors[field.name]?.message}
+                  </ErrorSpan>
+                )}
+              </FieldGroup>
+            );
+          })}
+          <Button
+            type="submit"
+            text={STRINGS.CONTACT_PAGE.FORM.DONE_SEND_REQUEST}
+            $backgroundColor={theme.colors.turquoise}
+            color={theme.colors.white}
+          />
+        </FieldsContainer>
+        <IframeContainer>
+          <DetailsContainer>
+            <Text>{STRINGS.CONTACT_PAGE.CENTER_DETAIL}</Text>
+            <Text>{STRINGS.CONTACT_PAGE.CENTER_HOURS}</Text>
+            <Text>{STRINGS.CONTACT_PAGE.CENTER_LOCATION}</Text>
+            <Text>{STRINGS.CONTACT_PAGE.CENTER_EMAIL}</Text>
+          </DetailsContainer>
+          <Iframe
+            src="https://www.google.com/maps/place/%D7%90%D7%95%D7%93%D7%99%D7%98%D7%95%D7%A8%D7%99%D7%95%D7%9D+%D7%A2%D7%99%D7%A8%D7%95%D7%A0%D7%99%E2%80%AD/@32.0712759,34.8545685,18z/data=!3m1!4b1!4m6!3m5!1s0x151d4b97cdd24a19:0x55c47045165d9c15!8m2!3d32.0712744!4d34.8537098!16s%2Fg%2F11fmxkgk95?entry=ttu&g_ep=EgoyMDI1MDYxNS4wIKXMDSoASAFQAw%3D%3D"
+            width="100%"
+            height="300"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </IframeContainer>
+      </FormContainer>
+      {openPopup && <Popup />}
+    </ContactContainer>
+  );
+};
+
+export default Contact;

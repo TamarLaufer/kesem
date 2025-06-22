@@ -19,7 +19,7 @@ export const AboutUsContainer = styled.div`
 `;
 
 export const AboutUsText = styled.p`
-  font-family: "Varela Round", sans-serif;
+  font-family: "M PLUS Rounded 1c", sans-serif;
   flex-wrap: wrap;
   font-size: 22px;
   line-height: 38px;

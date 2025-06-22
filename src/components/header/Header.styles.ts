@@ -34,30 +34,34 @@ export const HeaderContainer = styled.menu`
 `;
 
 export const MobileMenu = styled.menu`
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: ${({ theme }) => theme.colors.white};
-  width: 100%;
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-  padding: 1rem 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  z-index: 100;
+  display: none;
 
-  a {
-    color: ${({ theme }) => theme.colors.gold};
-    text-decoration: none;
-    font-weight: bold;
-    padding: 0.5rem 0;
-    font-family: "M PLUS Rounded 1c", sans-serif;
-    font-size: 18px;
+  @media (max-width: 768px) {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: ${({ theme }) => theme.colors.white};
     width: 100%;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 100;
 
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.grey};
-      border-radius: 8px;
+    a {
+      color: ${({ theme }) => theme.colors.gold};
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.5rem 0;
+      font-family: "M PLUS Rounded 1c", sans-serif;
+      font-size: 18px;
+      width: 100%;
+
+      &:hover {
+        background-color: ${({ theme }) => theme.colors.grey};
+        border-radius: 8px;
+      }
     }
   }
 `;
@@ -86,10 +90,12 @@ export const LogoText = styled.p`
   font-size: 13px;
 `;
 
-export const Nav = styled.nav`
+export const Ul = styled.ul`
   display: flex;
   gap: 0.3rem;
   align-items: center;
+  text-decoration: none;
+  list-style: none;
 
   a {
     color: ${({ theme }) => theme.colors.gold};
@@ -116,7 +122,8 @@ export const LinkContainer = styled(Link)<LinkContainerProps>`
   border-radius: 30px;
   border: none;
   background-color: ${({ $backgroundColor }) => $backgroundColor};
-  padding: 0.8rem 2rem;
+  width: 7rem;
+  height: 3rem;
 
   a {
     color: white;
@@ -140,6 +147,7 @@ export const ButtonsContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  margin: 0 0 0 1.5rem;
 `;
 
 export const Select = styled.select`

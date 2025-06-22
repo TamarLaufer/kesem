@@ -1,5 +1,5 @@
 "use client";
-import { useTranslation } from "react-i18next";
+import { STRINGS } from "@/strings/common";
 import {
   LessonsGridContainer,
   LessonsHeader,
@@ -26,12 +26,10 @@ const videoListIds = [
 ];
 
 const Lessons = () => {
-  const { t } = useTranslation("common");
-
   return (
     <>
       <LessonsHeader>
-        {t("ONLINE_LESSONS.FUN_WITH_ONLINE_LESSONS_HEADER")}
+        {STRINGS.ONLINE_LESSONS.FUN_WITH_ONLINE_LESSONS_HEADER}
       </LessonsHeader>
       <LessonsGridContainer>
         {videoListIds.map((id) => {
@@ -42,6 +40,7 @@ const Lessons = () => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 title={`YouTube video ${id}`}
+                loading="lazy"
               />
             </VideoWrapper>
           );

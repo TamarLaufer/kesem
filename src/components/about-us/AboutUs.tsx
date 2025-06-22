@@ -1,5 +1,4 @@
 "use client";
-import { useTranslation } from "react-i18next";
 import {
   AboutUsContainer,
   AboutUsText,
@@ -8,6 +7,7 @@ import {
   TextContainer,
 } from "./AboutUs.styles";
 import Image from "next/image";
+import { STRINGS } from "@/strings/common";
 
 const imagesList = [
   "kesem_center1.jpeg",
@@ -15,9 +15,9 @@ const imagesList = [
   "kesem_center3.jpeg",
 ];
 
-const AboutUs = () => {
-  const { t } = useTranslation("common");
-  const text = t("ABOUT_US_PAGE.ABOUT_TEXT");
+export default function AboutUs() {
+  const text = STRINGS.ABOUT_US_PAGE.ABOUT_TEXT;
+
   return (
     <BackgroundWrapper>
       <AboutUsContainer>
@@ -46,6 +46,4 @@ const AboutUs = () => {
       </AboutUsContainer>
     </BackgroundWrapper>
   );
-};
-
-export default AboutUs;
+}

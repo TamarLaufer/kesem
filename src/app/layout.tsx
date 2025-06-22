@@ -1,28 +1,16 @@
-import { dir } from "i18next";
-import { languages } from "@/i18n/settings";
 import { Providers } from "@/Providers";
 import Header from "@/components/header/Header";
-import { Assistant } from "next/font/google";
-import "@/app/globals.css";
 import Footer from "@/components/footer/Footer";
+import { ReactNode } from "react";
+import "./globals.css";
 
-const assistant = Assistant({
-  subsets: ["hebrew"],
-  variable: "--font-assistant",
-  display: "swap",
-});
+type Props = {
+  children: ReactNode;
+};
 
-export default async function RootLayout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: { lng: string };
-}) {
-  const { lng } = await params;
-
+export default function RootLayout({ children }: Props) {
   return (
-    <html lang={lng} dir={dir(lng)}>
+    <html lang="he" dir="rtl">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -35,7 +23,7 @@ export default async function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={assistant.variable}>
+      <body>
         <Providers>
           <Header />
           <main>{children}</main>
@@ -44,8 +32,4 @@ export default async function RootLayout({
       </body>
     </html>
   );
-}
-
-export async function generateStaticParams() {
-  return languages.map((lng) => ({ lng }));
 }

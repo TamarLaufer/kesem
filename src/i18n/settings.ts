@@ -1,18 +1,20 @@
 export const fallbackLng = "he";
 export const defaultNS = "common";
 
-export const languages = ["he", "en"];
-
-export const namespaces = [defaultNS];
-
-export const getOptions = (lng = fallbackLng, ns = defaultNS) => ({
-  supportedLngs: languages,
-  fallbackLng,
-  lng,
-  ns,
-  defaultNS,
-  fallbackNS: defaultNS,
-  interpolation: {
-    escapeValue: false,
-  },
-});
+export function getOptions(
+  lng: string = fallbackLng,
+  ns: string[] = [defaultNS]
+) {
+  return {
+    debug: false,
+    supportedLngs: ["he", "en"],
+    fallbackLng,
+    lng,
+    fallbackNS: defaultNS,
+    defaultNS,
+    ns,
+    interpolation: {
+      escapeValue: false,
+    },
+  };
+}
