@@ -145,11 +145,6 @@ const Enroll = () => {
     setOpenPopup(false);
   }, []);
 
-  if (!navigator.onLine) {
-    alert("נראה שאין חיבור לאינטרנט");
-    return;
-  }
-
   const onSubmit = async (formData: FormDataType) => {
     try {
       const response = await fetch("/api/enroll", {
