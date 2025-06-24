@@ -6,7 +6,7 @@ import * as fs from "fs";
 
 admin.initializeApp();
 
-const SHEET_ID = "הכניסי-כאן-את-ה-Spreadsheet-ID";
+const SHEET_ID = "1eQSBU-4X70g_hxNXP8R-dy-wX9AN9OHvdBYKfNP754c";
 const SHEET_TAB = "Sheet1";
 
 const keyFile = path.join(__dirname, "kesem-be97f-f10811da4f22.json");

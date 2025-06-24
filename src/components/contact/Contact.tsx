@@ -22,7 +22,7 @@ import { useState } from "react";
 import Popup from "@/components/popup/Popup";
 import { theme } from "@/theme";
 import { STRINGS } from "@/strings/common";
-import Button from "../button";
+import Button from "@/components/button";
 
 type ContactDataType = {
   fullName: string;
