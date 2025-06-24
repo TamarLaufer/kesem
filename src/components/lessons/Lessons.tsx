@@ -9,7 +9,7 @@ import {
 import { Fragment, useState } from "react";
 import { VIDEO_BATCH } from "@/consts";
 import { ButtonsContainer } from "./Lessons.styles";
-import Button from "@/components/button";
+import Button from "../button/Button";
 
 const videoListIds = [
   "Y2nrZEF5kNQ",
