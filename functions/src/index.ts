@@ -33,16 +33,15 @@ export const addStudentToSheet = functions.firestore
       data.firstName || "שם התלמיד/ה",
       data.lastName || "שם משפחה",
       data.city || "עיר מגורים",
+      data.schoolName || "שם בית ספר",
       data.grade || "כיתה",
       data.gradeNumber || "מספר כיתה",
-      data.email || 'דוא"ל',
+      data.studentPhone || "טלפון תלמיד/ה",
       data.parentName || "שם הורה",
       data.parentPhone || "טלפון הורה",
-      data.studentPhone || "טלפון תלמיד/ה",
-      data.schoolName || "שם בית ספר",
+      data.email || 'דוא"ל',
       data.howDidYouHereAboutUs || "איך שמעת עלינו?",
       data.comments || "הערות/בקשות",
-      snap.createTime ? snap.createTime.toDate().toISOString() : "",
     ];
 
     await sheets.spreadsheets.values.append({

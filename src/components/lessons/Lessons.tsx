@@ -8,8 +8,8 @@ import {
 } from "./Lessons.styles";
 import { Fragment, useState } from "react";
 import { VIDEO_BATCH } from "@/consts";
-import Button from "../button/Button";
 import { ButtonsContainer } from "./Lessons.styles";
+import Button from "../button";
 
 const videoListIds = [
   "Y2nrZEF5kNQ",

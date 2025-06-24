@@ -20,9 +20,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import Popup from "@/components/popup/Popup";
-import Button from "@/components/button/Button";
 import { theme } from "@/theme";
 import { STRINGS } from "@/strings/common";
+import Button from "../button";
 
 type ContactDataType = {
   fullName: string;
