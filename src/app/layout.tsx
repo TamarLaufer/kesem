@@ -1,8 +1,8 @@
+import "./globals.css";
 import { Providers } from "@/Providers";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import { ReactNode } from "react";
-import "./globals.css";
 
 type Props = {
   children: ReactNode;

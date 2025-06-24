@@ -20,7 +20,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import Popup from "@/components/popup/Popup";
-import Button from "@/components/Button/Button";
+import Button from "@/components/button/Button";
 import { theme } from "@/theme";
 import { STRINGS } from "@/strings/common";
 
@@ -190,6 +190,7 @@ const Contact = () => {
             <Text>{STRINGS.CONTACT_PAGE.CENTER_HOURS}</Text>
             <Text>{STRINGS.CONTACT_PAGE.CENTER_LOCATION}</Text>
             <Text>{STRINGS.CONTACT_PAGE.CENTER_EMAIL}</Text>
+            <Text>{STRINGS.CONTACT_PAGE.CENTER_PHONE}</Text>
           </DetailsContainer>
           <Iframe
             src="https://www.google.com/maps/place/%D7%90%D7%95%D7%93%D7%99%D7%98%D7%95%D7%A8%D7%99%D7%95%D7%9D+%D7%A2%D7%99%D7%A8%D7%95%D7%A0%D7%99%E2%80%AD/@32.0712759,34.8545685,18z/data=!3m1!4b1!4m6!3m5!1s0x151d4b97cdd24a19:0x55c47045165d9c15!8m2!3d32.0712744!4d34.8537098!16s%2Fg%2F11fmxkgk95?entry=ttu&g_ep=EgoyMDI1MDYxNS4wIKXMDSoASAFQAw%3D%3D"

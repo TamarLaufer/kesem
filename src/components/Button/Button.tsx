@@ -1,3 +1,4 @@
+"use client";
 import { theme } from "@/theme";
 import { ButtonStyle } from "./Button.styles";
 

@@ -6,6 +6,10 @@ import {
   StyledIframe,
   VideoWrapper,
 } from "./Lessons.styles";
+import { Fragment, useState } from "react";
+import { VIDEO_BATCH } from "@/consts";
+import Button from "../button/Button";
+import { ButtonsContainer } from "./Lessons.styles";
 
 const videoListIds = [
   "Y2nrZEF5kNQ",
@@ -26,13 +30,23 @@ const videoListIds = [
 ];
 
 const Lessons = () => {
+  const [videoToDisplay, setVideoToDisplay] = useState(VIDEO_BATCH);
+
+  const handleShowMoreVideo = () => {
+    setVideoToDisplay((prev) => prev + videoToDisplay);
+  };
+
+  const handleShowLessVideo = () => {
+    setVideoToDisplay(VIDEO_BATCH);
+  };
+
   return (
-    <>
+    <Fragment>
       <LessonsHeader>
         {STRINGS.ONLINE_LESSONS.FUN_WITH_ONLINE_LESSONS_HEADER}
       </LessonsHeader>
       <LessonsGridContainer>
-        {videoListIds.map((id) => {
+        {videoListIds.slice(0, videoToDisplay).map((id) => {
           return (
             <VideoWrapper key={id}>
               <StyledIframe
@@ -46,7 +60,21 @@ const Lessons = () => {
           );
         })}
       </LessonsGridContainer>
-    </>
+      <ButtonsContainer>
+        <Button
+          onClick={
+            videoToDisplay < videoListIds.length
+              ? handleShowMoreVideo
+              : handleShowLessVideo
+          }
+          text={
+            videoToDisplay < videoListIds.length
+              ? STRINGS.ONLINE_LESSONS.SHOW_MORE
+              : STRINGS.ONLINE_LESSONS.SHOW_LESS
+          }
+        />
+      </ButtonsContainer>
+    </Fragment>
   );
 };
 

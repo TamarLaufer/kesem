@@ -3,6 +3,8 @@ import Link from "next/link";
 import styled from "styled-components";
 
 export const HomeContainer = styled.main`
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,6 +13,7 @@ export const HomeContainer = styled.main`
   padding-top: 8rem;
   position: relative;
   overflow: hidden;
+  max-width: 100vw;
 `;
 
 export const BackgroundVideo = styled.video`

@@ -37,3 +37,11 @@ export const LessonsHeader = styled.h1`
     padding: 0 2rem;
   }
 `;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0 0 0 1.5rem;
+`;
