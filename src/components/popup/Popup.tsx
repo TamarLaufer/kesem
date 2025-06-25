@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   TextContent,
   PopupContainer,
@@ -15,7 +15,7 @@ type PopupPropsType = {
   icon?: React.ReactNode;
   title?: string;
   color?: string;
-  onClick?: () => void;
+  onClick: () => void;
 };
 
 const Popup = ({
@@ -27,7 +27,18 @@ const Popup = ({
   onClick,
 }: PopupPropsType) => {
   const AnimatedPopup = motion(PopupContainer);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
+  useEffect(() => {
+    if (buttonRef.current) {
+      buttonRef.current.focus();
+    }
+  }, []);
+
+  const $onClick = () => {
+    onClick();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
     <PopupOverlay>
       <AnimatedPopup
@@ -40,7 +51,9 @@ const Popup = ({
           {title && <h2 style={{ color }}>{title}</h2>}
           {text && <TextContent>{text}</TextContent>}
           {buttonText && (
-            <ButtonText onClick={onClick}>{buttonText}</ButtonText>
+            <ButtonText ref={buttonRef} onClick={$onClick}>
+              {buttonText}
+            </ButtonText>
           )}
         </PopupContainer>
       </AnimatedPopup>

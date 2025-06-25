@@ -28,7 +28,7 @@ export const ButtonStyle = styled.button<ButtonPropsType>`
     background-color: ${({ $hoverBackgroundColor }) => $hoverBackgroundColor};
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     grid-column: span 1;
     padding: 1rem 6.5rem;
   }

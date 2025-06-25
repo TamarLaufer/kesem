@@ -20,11 +20,25 @@ export const PopupContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
   width: 25rem;
   height: 15rem;
-  border-radius: 26px;
+  border-radius: 21px;
+
+  h2 {
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    width: 18rem;
+    padding-bottom: 10px;
+  }
 `;
 
 export const TextContent = styled.p`
   font-size: 18px;
+
+  @media (max-width: 768px) {
+    text-align: center;
+    padding: 10px 10px;
+  }
 `;
 
 export const ButtonText = styled.button`
