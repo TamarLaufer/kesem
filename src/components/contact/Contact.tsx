@@ -1,28 +1,28 @@
 "use client";
+import Button from "@/components/Button";
+import Popup from "@/components/popup/Popup";
+import { STRINGS } from "@/strings/common";
+import { theme } from "@/theme";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import {
   ContactContainer,
+  DetailsContainer,
   ErrorSpan,
   FieldGroup,
+  FieldsContainer,
+  FormContainer,
   Header,
+  Iframe,
+  IframeContainer,
   Input,
   InputHeader,
   Text,
-  FieldsContainer,
-  FormContainer,
-  IframeContainer,
-  Iframe,
   TextContainer,
   Textarea,
-  DetailsContainer,
 } from "./Contact.styles";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { useState } from "react";
-import Popup from "@/components/popup/Popup";
-import { theme } from "@/theme";
-import { STRINGS } from "@/strings/common";
-import Button from "@/components/Button";
 
 type ContactDataType = {
   fullName: string;
@@ -203,7 +203,7 @@ const Contact = () => {
           />
         </IframeContainer>
       </FormContainer>
-      {openPopup && <Popup />}
+      {openPopup && <Popup onClick={() => setOpenPopup(false)} />}
     </ContactContainer>
   );
 };

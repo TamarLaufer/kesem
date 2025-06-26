@@ -26,9 +26,12 @@ export const HeaderContainer = styled.menu`
     background: none;
     border: none;
     color: white;
+    list-style-type: none;
+    text-decoration: none;
 
     @media (max-width: 768px) {
       display: block;
+      background-color: red;
     }
   }
 `;
@@ -77,10 +80,13 @@ export const Hamburger = styled.button`
 
   @media (max-width: 768px) {
     display: block;
+    background-color: red;
     font-size: 2rem;
     background: none;
     border: none;
+    list-style: none;
     cursor: pointer;
+    list-style-type: none;
     color: ${({ theme }) => theme.colors.gold};
   }
 `;

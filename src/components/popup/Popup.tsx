@@ -32,6 +32,7 @@ const Popup = ({
   useEffect(() => {
     if (buttonRef.current) {
       buttonRef.current.focus();
+      console.log("Popup focused!", buttonRef.current);
     }
   }, []);
 

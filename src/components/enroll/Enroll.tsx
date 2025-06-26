@@ -16,6 +16,8 @@ import React, { useCallback, useState } from "react";
 import Popup from "@/components/popup/Popup";
 import { CheckCircle } from "lucide-react";
 import { STRINGS } from "@/strings/common";
+import Spinner from "../spiner/Spinner";
+import { theme } from "@/theme";
 
 type FormDataType = {
   firstName: string;
@@ -65,6 +67,7 @@ const Enroll = () => {
   });
 
   const [openPopup, setOpenPopup] = useState(false);
+  const [loader, setLoader] = useState(false);
 
   const fields: InputType[] = [
     {
@@ -146,6 +149,7 @@ const Enroll = () => {
   }, []);
 
   const onSubmit = async (formData: FormDataType) => {
+    setLoader(true);
     try {
       const response = await fetch("/api/enroll", {
         method: "POST",
@@ -162,9 +166,11 @@ const Enroll = () => {
 
       const result = await response.json();
       console.log("✅ Enroll succeeded:", result);
+      setLoader(false);
       setOpenPopup(true);
       reset();
     } catch (error: unknown) {
+      setLoader(false);
       const firebaseError = error as Error;
       console.error("🔥 Firestore submission error:", firebaseError);
       alert("שגיאה: " + (firebaseError.message || "לא ידועה"));
@@ -172,30 +178,33 @@ const Enroll = () => {
   };
 
   return (
-    <FormContainer as="form" onSubmit={handleSubmit(onSubmit)}>
-      <HeaderText>{STRINGS.ENROLL_PAGE.JOIN_US_TO_KESEM}</HeaderText>
-      <InputContainer>
-        {fields.map((field) => {
-          return (
-            <FieldGroup key={field.label}>
-              <InputHeader>{field.label}</InputHeader>
-              <Input
-                key={field.name}
-                type={field.type}
-                placeholder={field.placeholder}
-                {...register(field.name, { required: true })}
-              />
-              {errors[field.name] && (
-                <ErrorSpan style={{ color: "red" }}>
-                  {errors[field.name]?.message}
-                </ErrorSpan>
-              )}
-            </FieldGroup>
-          );
-        })}
-      </InputContainer>
-      <SendButton type="submit">{STRINGS.ENROLL_PAGE.SEND}</SendButton>
-      {openPopup && (
+    <>
+      {loader && <Spinner color={theme.colors.dark_turquoise} />}
+      <FormContainer as="form" onSubmit={handleSubmit(onSubmit)}>
+        <HeaderText>{STRINGS.ENROLL_PAGE.JOIN_US_TO_KESEM}</HeaderText>
+        <InputContainer>
+          {fields.map((field) => {
+            return (
+              <FieldGroup key={field.label}>
+                <InputHeader>{field.label}</InputHeader>
+                <Input
+                  key={field.name}
+                  type={field.type}
+                  placeholder={field.placeholder}
+                  {...register(field.name, { required: true })}
+                />
+                {errors[field.name] && (
+                  <ErrorSpan style={{ color: "red" }}>
+                    {errors[field.name]?.message}
+                  </ErrorSpan>
+                )}
+              </FieldGroup>
+            );
+          })}
+        </InputContainer>
+        <SendButton type="submit">{STRINGS.ENROLL_PAGE.SEND}</SendButton>
+      </FormContainer>
+      {!loader && openPopup && (
         <Popup
           icon={<CheckCircle />}
           title={STRINGS.ENROLL_PAGE.SUCCESS_TITLE}
@@ -204,7 +213,7 @@ const Enroll = () => {
           onClick={handleClosePopup}
         />
       )}
-    </FormContainer>
+    </>
   );
 };
 

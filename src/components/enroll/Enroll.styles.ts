@@ -66,6 +66,7 @@ export const InputContainer = styled.fieldset`
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    gap: 1.1rem;
   }
 `;
 
@@ -79,6 +80,7 @@ export const InputHeader = styled.legend`
   @media (max-width: 768px) {
     font-size: 16px;
     font-weight: none;
+    margin-bottom: 0.4rem;
   }
 `;
 
