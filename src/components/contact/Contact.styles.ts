@@ -4,7 +4,7 @@ export const ContactContainer = styled.main`
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  margin-top: 8rem;
+  margin-top: 9rem;
 
   @media (max-width: 768px) {
   }
@@ -105,6 +105,10 @@ export const FieldsContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 4rem;
+
+  @media (max-width: 768px) {
+    margin-top: 1.7rem;
+  }
 `;
 
 export const FormContainer = styled.div`
@@ -112,20 +116,54 @@ export const FormContainer = styled.div`
   justify-content: center;
   align-items: space-between;
   margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    margin-top: 0;
+    flex-direction: column;
+  }
 `;
 
 export const IframeContainer = styled.div`
   flex: 1;
   display: flex;
-  padding: 0 2rem;
+  padding: 0 4rem;
   flex-direction: column;
+
+  @media (max-width: 768px) {
+    padding: 2rem;
+    line-height: 20px;
+  }
 `;
 
-export const Iframe = styled.iframe`
-  border-radius: 24px;
+export const StyledIframe = styled.iframe`
+  width: 100%;
+  min-height: 300px;
+  height: 40vw;
+  max-height: 450px;
+  border: 0;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  @media (max-width: 768px) {
+    height: 300px;
+    min-height: 160px;
+  }
 `;
 
 export const DetailsContainer = styled.div`
   line-height: 3rem;
-  margin: 6rem 0;
+  margin: 3.5rem 0;
+
+  @media (max-width: 768px) {
+    line-height: 3rem;
+    margin: 1rem 0;
+  }
+`;
+
+export const ButtonContainer = styled.div`
+  margin: 2rem;
+
+  @media (max-width: 768px) {
+    margin: 1rem 2rem;
+  }
 `;

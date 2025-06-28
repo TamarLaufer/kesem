@@ -130,13 +130,10 @@ export const LinkContainer = styled(Link)<LinkContainerProps>`
   background-color: ${({ $backgroundColor }) => $backgroundColor};
   width: 7rem;
   height: 3rem;
-
-  a {
-    color: white;
-    font-weight: 200;
-    font-family: "Playpen Sans Hebrew", cursive;
-    font-size: 16px;
-  }
+  color: white;
+  font-weight: 200;
+  font-family: "Playpen Sans Hebrew", cursive;
+  font-size: 16px;
 
   &:hover {
     background-color: #ddd;

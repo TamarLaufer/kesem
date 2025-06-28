@@ -38,10 +38,10 @@ export const LessonsHeader = styled.h1`
   }
 `;
 
-export const ButtonsContainer = styled.div`
+export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  margin: 0 0 0 1.5rem;
+  margin: 1.5rem;
 `;

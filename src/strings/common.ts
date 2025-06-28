@@ -78,4 +78,7 @@ export const STRINGS = {
       DONE_SEND_REQUEST: "סיימתי, שליחת בקשה",
     },
   },
+  COME_JOIN_US_PAGE: {
+    COMMING_SOON: "בקרוב...",
+  },
 };

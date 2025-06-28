@@ -8,7 +8,7 @@ import {
 } from "./Lessons.styles";
 import { Fragment, useState } from "react";
 import { VIDEO_BATCH } from "@/consts";
-import { ButtonsContainer } from "./Lessons.styles";
+import { ButtonContainer } from "./Lessons.styles";
 import Button from "@/components/Button";
 
 const videoListIds = [
@@ -60,7 +60,7 @@ const Lessons = () => {
           );
         })}
       </LessonsGridContainer>
-      <ButtonsContainer>
+      <ButtonContainer>
         <Button
           onClick={
             videoToDisplay < videoListIds.length
@@ -73,7 +73,7 @@ const Lessons = () => {
               : STRINGS.ONLINE_LESSONS.SHOW_LESS
           }
         />
-      </ButtonsContainer>
+      </ButtonContainer>
     </Fragment>
   );
 };

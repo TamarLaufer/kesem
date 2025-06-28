@@ -15,7 +15,7 @@ import {
   FieldsContainer,
   FormContainer,
   Header,
-  Iframe,
+  StyledIframe,
   IframeContainer,
   Input,
   InputHeader,
@@ -23,6 +23,7 @@ import {
   TextContainer,
   Textarea,
 } from "./Contact.styles";
+import { ButtonContainer } from "./Contact.styles";
 
 type ContactDataType = {
   fullName: string;
@@ -177,12 +178,14 @@ const Contact = () => {
               </FieldGroup>
             );
           })}
-          <Button
-            type="submit"
-            text={STRINGS.CONTACT_PAGE.FORM.DONE_SEND_REQUEST}
-            $backgroundColor={theme.colors.turquoise}
-            color={theme.colors.white}
-          />
+          <ButtonContainer>
+            <Button
+              type="submit"
+              text={STRINGS.CONTACT_PAGE.FORM.DONE_SEND_REQUEST}
+              $backgroundColor={theme.colors.turquoise}
+              color={theme.colors.white}
+            />
+          </ButtonContainer>
         </FieldsContainer>
         <IframeContainer>
           <DetailsContainer>
@@ -192,11 +195,8 @@ const Contact = () => {
             <Text>{STRINGS.CONTACT_PAGE.CENTER_EMAIL}</Text>
             <Text>{STRINGS.CONTACT_PAGE.CENTER_PHONE}</Text>
           </DetailsContainer>
-          <Iframe
-            src="https://www.google.com/maps/place/%D7%90%D7%95%D7%93%D7%99%D7%98%D7%95%D7%A8%D7%99%D7%95%D7%9D+%D7%A2%D7%99%D7%A8%D7%95%D7%A0%D7%99%E2%80%AD/@32.0712759,34.8545685,18z/data=!3m1!4b1!4m6!3m5!1s0x151d4b97cdd24a19:0x55c47045165d9c15!8m2!3d32.0712744!4d34.8537098!16s%2Fg%2F11fmxkgk95?entry=ttu&g_ep=EgoyMDI1MDYxNS4wIKXMDSoASAFQAw%3D%3D"
-            width="100%"
-            height="300"
-            style={{ border: 0 }}
+          <StyledIframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1690.4625520853324!2d34.8537098!3d32.0712744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d4b97cdd24a19%3A0x55c47045165d9c15!2z15DXldeT15nXmNeV16jXmdeV150g16LXmdeo15XXoNeZ!5e0!3m2!1siw!2sil!4v1751149352749!5m2!1siw!2sil"
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"

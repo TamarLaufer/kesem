@@ -13,7 +13,6 @@ export const ButtonStyle = styled.button<ButtonPropsType>`
   justify-content: center
   width: ${({ $width }) => $width};
   height: ${({ $height }) => $height};
-  margin: 4rem;
   border: none;
   border-radius: 30px;
   flex-wrap: wrap;
@@ -26,10 +25,5 @@ export const ButtonStyle = styled.button<ButtonPropsType>`
 
   &:hover {
     background-color: ${({ $hoverBackgroundColor }) => $hoverBackgroundColor};
-  }
-
-  @media (max-width: 768px) {
-    grid-column: span 1;
-    padding: 1rem 6.5rem;
   }
 `;
