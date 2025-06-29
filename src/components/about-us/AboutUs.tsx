@@ -4,9 +4,9 @@ import {
   AboutUsText,
   BackgroundWrapper,
   ImagesContainer,
+  ImageStyle,
   TextContainer,
 } from "./AboutUs.styles";
-import Image from "next/image";
 import { STRINGS } from "@/strings/common";
 
 const imagesList = [
@@ -29,16 +29,12 @@ export default function AboutUs() {
         <ImagesContainer>
           {imagesList.map((oneImg) => {
             return (
-              <Image
+              <ImageStyle
                 key={oneImg}
                 src={`/images/${oneImg}`}
                 alt="image"
                 width={400}
                 height={250}
-                style={{
-                  margin: 18,
-                  borderRadius: 12,
-                }}
               />
             );
           })}

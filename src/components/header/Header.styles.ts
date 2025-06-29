@@ -20,19 +20,18 @@ export const HeaderContainer = styled.menu`
   -webkit-box-shadow: 0px 3px 18px 0px rgba(0, 0, 0, 0.56);
   -moz-box-shadow: 0px 3px 18px 0px rgba(0, 0, 0, 0.56);
 
-  .hamburger {
-    display: none;
-    font-size: 2rem;
-    background: none;
-    border: none;
-    color: white;
-    list-style-type: none;
-    text-decoration: none;
-
+  @media (max-width: 768px) {
     @media (max-width: 768px) {
-      display: block;
-      background-color: red;
+      justify-content: center;
+      padding: 0.5rem 1rem;
     }
+  }
+`;
+
+export const LogoAndHam = styled.div`
+  @media (max-width: 768px) {
+    display: flex;
+    gap: 1rem;
   }
 `;
 
@@ -51,12 +50,13 @@ export const MobileMenu = styled.menu`
     flex-direction: column;
     align-items: flex-start;
     z-index: 100;
+    list-style-type: none;
+    text-decoration: none;
+    gap: 1.5rem;
 
     a {
       color: ${({ theme }) => theme.colors.gold};
-      text-decoration: none;
       font-weight: bold;
-      padding: 0.5rem 0;
       font-family: "M PLUS Rounded 1c", sans-serif;
       font-size: 18px;
       width: 100%;
@@ -70,6 +70,14 @@ export const MobileMenu = styled.menu`
 `;
 
 export const LogoContainer = styled.div`
+  flex: 0 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+`;
+
+export const HamburgerContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -80,14 +88,14 @@ export const Hamburger = styled.button`
 
   @media (max-width: 768px) {
     display: block;
-    background-color: red;
-    font-size: 2rem;
+    position: absolute;
+    right: 1rem;
+    top: 1.6rem;
     background: none;
     border: none;
-    list-style: none;
-    cursor: pointer;
-    list-style-type: none;
+    font-size: 2rem;
     color: ${({ theme }) => theme.colors.gold};
+    z-index: 11;
   }
 `;
 
@@ -96,9 +104,17 @@ export const LogoText = styled.p`
   font-size: 13px;
 `;
 
+export const NavBar = styled.nav`
+  display: flex;
+  justify-content: flex-start;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
 export const Ul = styled.ul`
   display: flex;
-  gap: 0.3rem;
   align-items: center;
   text-decoration: none;
   list-style: none;
@@ -117,10 +133,19 @@ export const Ul = styled.ul`
     }
   }
 
+  @media (max-width: 1290) {
+    padding: 0.3rem;
+  }
+
   @media (max-width: 768px) {
     display: none;
   }
 `;
+
+export const Li = styled.li`
+  text-align: center;
+`;
+
 export const LinkContainer = styled(Link)<LinkContainerProps>`
   display: flex;
   align-items: center;
@@ -145,12 +170,19 @@ export const LinkContainer = styled(Link)<LinkContainerProps>`
   }
 `;
 
+export const MenuButton = styled(Link)`
+  font-weight: bold;
+  text-decoration: none;
+`;
+
 export const ButtonsContainer = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 0.5rem;
-  margin: 0 0 0 1.5rem;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const Select = styled.select`
@@ -163,5 +195,3 @@ export const Select = styled.select`
     padding: 1rem;
   }
 `;
-
-export const Option = styled.option``;

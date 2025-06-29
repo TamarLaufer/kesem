@@ -11,6 +11,9 @@ import {
   InputHeader,
   ErrorSpan,
   FieldGroup,
+  InputRadio,
+  RadioLabel,
+  HeaderContainer,
 } from "./Enroll.styles";
 import React, { useCallback, useState } from "react";
 import Popup from "@/components/popup/Popup";
@@ -30,7 +33,7 @@ type FormDataType = {
   parentName: string;
   parentPhone: string;
   email: string;
-  howDidYouHereAboutUs?: string;
+  howDidYouHereAboutUs: string;
   comments?: string;
 };
 
@@ -52,7 +55,7 @@ const formSchema = z.object({
   parentName: z.string().min(1, "יש להזין שם ההורה"),
   parentPhone: z.string().min(9, "יש להזין טלפון תקין"),
   email: z.string().email("יש להזין אימייל תקין"),
-  howDidYouHereAboutUs: z.string().optional(),
+  howDidYouHereAboutUs: z.string().min(1, "נא לבחור אפשרות"),
   comments: z.string().optional(),
 });
 
@@ -68,6 +71,15 @@ const Enroll = () => {
 
   const [openPopup, setOpenPopup] = useState(false);
   const [loader, setLoader] = useState(false);
+
+  const howDidYouHearOptions = [
+    "גוגל",
+    "פייסבוק",
+    "מתנס גבעת שמואל",
+    "אינסטגרם",
+    "חבר/ה",
+    "פרסום אחר",
+  ];
 
   const fields: InputType[] = [
     {
@@ -134,7 +146,7 @@ const Enroll = () => {
       name: "howDidYouHereAboutUs",
       placeholder: STRINGS.ENROLL_PAGE.HERE_ABOUT_US,
       label: STRINGS.ENROLL_PAGE.HERE_ABOUT_US,
-      type: "text",
+      type: "radio",
     },
     {
       name: "comments",
@@ -184,6 +196,31 @@ const Enroll = () => {
         <HeaderText>{STRINGS.ENROLL_PAGE.JOIN_US_TO_KESEM}</HeaderText>
         <InputContainer>
           {fields.map((field) => {
+            //Radio buttons
+            if (field.name === "howDidYouHereAboutUs") {
+              return (
+                <FieldGroup key={field.label}>
+                  <HeaderContainer>
+                    <InputHeader>{field.label}</InputHeader>
+                  </HeaderContainer>
+                  {howDidYouHearOptions.map((option) => (
+                    <RadioLabel key={option}>
+                      <InputRadio
+                        type="radio"
+                        value={option}
+                        {...register(field.name)}
+                      />
+                      {option}
+                    </RadioLabel>
+                  ))}
+                  {errors[field.name] && (
+                    <ErrorSpan style={{ color: "red" }}>
+                      {errors[field.name]?.message}
+                    </ErrorSpan>
+                  )}
+                </FieldGroup>
+              );
+            }
             return (
               <FieldGroup key={field.label}>
                 <InputHeader>{field.label}</InputHeader>

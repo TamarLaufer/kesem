@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import Image from "next/image";
 
 export const BackgroundWrapper = styled.div`
   background-image: url("/images/enroll_background4.png");
   background-repeat: repeat-y;
-  background-size: contain;
+  // background-size: contain;
   background-repeat: no-repeat;
   min-height: 100vh;
 `;
@@ -42,9 +43,24 @@ export const ImagesContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 2rem;
 
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     flex-direction: column;
+    padding: 1rem 0.5rem;
+  }
+`;
+
+export const ImageStyle = styled(Image)`
+  width: 450px;
+  height: 230px;
+  padding: 0 0.6rem;
+  border-radius: 50px;
+
+  @media (max-width: 768px) {
+    width: 340px;
+    height: 250px;
+    padding: 1rem 0;
   }
 `;
 

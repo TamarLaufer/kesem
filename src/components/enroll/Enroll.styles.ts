@@ -70,6 +70,10 @@ export const InputContainer = styled.fieldset`
   }
 `;
 
+export const HeaderContainer = styled.div`
+  margin-bottom: 0.5rem;
+`;
+
 export const InputHeader = styled.legend`
   font-weight: bold;
   font-family: "M PLUS Rounded 1c", sans-serif;
@@ -80,7 +84,7 @@ export const InputHeader = styled.legend`
   @media (max-width: 768px) {
     font-size: 16px;
     font-weight: none;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.5rem;
   }
 `;
 
@@ -130,4 +134,15 @@ export const ErrorSpan = styled.span`
   color: red;
   font-size: 0.85rem;
   margin-top: 0.25rem;
+`;
+
+export const InputRadio = styled.input`
+  display: block;
+`;
+
+export const RadioLabel = styled.label`
+  display: flex;
+  flex-direction: row;
+  gap: 1.2rem;
+  margin: 0.5rem 0 1rem 0;
 `;

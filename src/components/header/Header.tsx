@@ -9,6 +9,11 @@ import {
   Hamburger,
   MobileMenu,
   Ul,
+  NavBar,
+  LogoAndHam,
+  HamburgerContainer,
+  Li,
+  MenuButton,
 } from "./Header.styles";
 import Image from "next/image";
 import { theme } from "@/theme";
@@ -38,25 +43,34 @@ const Header = () => {
 
   const renderLinks = links.map((oneLink: LinkType) => {
     return (
-      <li key={oneLink.name}>
+      <Li key={oneLink.name}>
         <Link href={oneLink.href} onClick={handleLInkPress}>
           {oneLink.name}
         </Link>
-      </li>
+      </Li>
     );
   });
 
   return (
-    <HeaderContainer className="hamburger">
-      <Hamburger onClick={handleLInkPress}>☰</Hamburger>
-      <LogoContainer>
-        <Image src="/images/logo.png" alt="logo" width={120} height={60} />
-        <LogoText>{STRINGS.HEADER.NAV_BAR.YOUR_WAY_TO_SUCCESS}</LogoText>
-      </LogoContainer>
-      {isOpen && <MobileMenu>{renderLinks}</MobileMenu>}
-      <nav>
+    <HeaderContainer>
+      <LogoAndHam>
+        <HamburgerContainer>
+          <Hamburger onClick={handleLInkPress}>☰</Hamburger>
+        </HamburgerContainer>
+        <LogoContainer>
+          <Image src="/images/logo.png" alt="logo" width={120} height={60} />
+          <LogoText>{STRINGS.HEADER.NAV_BAR.YOUR_WAY_TO_SUCCESS}</LogoText>
+        </LogoContainer>
+      </LogoAndHam>
+      {isOpen && (
+        <MobileMenu>
+          {renderLinks}
+          <MenuButton href="/contact">{STRINGS.HEADER.CONTACT_US}</MenuButton>
+        </MobileMenu>
+      )}
+      <NavBar>
         <Ul>{renderLinks}</Ul>
-      </nav>
+      </NavBar>
       <ButtonsContainer>
         <LinkContainer href={`/enroll`} $backgroundColor={theme.colors.gold}>
           {STRINGS.HEADER.TO_ENROLL}

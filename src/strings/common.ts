@@ -25,7 +25,7 @@ export const STRINGS = {
     SEND: "שליחה",
     FIRST_NAME: "שם פרטי:",
     LAST_NAME: "שם משפחה:",
-    CITY: "עיר מגורים",
+    CITY: "עיר מגורים:",
     SCHOOL_NAME: "שם בית הספר:",
     GRADE: "כיתה:",
     GRADE_NUMBER: "מספר הכיתה:",
