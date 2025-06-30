@@ -54,13 +54,12 @@ export const ImagesContainer = styled.div`
 export const ImageStyle = styled(Image)`
   width: 450px;
   height: 230px;
-  padding: 0 0.6rem;
-  border-radius: 50px;
+  padding: 0 0.4rem;
 
   @media (max-width: 768px) {
     width: 340px;
     height: 250px;
-    padding: 1rem 0;
+    padding: 0.4rem 0;
   }
 `;
 
