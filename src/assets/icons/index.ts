@@ -7,3 +7,4 @@ export { default as Email } from "./email.svg";
 export { default as SmartPhone } from "./smartphone.svg";
 export { default as Clock } from "./clock.svg";
 export { default as Notes } from "./notes.svg";
+export { default as Call } from "./call.svg";
