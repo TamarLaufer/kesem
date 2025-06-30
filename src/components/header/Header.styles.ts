@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Link from "next/link";
 import styled from "styled-components";
 
@@ -35,38 +36,49 @@ export const LogoAndHam = styled.div`
   }
 `;
 
-export const MobileMenu = styled.menu`
-  display: none;
+export const MobileMenuMotion = styled(motion.menu)`
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 80vw;
+  background: ${({ theme }) => theme.colors.white};
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.1);
+  padding: 2rem 2.3rem;
+  gap: 2rem;
+  color: ${({ theme }) => theme.colors.gold};
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 18px;
+  list-style-type: none;
 
-  @media (max-width: 768px) {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: ${({ theme }) => theme.colors.white};
-    width: 100%;
-    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-    padding: 1rem 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    z-index: 100;
-    list-style-type: none;
-    text-decoration: none;
-    gap: 1.5rem;
-
-    a {
-      color: ${({ theme }) => theme.colors.gold};
-      font-weight: bold;
-      font-family: "M PLUS Rounded 1c", sans-serif;
-      font-size: 18px;
-      width: 100%;
-
-      &:hover {
-        background-color: ${({ theme }) => theme.colors.grey};
-        border-radius: 8px;
-      }
-    }
+  @media (min-width: 769px) {
+    display: none;
   }
+`;
+
+export const Overlay = styled.div`
+  position: fixed;
+  z-index: 99;
+  width: 100vw;
+  height: 100vh;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  @media (min-width: 769px) {
+    display: none;
+  }
+`;
+
+export const CloseButton = styled.button`
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: ${({ theme }) => theme.colors.gold};
+  cursor: pointer;
+  z-index: 110;
 `;
 
 export const LogoContainer = styled.div`

@@ -3,6 +3,7 @@ import { Providers } from "@/Providers";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import { ReactNode } from "react";
+import { WhatsApp } from "@/assets/icons";
 
 type Props = {
   children: ReactNode;
@@ -26,7 +27,21 @@ export default function RootLayout({ children }: Props) {
       <body>
         <Providers>
           <Header />
-          <main>{children}</main>
+          <main>
+            {children}
+            <a href="https://wa.me/972535566509">
+              <WhatsApp
+                width={60}
+                height={60}
+                style={{
+                  position: "fixed",
+                  bottom: 30,
+                  left: 27,
+                  zIndex: 1000,
+                }}
+              />
+            </a>
+          </main>
           <Footer />
         </Providers>
       </body>

@@ -7,18 +7,21 @@ import {
   LogoText,
   ButtonsContainer,
   Hamburger,
-  MobileMenu,
   Ul,
   NavBar,
   LogoAndHam,
   HamburgerContainer,
   Li,
   MenuButton,
+  MobileMenuMotion,
+  Overlay,
+  CloseButton,
 } from "./Header.styles";
 import Image from "next/image";
 import { theme } from "@/theme";
 import { useState } from "react";
 import { STRINGS } from "@/strings/common";
+import { AnimatePresence } from "framer-motion";
 
 type LinkType = {
   href: string;
@@ -62,12 +65,25 @@ const Header = () => {
           <LogoText>{STRINGS.HEADER.NAV_BAR.YOUR_WAY_TO_SUCCESS}</LogoText>
         </LogoContainer>
       </LogoAndHam>
-      {isOpen && (
-        <MobileMenu>
-          {renderLinks}
-          <MenuButton href="/contact">{STRINGS.HEADER.CONTACT_US}</MenuButton>
-        </MobileMenu>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <Overlay onClick={handleLInkPress} />
+            <MobileMenuMotion
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "tween", duration: 0.35 }}
+            >
+              <CloseButton onClick={handleLInkPress}>×</CloseButton>
+              {renderLinks}
+              <MenuButton href="/contact" onClick={handleLInkPress}>
+                {STRINGS.HEADER.CONTACT_US}
+              </MenuButton>
+            </MobileMenuMotion>
+          </>
+        )}
+      </AnimatePresence>
       <NavBar>
         <Ul>{renderLinks}</Ul>
       </NavBar>
