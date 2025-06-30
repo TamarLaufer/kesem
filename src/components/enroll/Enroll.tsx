@@ -170,6 +170,7 @@ const Enroll = () => {
         },
         body: JSON.stringify(formData),
       });
+      console.log(response, "5555");
 
       if (!response.ok) {
         const errorData = await response.json();

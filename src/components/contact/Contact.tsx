@@ -24,6 +24,7 @@ import {
   Textarea,
 } from "./Contact.styles";
 import { ButtonContainer } from "./Contact.styles";
+import { CheckCircle } from "lucide-react";
 
 type ContactDataType = {
   fullName: string;
@@ -89,13 +90,13 @@ const Contact = () => {
       name: "phone",
       placeholder: STRINGS.CONTACT_PAGE.FORM.PHONE,
       label: STRINGS.CONTACT_PAGE.FORM.PHONE,
-      type: "text",
+      type: "tel",
     },
     {
       name: "email",
       placeholder: STRINGS.CONTACT_PAGE.FORM.EMAIL,
       label: STRINGS.CONTACT_PAGE.FORM.EMAIL,
-      type: "text",
+      type: "email",
     },
     {
       name: "subject",
@@ -147,10 +148,7 @@ const Contact = () => {
                     <Textarea
                       placeholder={field.placeholder}
                       maxLength={250}
-                      {...register(field.name)}
-                      onChange={(e) => {
-                        register(field.name).onChange(e);
-                      }}
+                      {...register(field.name, { required: true })}
                     />
                     <Text
                       style={{
@@ -203,7 +201,15 @@ const Contact = () => {
           />
         </IframeContainer>
       </FormContainer>
-      {openPopup && <Popup onClick={() => setOpenPopup(false)} />}
+      {openPopup && (
+        <Popup
+          onClick={() => setOpenPopup(false)}
+          buttonText={STRINGS.CONTACT_PAGE.CENTER_DETAIL}
+          icon={<CheckCircle />}
+          title={STRINGS.ENROLL_PAGE.SUCCESS_TITLE}
+          text={STRINGS.ENROLL_PAGE.DETAILS_SENT_SUCCESSFULLY}
+        />
+      )}
     </ContactContainer>
   );
 };
