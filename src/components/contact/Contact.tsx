@@ -216,7 +216,7 @@ const Contact = () => {
           icon={<CheckCircle />}
           title={STRINGS.CONTACT_PAGE.YOUR_DETAILS_SENT_SECCESSFULLY}
           text={STRINGS.CONTACT_PAGE.CONTACT_WITH_YOU_SOON}
-          buttonTextColor={theme.colors.white}
+          $buttonTextColor={theme.colors.white}
         />
       )}
     </ContactContainer>

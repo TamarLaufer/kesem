@@ -14,7 +14,7 @@ import { theme } from "@/theme";
 type PopupPropsType = {
   text?: string;
   buttonText?: string;
-  buttonTextColor?: string;
+  $buttonTextColor?: string;
   icon?: React.ReactNode;
   title?: string;
   color?: string;
@@ -24,7 +24,7 @@ type PopupPropsType = {
 const Popup = ({
   text,
   buttonText,
-  buttonTextColor = theme.colors.black,
+  $buttonTextColor = theme.colors.black,
   icon,
   title,
   color = theme.colors.black,
@@ -57,7 +57,7 @@ const Popup = ({
           {text && <TextContent>{text}</TextContent>}
           {buttonText && (
             <ButtonText
-              buttonTextColor={buttonTextColor}
+              $buttonTextColor={$buttonTextColor}
               ref={buttonRef}
               onClick={$onClick}
             >

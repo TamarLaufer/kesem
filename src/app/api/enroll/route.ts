@@ -21,6 +21,7 @@ if (process.env.NEXT_PUBLIC_USE_FIRESTORE_EMULATOR === "true") {
 export async function POST(req: Request) {
   try {
     const data = await req.json();
+
     const docRef = await addDoc(collection(db, "students"), {
       ...data,
       createdAt: serverTimestamp(),

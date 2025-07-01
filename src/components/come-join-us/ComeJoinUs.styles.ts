@@ -7,4 +7,6 @@ export const Container = styled.div`
   min-height: 100vh;
 `;
 
-export const Text = styled.h2``;
+export const Text = styled.h1`
+  font-family: "Suez One", serif;
+`;

@@ -5,7 +5,7 @@ type HeaderPropsType = {
 };
 
 type ButtonTextPropsType = {
-  buttonTextColor: string;
+  $buttonTextColor: string;
 };
 
 export const PopupOverlay = styled.div`
@@ -66,7 +66,7 @@ export const ButtonText = styled.button<ButtonTextPropsType>`
   border-radius: 50px;
   border: none;
   font-family: "M PLUS Rounded 1c", sans-serif;
-  color: ${({ buttonTextColor }) => buttonTextColor};
+  color: ${({ $buttonTextColor }) => $buttonTextColor};
 
   &:hover {
     cursor: pointer;

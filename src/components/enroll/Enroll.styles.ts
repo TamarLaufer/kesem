@@ -140,11 +140,11 @@ export const ErrorSpan = styled.span`
   margin-top: 0.25rem;
 `;
 
-export const InputRadio = styled.input`
+export const InputCheckBox = styled.input`
   display: block;
 `;
 
-export const RadioLabel = styled.label`
+export const CeckBoxLabel = styled.label`
   display: flex;
   flex-direction: row;
   gap: 1.2rem;

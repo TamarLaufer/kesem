@@ -11,9 +11,9 @@ import {
   InputHeader,
   ErrorSpan,
   FieldGroup,
-  InputRadio,
-  RadioLabel,
   HeaderContainer,
+  CeckBoxLabel,
+  InputCheckBox,
 } from "./Enroll.styles";
 import React, { useCallback, useState } from "react";
 import Popup from "@/components/popup/Popup";
@@ -33,7 +33,7 @@ type FormDataType = {
   parentName: string;
   parentPhone: string;
   email: string;
-  howDidYouHereAboutUs: string;
+  howDidYouHereAboutUs: string[];
   comments?: string;
 };
 
@@ -55,7 +55,7 @@ const formSchema = z.object({
   parentName: z.string().min(1, "יש להזין שם ההורה"),
   parentPhone: z.string().min(9, "יש להזין טלפון תקין"),
   email: z.string().email("יש להזין אימייל תקין"),
-  howDidYouHereAboutUs: z.string().min(1, "נא לבחור אפשרות"),
+  howDidYouHereAboutUs: z.array(z.string()).min(1, "נא לבחור אפשרות"),
   comments: z.string().optional(),
 });
 
@@ -170,7 +170,7 @@ const Enroll = () => {
         },
         body: JSON.stringify(formData),
       });
-      console.log(response, "5555");
+      console.log("Trying to submit:", formData);
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -197,7 +197,7 @@ const Enroll = () => {
         <HeaderText>{STRINGS.ENROLL_PAGE.JOIN_US_TO_KESEM}</HeaderText>
         <InputContainer>
           {fields.map((field) => {
-            //Radio buttons
+            //CheckBox buttons
             if (field.name === "howDidYouHereAboutUs") {
               return (
                 <FieldGroup key={field.label}>
@@ -205,14 +205,14 @@ const Enroll = () => {
                     <InputHeader>{field.label}</InputHeader>
                   </HeaderContainer>
                   {howDidYouHearOptions.map((option) => (
-                    <RadioLabel key={option}>
-                      <InputRadio
-                        type="radio"
+                    <CeckBoxLabel key={option}>
+                      <InputCheckBox
+                        type="checkbox"
                         value={option}
-                        {...register(field.name)}
+                        {...register("howDidYouHereAboutUs")}
                       />
                       {option}
-                    </RadioLabel>
+                    </CeckBoxLabel>
                   ))}
                   {errors[field.name] && (
                     <ErrorSpan style={{ color: "red" }}>
@@ -248,7 +248,7 @@ const Enroll = () => {
           title={STRINGS.ENROLL_PAGE.SUCCESS_TITLE}
           text={STRINGS.ENROLL_PAGE.DETAILS_SENT_SUCCESSFULLY}
           buttonText={STRINGS.ENROLL_PAGE.THANK_YOU}
-          buttonTextColor={theme.colors.white}
+          $buttonTextColor={theme.colors.white}
           onClick={handleClosePopup}
         />
       )}
