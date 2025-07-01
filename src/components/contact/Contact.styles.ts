@@ -6,7 +6,6 @@ export const ContactContainer = styled.main`
   flex-direction: column;
   padding-top: 9rem;
   background-image: url("/images/enroll_background5.png");
-  background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 

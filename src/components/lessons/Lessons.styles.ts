@@ -1,6 +1,16 @@
 import { theme } from "@/theme";
 import styled from "styled-components";
 
+export const Container = styled.div`
+  background-image: url("/images/enroll_background5.png");
+  background-size: cover;
+  background-position: center;
+
+  @media (max-width: 768px) {
+    background-image: url("/images/enroll_background8.png");
+  }
+`;
+
 export const LessonsGridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -10,7 +20,7 @@ export const LessonsGridContainer = styled.div`
 
 export const VideoWrapper = styled.div`
   position: relative;
-  padding-bottom: 56.25%; /* יחס של 16:9 */
+  padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
   border-radius: 16px;
@@ -27,14 +37,14 @@ export const StyledIframe = styled.iframe`
 `;
 
 export const LessonsHeader = styled.h1`
-  margin-top: 8rem;
+  padding-top: 8rem;
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-size: 26px;
   color: ${({}) => theme.colors.turquoise};
   text-align: center;
 
   @media (max-width: 768px) {
-    padding: 0 2rem;
+    padding: 9 2rem;
   }
 `;
 

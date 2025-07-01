@@ -14,6 +14,10 @@ export const FormContainer = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
+
+  @media (max-width: 768px) {
+    background-image: url("/images/enroll_background10.png");
+  }
 `;
 
 export const BackgroundVideo = styled.video`

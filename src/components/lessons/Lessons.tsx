@@ -1,12 +1,13 @@
 "use client";
 import { STRINGS } from "@/strings/common";
 import {
+  Container,
   LessonsGridContainer,
   LessonsHeader,
   StyledIframe,
   VideoWrapper,
 } from "./Lessons.styles";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { VIDEO_BATCH } from "@/consts";
 import { ButtonContainer } from "./Lessons.styles";
 import Button from "@/components/Button";
@@ -41,7 +42,7 @@ const Lessons = () => {
   };
 
   return (
-    <Fragment>
+    <Container>
       <LessonsHeader>
         {STRINGS.ONLINE_LESSONS.FUN_WITH_ONLINE_LESSONS_HEADER}
       </LessonsHeader>
@@ -74,7 +75,7 @@ const Lessons = () => {
           }
         />
       </ButtonContainer>
-    </Fragment>
+    </Container>
   );
 };
 

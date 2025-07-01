@@ -57,6 +57,7 @@ export const STRINGS = {
   CENTER_LOCATION_RAANANA: "מרכז קהילתי בן צבי, יהודה הנשיא 14, רעננה",
   CENTER_EMAIL: 'דוא"ל: kesem.gs@gmail.com',
   CENTER_PHONE: "מרכז קסם : 053-5566509",
+  TALK_WITH_US_WHATSAPP: "דברו איתנו בוואטסאפ",
   ONLINE_LESSONS: {
     FUN_WITH_ONLINE_LESSONS_HEADER:
       "לומדים בכיף – סרטונים מומלצים במיוחד בשבילכם",

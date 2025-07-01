@@ -31,15 +31,33 @@ export default function RootLayout({ children }: Props) {
             {children}
             <a href="https://wa.me/972535566509">
               <WhatsApp
-                width={60}
-                height={60}
+                width={65}
+                height={65}
                 style={{
                   position: "fixed",
-                  bottom: 30,
+                  bottom: 40,
                   left: 27,
                   zIndex: 1000,
                 }}
               />
+              {/* <div
+                style={{
+                  padding: "0.5rem 0.8rem",
+                  backgroundColor: "#5CB338",
+                  borderColor: theme.colors.white,
+                  borderWidth: "2px",
+                  position: "fixed",
+                  bottom: 10,
+                  left: 5,
+                  zIndex: 100,
+                  borderRadius: "26px",
+                  color: theme.colors.white,
+                  // fontFamily: "font-family: 'M 2PLUS Rounded 1c', sans-serif;",
+                  fontSize: 14,
+                }}
+              >
+                <p>{STRINGS.TALK_WITH_US_WHATSAPP}</p>
+              </div> */}
             </a>
           </main>
           <Footer />
