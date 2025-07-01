@@ -6,12 +6,15 @@ import {
   PopupContainer,
   PopupOverlay,
   ButtonText,
+  Header,
 } from "./Popup.styles";
 import { motion } from "framer-motion";
+import { theme } from "@/theme";
 
 type PopupPropsType = {
   text?: string;
   buttonText?: string;
+  buttonTextColor?: string;
   icon?: React.ReactNode;
   title?: string;
   color?: string;
@@ -21,9 +24,10 @@ type PopupPropsType = {
 const Popup = ({
   text,
   buttonText,
+  buttonTextColor = theme.colors.black,
   icon,
   title,
-  color,
+  color = theme.colors.black,
   onClick,
 }: PopupPropsType) => {
   const AnimatedPopup = motion(PopupContainer);
@@ -49,10 +53,14 @@ const Popup = ({
       >
         <PopupContainer>
           {icon && <div style={{ fontSize: "48px", color }}>{icon}</div>}
-          {title && <h2 style={{ color }}>{title}</h2>}
+          {title && <Header $color={color}>{title}</Header>}
           {text && <TextContent>{text}</TextContent>}
           {buttonText && (
-            <ButtonText ref={buttonRef} onClick={$onClick}>
+            <ButtonText
+              buttonTextColor={buttonTextColor}
+              ref={buttonRef}
+              onClick={$onClick}
+            >
               {buttonText}
             </ButtonText>
           )}

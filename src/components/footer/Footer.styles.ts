@@ -44,7 +44,7 @@ export const RightContent = styled.div`
   align-items: center;
   justify-content: center;
   flex: 1;
-  gap: 0.5rem;
+  gap: 0.65rem;
 `;
 
 export const IconLink = styled.a``;

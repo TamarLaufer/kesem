@@ -15,7 +15,7 @@ export const AboutUsContainer = styled.div`
   padding: 10rem 18rem;
 
   @media (max-width: 767px) {
-    padding: 8rem 2rem;
+    padding: 9rem 1.5rem 2rem 1.5rem;
   }
 `;
 

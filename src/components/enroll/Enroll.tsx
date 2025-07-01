@@ -248,6 +248,7 @@ const Enroll = () => {
           title={STRINGS.ENROLL_PAGE.SUCCESS_TITLE}
           text={STRINGS.ENROLL_PAGE.DETAILS_SENT_SUCCESSFULLY}
           buttonText={STRINGS.ENROLL_PAGE.THANK_YOU}
+          buttonTextColor={theme.colors.white}
           onClick={handleClosePopup}
         />
       )}

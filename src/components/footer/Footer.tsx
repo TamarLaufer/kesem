@@ -10,7 +10,6 @@ import {
   Facebook,
   Youtube,
   Instegram,
-  WhatsApp,
   Clock,
   SmartPhone,
   Location,
@@ -45,12 +44,11 @@ const Footer = () => {
       url: "https://www.youtube.com/@%D7%A7%D7%A1%D7%9D-%D7%9E%D7%A8%D7%9B%D7%96-%D7%9C%D7%9E%D7%99%D7%93%D7%94",
     },
     { SocialIcon: Instegram, url: "https://www.instagram.com/kesem_gs/" },
-    { SocialIcon: WhatsApp, url: "https://wa.me/972535566509" },
   ];
 
   const footerInfo: { icon: keyof typeof iconMap | null; text: string }[] = [
-    { icon: "Clock", text: STRINGS.CENTER_HOURS },
-    { icon: "Location", text: STRINGS.CENTER_LOCATION },
+    // { icon: "Clock", text: STRINGS.CENTER_HOURS },
+    // { icon: "Location", text: STRINGS.CENTER_LOCATION },
     { icon: "Notes", text: STRINGS.CENTER_DETAIL },
     { icon: "Email", text: STRINGS.CENTER_EMAIL },
     { icon: "SmartPhone", text: STRINGS.CENTER_PHONE },

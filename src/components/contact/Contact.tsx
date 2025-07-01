@@ -106,6 +106,16 @@ const Contact = () => {
     },
   ];
 
+  const contactText: string[] = [
+    STRINGS.CONTACT_PAGE.CENTER_DETAIL,
+    STRINGS.CENTER_HOURS_GSH,
+    STRINGS.CENTER_LOCATION_GSH,
+    STRINGS.CENTER_HOURS_RAANANA,
+    STRINGS.CENTER_LOCATION_RAANANA,
+    STRINGS.CONTACT_PAGE.CENTER_EMAIL,
+    STRINGS.CONTACT_PAGE.CENTER_PHONE,
+  ];
+
   const onSubmit = async (formData: ContactDataType) => {
     try {
       const response = await fetch("/api/contact", {
@@ -187,11 +197,9 @@ const Contact = () => {
         </FieldsContainer>
         <IframeContainer>
           <DetailsContainer>
-            <Text>{STRINGS.CONTACT_PAGE.CENTER_DETAIL}</Text>
-            <Text>{STRINGS.CONTACT_PAGE.CENTER_HOURS}</Text>
-            <Text>{STRINGS.CONTACT_PAGE.CENTER_LOCATION}</Text>
-            <Text>{STRINGS.CONTACT_PAGE.CENTER_EMAIL}</Text>
-            <Text>{STRINGS.CONTACT_PAGE.CENTER_PHONE}</Text>
+            {contactText.map((text) => {
+              return <Text key={text}>{text}</Text>;
+            })}
           </DetailsContainer>
           <StyledIframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1690.4625520853324!2d34.8537098!3d32.0712744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d4b97cdd24a19%3A0x55c47045165d9c15!2z15DXldeT15nXmNeV16jXmdeV150g16LXmdeo15XXoNeZ!5e0!3m2!1siw!2sil!4v1751149352749!5m2!1siw!2sil"
@@ -204,10 +212,11 @@ const Contact = () => {
       {openPopup && (
         <Popup
           onClick={() => setOpenPopup(false)}
-          buttonText={STRINGS.CONTACT_PAGE.CENTER_DETAIL}
+          buttonText={STRINGS.CONTACT_PAGE.THANKS}
           icon={<CheckCircle />}
-          title={STRINGS.ENROLL_PAGE.SUCCESS_TITLE}
-          text={STRINGS.ENROLL_PAGE.DETAILS_SENT_SUCCESSFULLY}
+          title={STRINGS.CONTACT_PAGE.YOUR_DETAILS_SENT_SECCESSFULLY}
+          text={STRINGS.CONTACT_PAGE.CONTACT_WITH_YOU_SOON}
+          buttonTextColor={theme.colors.white}
         />
       )}
     </ContactContainer>

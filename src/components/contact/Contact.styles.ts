@@ -4,9 +4,14 @@ export const ContactContainer = styled.main`
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  margin-top: 9rem;
+  padding-top: 9rem;
+  background-image: url("/images/enroll_background5.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 
   @media (max-width: 768px) {
+    background-image: url("/images/enroll_background8.png");
   }
 `;
 
@@ -20,7 +25,9 @@ export const Header = styled.h1`
 
 export const Text = styled.p`
   font-family: "M PLUS Rounded 1c", sans-serif;
-  font-size: 22px;
+  font-size: 18px;
+  line-height: 28px;
+  padding: 0.5rem 0;
 `;
 
 export const TextContainer = styled.div`

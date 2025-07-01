@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+type HeaderPropsType = {
+  $color: string;
+};
+
+type ButtonTextPropsType = {
+  buttonTextColor: string;
+};
+
 export const PopupOverlay = styled.div`
   position: fixed;
   top: 0;
@@ -32,8 +40,14 @@ export const PopupContainer = styled.div`
   }
 `;
 
+export const Header = styled.h2<HeaderPropsType>`
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  color: ${({ $color }) => $color};
+`;
+
 export const TextContent = styled.p`
   font-size: 18px;
+  font-family: "M PLUS Rounded 1c", sans-serif;
 
   @media (max-width: 768px) {
     text-align: center;
@@ -41,7 +55,7 @@ export const TextContent = styled.p`
   }
 `;
 
-export const ButtonText = styled.button`
+export const ButtonText = styled.button<ButtonTextPropsType>`
   font-size: 18px;
   width: 9rem;
   height: 3rem;
@@ -51,6 +65,8 @@ export const ButtonText = styled.button`
   justify-content: center;
   border-radius: 50px;
   border: none;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  color: ${({ buttonTextColor }) => buttonTextColor};
 
   &:hover {
     cursor: pointer;
