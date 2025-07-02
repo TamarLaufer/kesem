@@ -34,6 +34,7 @@ export const STRINGS = {
     PARENT_PHONE: "טלפון הורה:",
     EMAIL: "אימייל:",
     HERE_ABOUT_US: "איך שמעת עלינו?",
+    PLEASE_DETAIL: "פירוט על פרסום אחר",
     MATNAS_GS: "מתנס גבעת שמואל",
     FLAIERS: "פלאיירים",
     SOCIAL_MEDIA: "רשתות חברתיות (פייסבוקאינסטגרם)",

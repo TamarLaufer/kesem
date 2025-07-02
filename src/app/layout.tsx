@@ -9,6 +9,13 @@ type Props = {
   children: ReactNode;
 };
 
+export const metadata = {
+  title:
+    "מרכז קסם – מתמטיקה בקבוצות קטנות לילדים בגבעת שמואל ורעננה| יחס אישי ושיעורים פרטיים",
+  description:
+    "לימודי מתמטיקה מותאמים אישית בגבעת שמואל ורעננה, לכל הרמות והגילאים.",
+};
+
 export default function RootLayout({ children }: Props) {
   return (
     <html lang="he" dir="rtl">

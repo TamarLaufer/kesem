@@ -100,6 +100,11 @@ export const Input = styled.input`
   font-size: 1rem;
   background-color: #f9f9f9;
 
+  &::placeholder {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: 16px;
+  }
+
   &:focus {
     outline: none;
     border-color: ${({ theme }) => theme.colors.turquoise};
@@ -149,4 +154,32 @@ export const CeckBoxLabel = styled.label`
   flex-direction: row;
   gap: 1.2rem;
   margin: 0.5rem 0 1rem 0;
+`;
+
+export const Textarea = styled.textarea`
+  width: 25rem;
+  padding: 0.75rem;
+  margin: 0.75rem 0;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  resize: none;
+
+  &::placeholder {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: 16px;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: ${({ theme }) => theme.colors.turquoise};
+    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.turquoise + "33"};
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    font-weight: none;
+    width: 17rem;
+  }
 `;

@@ -14,6 +14,7 @@ import {
   HeaderContainer,
   CeckBoxLabel,
   InputCheckBox,
+  Textarea,
 } from "./Enroll.styles";
 import React, { useCallback, useState } from "react";
 import Popup from "@/components/popup/Popup";
@@ -34,6 +35,7 @@ type FormDataType = {
   parentPhone: string;
   email: string;
   howDidYouHereAboutUs: string[];
+  howDidYouHereAboutUsField?: string;
   comments?: string;
 };
 
@@ -44,33 +46,43 @@ type InputType = {
   type: string;
 };
 
-const formSchema = z.object({
-  firstName: z.string().min(1, "יש להזין שם פרטי"),
-  lastName: z.string().min(1, "יש להזין שם משפחה"),
-  city: z.string().min(1, "יש להזין עיר"),
-  schoolName: z.string().min(1, "יש להזין את שם בית הספר"),
-  grade: z.string().min(1, "יש להזין כיתה"),
-  gradeNumber: z.coerce.number().min(1, "מספר הכיתה חייב להיות גדול מ-0"),
-  studentPhone: z.string().min(9, "יש להזין טלפון תקין"),
-  parentName: z.string().min(1, "יש להזין שם ההורה"),
-  parentPhone: z.string().min(9, "יש להזין טלפון תקין"),
-  email: z.string().email("יש להזין אימייל תקין"),
-  howDidYouHereAboutUs: z.array(z.string()).min(1, "נא לבחור אפשרות"),
-  comments: z.string().optional(),
-});
+const formSchema = z
+  .object({
+    firstName: z.string().min(1, "יש להזין שם פרטי"),
+    lastName: z.string().min(1, "יש להזין שם משפחה"),
+    city: z.string().min(1, "יש להזין עיר"),
+    schoolName: z.string().min(1, "יש להזין את שם בית הספר"),
+    grade: z.string().min(1, "יש להזין כיתה"),
+    gradeNumber: z.coerce.number().min(1, "מספר הכיתה חייב להיות גדול מ-0"),
+    studentPhone: z.string().min(9, "יש להזין טלפון תקין"),
+    parentName: z.string().min(1, "יש להזין שם ההורה"),
+    parentPhone: z.string().min(9, "יש להזין טלפון תקין"),
+    email: z.string().email("יש להזין אימייל תקין"),
+    howDidYouHereAboutUs: z.array(z.string()).min(1, "נא לבחור אפשרות"),
+    howDidYouHereAboutUsField: z.string().optional(),
+    comments: z.string().optional(),
+  })
+  .refine(
+    (data) =>
+      !data.howDidYouHereAboutUs.includes("פרסום אחר") ||
+      (data.howDidYouHereAboutUsField &&
+        data.howDidYouHereAboutUsField.trim() !== ""),
+    {
+      message: "מכיון שבחרת 'פרסום אחר', נשמח לפירוט סוג הפרסום",
+      path: ["howDidYouHereAboutUsField"],
+    }
+  );
 
 const Enroll = () => {
   const {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm<FormDataType>({
     resolver: zodResolver(formSchema),
   });
-
-  const [openPopup, setOpenPopup] = useState(false);
-  const [loader, setLoader] = useState(false);
 
   const howDidYouHearOptions = [
     "גוגל",
@@ -78,8 +90,20 @@ const Enroll = () => {
     "מתנס גבעת שמואל",
     "אינסטגרם",
     "חבר/ה",
+    "פליירים",
+    "מגנטים",
     "פרסום אחר",
   ];
+
+  const [openPopup, setOpenPopup] = useState(false);
+  const [loader, setLoader] = useState(false);
+  const rawValues = watch("howDidYouHereAboutUs") || [];
+
+  const howDidYouHereAboutUsValues = Array.isArray(rawValues)
+    ? rawValues
+    : [rawValues];
+
+  const isOtherChecked = howDidYouHereAboutUsValues.includes("פרסום אחר");
 
   const fields: InputType[] = [
     {
@@ -204,16 +228,32 @@ const Enroll = () => {
                   <HeaderContainer>
                     <InputHeader>{field.label}</InputHeader>
                   </HeaderContainer>
-                  {howDidYouHearOptions.map((option) => (
-                    <CeckBoxLabel key={option}>
-                      <InputCheckBox
-                        type="checkbox"
-                        value={option}
-                        {...register("howDidYouHereAboutUs")}
+                  {howDidYouHearOptions.map((option) => {
+                    return (
+                      <CeckBoxLabel key={option}>
+                        <InputCheckBox
+                          type="checkbox"
+                          value={option}
+                          {...register("howDidYouHereAboutUs")}
+                        />
+                        {option}
+                      </CeckBoxLabel>
+                    );
+                  })}
+                  {isOtherChecked && (
+                    <>
+                      <Textarea
+                        maxLength={100}
+                        placeholder={STRINGS.ENROLL_PAGE.PLEASE_DETAIL}
+                        {...register("howDidYouHereAboutUsField")}
                       />
-                      {option}
-                    </CeckBoxLabel>
-                  ))}
+                      {errors.howDidYouHereAboutUsField && (
+                        <ErrorSpan style={{ color: "red" }}>
+                          {errors.howDidYouHereAboutUsField?.message}
+                        </ErrorSpan>
+                      )}
+                    </>
+                  )}
                   {errors[field.name] && (
                     <ErrorSpan style={{ color: "red" }}>
                       {errors[field.name]?.message}
