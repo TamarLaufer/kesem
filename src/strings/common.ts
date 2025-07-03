@@ -91,6 +91,6 @@ export const STRINGS = {
   COME_JOIN_US_PAGE: {
     COMING_SOON: "בקרוב...",
     MEANTIME: 'בינתיים, ניתן לשלוח אלינו קו"ח לכתובת הדוא"ל הזו:',
-    EMAIL: "kesem.gs.gmail.com",
+    EMAIL: "kesemgs.gmail.com",
   },
 };
