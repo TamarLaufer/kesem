@@ -12,10 +12,11 @@ import {
   LogoAndHam,
   HamburgerContainer,
   Li,
-  MenuButton,
+  MenuLink,
   MobileMenuMotion,
   Overlay,
   CloseButton,
+  LinkUi,
 } from "./Header.styles";
 import Image from "next/image";
 import { theme } from "@/theme";
@@ -26,18 +27,37 @@ import { AnimatePresence } from "framer-motion";
 type LinkType = {
   href: string;
   name: string;
+  tag: string;
 };
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [tagForStyle, setTagForStyle] = useState("home");
+  const [contactActive, setContactActive] = useState(false);
 
-  const links = [
-    { href: `/`, name: STRINGS.HEADER.NAV_BAR.HOME_PAGE },
-    { href: `/enroll`, name: STRINGS.HEADER.NAV_BAR.ENROLL_TO_KESEM },
-    { href: `/lessons`, name: STRINGS.HEADER.NAV_BAR.ONLINE_LESSONS },
-    { href: `/come-join-us`, name: STRINGS.HEADER.NAV_BAR.COME_JOIN_US },
-    { href: `/our-partners`, name: STRINGS.HEADER.NAV_BAR.OUR_PARTNERS },
-    { href: `/about-us`, name: STRINGS.HEADER.NAV_BAR.ABOUT_US },
+  const links: LinkType[] = [
+    { href: `/`, name: STRINGS.HEADER.NAV_BAR.HOME_PAGE, tag: "home" },
+    {
+      href: `/enroll`,
+      name: STRINGS.HEADER.NAV_BAR.ENROLL_TO_KESEM,
+      tag: "enroll",
+    },
+    {
+      href: `/lessons`,
+      name: STRINGS.HEADER.NAV_BAR.ONLINE_LESSONS,
+      tag: "lessons",
+    },
+    {
+      href: `/come-join-us`,
+      name: STRINGS.HEADER.NAV_BAR.COME_JOIN_US,
+      tag: "teachers",
+    },
+    {
+      href: `/our-partners`,
+      name: STRINGS.HEADER.NAV_BAR.OUR_PARTNERS,
+      tag: "partners",
+    },
+    { href: `/about-us`, name: STRINGS.HEADER.NAV_BAR.ABOUT_US, tag: "about" },
   ];
 
   const handleLInkPress = () => {
@@ -47,9 +67,17 @@ const Header = () => {
   const renderLinks = links.map((oneLink: LinkType) => {
     return (
       <Li key={oneLink.name}>
-        <Link href={oneLink.href} onClick={handleLInkPress}>
+        <LinkUi
+          href={oneLink.href}
+          onClick={() => {
+            handleLInkPress();
+            setTagForStyle(oneLink.tag);
+            setContactActive(false);
+          }}
+          $isTagActive={tagForStyle === oneLink.tag}
+        >
           {oneLink.name}
-        </Link>
+        </LinkUi>
       </Li>
     );
   });
@@ -61,7 +89,9 @@ const Header = () => {
           <Hamburger onClick={handleLInkPress}>☰</Hamburger>
         </HamburgerContainer>
         <LogoContainer>
-          <Image src="/images/logo.png" alt="logo" width={120} height={60} />
+          <Link href="/">
+            <Image src="/images/logo.png" alt="logo" width={120} height={60} />
+          </Link>
           <LogoText>{STRINGS.HEADER.NAV_BAR.YOUR_WAY_TO_SUCCESS}</LogoText>
         </LogoContainer>
       </LogoAndHam>
@@ -77,9 +107,17 @@ const Header = () => {
             >
               <CloseButton onClick={handleLInkPress}>×</CloseButton>
               {renderLinks}
-              <MenuButton href="/contact" onClick={handleLInkPress}>
+              <MenuLink
+                href="/contact"
+                onClick={() => {
+                  handleLInkPress();
+                  setContactActive(true);
+                  setTagForStyle("");
+                }}
+                $contactActive={contactActive}
+              >
                 {STRINGS.HEADER.CONTACT_US}
-              </MenuButton>
+              </MenuLink>
             </MobileMenuMotion>
           </>
         )}

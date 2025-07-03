@@ -6,6 +6,10 @@ interface LinkContainerProps {
   $backgroundColor: string;
 }
 
+interface LinkUiPropsType {
+  $isTagActive: boolean;
+}
+
 export const HeaderContainer = styled.menu`
   position: fixed;
   width: 100vw;
@@ -114,6 +118,10 @@ export const Hamburger = styled.button`
 export const LogoText = styled.p`
   font-family: "Playpen Sans Hebrew", cursive;
   font-size: 13px;
+  font-style: italic;
+  position: absolute;
+  top: 3.7rem;
+  z-index: -1;
 `;
 
 export const NavBar = styled.nav`
@@ -132,8 +140,6 @@ export const Ul = styled.ul`
   list-style: none;
 
   a {
-    color: ${({ theme }) => theme.colors.gold};
-    text-decoration: none;
     font-weight: bold;
     padding: 1rem;
     transition: background 0.3s;
@@ -162,6 +168,7 @@ export const LinkContainer = styled(Link)<LinkContainerProps>`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: bold;
   border-radius: 30px;
   border: none;
   background-color: ${({ $backgroundColor }) => $backgroundColor};
@@ -182,9 +189,26 @@ export const LinkContainer = styled(Link)<LinkContainerProps>`
   }
 `;
 
-export const MenuButton = styled(Link)`
+export const LinkUi = styled(Link)<LinkUiPropsType>`
+  color: ${({ $isTagActive, theme }) =>
+    $isTagActive ? theme.colors.gold : theme.colors.black};
+  font-weight: ${({ $isTagActive }) => ($isTagActive ? "bold" : "normal")};
+  text-decoration: ${({ $isTagActive }) =>
+    $isTagActive ? "underline" : "none"};
+  text-underline-offset: ${({ $isTagActive }) => ($isTagActive ? "10px" : "0")};
+  transition: color 0.2s, font-weight 0.2s;
+`;
+
+export const MenuLink = styled(Link)<{ $contactActive: boolean }>`
   font-weight: bold;
   text-decoration: none;
+  color: ${({ theme }) => theme.colors.turquoise};
+  font-weight: ${({ $contactActive }) => ($contactActive ? "bold" : "normal")};
+  text-decoration: ${({ $contactActive }) =>
+    $contactActive ? "underline" : "none"};
+  text-underline-offset: ${({ $contactActive }) =>
+    $contactActive ? "10px" : "0"};
+  transition: color 0.2s, font-weight 0.2s;
 `;
 
 export const ButtonsContainer = styled.div`

@@ -10,7 +10,7 @@ export const HomeContainer = styled.main`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding-top: 8rem;
+  padding-top: 4rem;
   position: relative;
   overflow: hidden;
   max-width: 100vw;
@@ -41,15 +41,37 @@ export const BackgroundVideoOverlay = styled.div`
 export const Header = styled.h1`
   font-family: "Suez One", serif;
   font-weight: 500;
-  font-size: 3rem;
+  font-size: 2.2rem;
   color: ${({ theme }) => theme.colors.white};
+  width: 70%;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 23px;
+  padding: 1rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+  }
 `;
 
 export const SecondaryText = styled.h2`
+  width: 70%;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 23px;
+  padding: 1rem;
   font-family: "Suez One", serif;
   font-weight: 500;
-  font-size: 2rem;
+  font-size: 1.7rem;
   color: ${({ theme }) => theme.colors.white};
+
+  @media (max-width: 768px) {
+    width: 100%;
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+  }
 `;
 
 export const ContentContainer = styled.div`
@@ -58,11 +80,33 @@ export const ContentContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 0.6rem;
   z-index: 1;
   color: ${({ theme }) => theme.colors.white};
   text-align: center;
   padding: 6rem 2rem;
+`;
+
+export const ParagraphContainer = styled.div`
+  width: 75%;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 23px;
+  padding: 1rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+    margin: 1rem;
+  }
+`;
+
+export const Paragraph = styled.p`
+  font-family: "Rubik Dirt", sans-serif;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
 `;
 
 export const EnrollButton = styled(Link)`
