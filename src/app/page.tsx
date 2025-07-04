@@ -6,21 +6,9 @@ import {
   ContentContainer,
   SecondaryText,
   EnrollButton,
-  Paragraph,
-  ParagraphContainer,
 } from "./HomePage.styles";
 
 export default async function Page() {
-  const paregraph = STRINGS.HOME_PAGE.PAREGRAPH;
-
-  function renderTextWithBreaks(text: string) {
-    return text
-      .split("\n")
-      .map((line, idx) =>
-        line === "" ? <br key={idx} /> : <Paragraph key={idx}>{line}</Paragraph>
-      );
-  }
-
   return (
     <HomeContainer>
       <BackgroundVideo
@@ -35,9 +23,6 @@ export default async function Page() {
         <SecondaryText>
           {STRINGS.HOME_PAGE.EDUCATIONAL_CENTER_FOR_YOU}
         </SecondaryText>
-        <ParagraphContainer>
-          {renderTextWithBreaks(paregraph)}
-        </ParagraphContainer>
         <EnrollButton href={`/enroll`}>
           {STRINGS.HOME_PAGE.ADD_ME_TO_SUCCESS}
         </EnrollButton>
