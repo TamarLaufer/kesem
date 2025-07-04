@@ -4,6 +4,7 @@ import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import { ReactNode } from "react";
 import { WhatsApp } from "@/assets/icons";
+import Script from "next/script";
 
 type Props = {
   children: ReactNode;
@@ -30,6 +31,20 @@ export default function RootLayout({ children }: Props) {
           href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&?family=Varela+Round&family=Rubik+Dirt&family=Suez+One&family=Playpen+Sans+Hebrew:wght@100..800&display=swap&subset=hebrew"
           rel="stylesheet"
         />
+        {/* Google Analytics script #1 */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-KWKCP8MJF0"
+          strategy="afterInteractive"
+        />
+        {/* Google Analytics script #2 */}
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-KWKCP8MJF0');
+          `}
+        </Script>
       </head>
       <body>
         <Providers>
@@ -47,24 +62,6 @@ export default function RootLayout({ children }: Props) {
                   zIndex: 1000,
                 }}
               />
-              {/* <div
-                style={{
-                  padding: "0.5rem 0.8rem",
-                  backgroundColor: "#5CB338",
-                  borderColor: theme.colors.white,
-                  borderWidth: "2px",
-                  position: "fixed",
-                  bottom: 10,
-                  left: 5,
-                  zIndex: 100,
-                  borderRadius: "26px",
-                  color: theme.colors.white,
-                  // fontFamily: "font-family: 'M 2PLUS Rounded 1c', sans-serif;",
-                  fontSize: 14,
-                }}
-              >
-                <p>{STRINGS.TALK_WITH_US_WHATSAPP}</p>
-              </div> */}
             </a>
           </main>
           <Footer />
