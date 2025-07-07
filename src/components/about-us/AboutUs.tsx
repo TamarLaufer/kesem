@@ -9,6 +9,7 @@ import {
   TextContainer,
 } from "./AboutUs.styles";
 import { STRINGS } from "@/strings/common";
+import { renderTextWithBreaks } from "@/functions";
 
 const imagesList = [
   "kesem_center1.jpeg",
@@ -18,38 +19,11 @@ const imagesList = [
 
 export default function AboutUs() {
   const text = STRINGS.ABOUT_US_PAGE.ABOUT_TEXT;
-  function renderTextWithBreaks(text: string) {
-    return text
-      .split("\n")
-      .map((line, idx) =>
-        line === "" ? (
-          <br key={idx} />
-        ) : (
-          <AboutUsText key={idx}>{line}</AboutUsText>
-        )
-      );
-  }
 
   return (
     <BackgroundWrapper>
       <AboutUsContainer>
-        <TextContainer>
-          {/* {paragraphs.map((paragraph, idx) => (
-            <AboutUsText key={idx}>
-              {paragraph.split("\n").map((line, lineIdx, arr) =>
-                lineIdx < arr.length - 1 ? (
-                  <React.Fragment key={lineIdx}>
-                    {line}
-                    <br />
-                  </React.Fragment>
-                ) : (
-                  line
-                )
-              )}
-            </AboutUsText>
-          ))} */}
-          {renderTextWithBreaks(text)}
-        </TextContainer>
+        <TextContainer>{renderTextWithBreaks(text, AboutUsText)}</TextContainer>
         <ImagesContainer>
           {imagesList.map((oneImg) => {
             return (

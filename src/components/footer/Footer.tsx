@@ -48,10 +48,10 @@ const Footer = () => {
 
   const footerInfo: { icon: keyof typeof iconMap | null; text: string }[] = [
     // { icon: "Clock", text: STRINGS.CENTER_HOURS },
-    // { icon: "Location", text: STRINGS.CENTER_LOCATION },
     { icon: "Notes", text: STRINGS.CENTER_DETAIL },
     { icon: "Email", text: STRINGS.CENTER_EMAIL },
     { icon: "SmartPhone", text: STRINGS.CENTER_PHONE },
+    { icon: "Location", text: STRINGS.RANANA_GIVAT_SHMUEL },
   ];
 
   return (
