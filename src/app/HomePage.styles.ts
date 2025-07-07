@@ -73,7 +73,7 @@ export const EnrollButton = styled(Link)`
   border-width: 3px;
   background-color: ${({ theme }) => theme.colors.turquoise};
   color: ${({ theme }) => theme.colors.white};
-  font-size: 21px;
+  font-size: 22px;
   font-weight: 300;
   margin-top: 1rem;
 
