@@ -11,7 +11,6 @@ export const FormContainer = styled.form`
   overflow: hidden;
   background-image: url("/images/enroll_background3.png");
   background-size: cover;
-  background-position: center;
   background-repeat: no-repeat;
   width: 100%;
 
