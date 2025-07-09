@@ -42,8 +42,8 @@ export async function POST(req: Request) {
       const buffer = Buffer.from(arrayBuffer);
 
       await resend.emails.send({
-        from: "Kesem Website <noreply@kesem.com>",
-        to: "tamarlaufer@gmail.com",
+        from: "Kesem Website <info@kesemproject.co.il>",
+        to: "kesem.gs@gmail.com",
         subject: "קובץ קורות חיים חדש מהאתר",
         html: `
           <h2>קיבלת פנייה חדשה מהאתר:</h2>
