@@ -13,7 +13,7 @@ const images = [
   },
   { src: "/images/ben-zvi.png", alt: "לוגו בן צבי", width: 200, height: 200 },
   {
-    src: "/images/raanana_logo.jfif",
+    src: "/images/raanana_logo.jpeg",
     alt: "לוגו עיריית רעננה",
     width: 200,
     height: 200,
