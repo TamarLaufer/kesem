@@ -1,3 +1,12 @@
+@font-face {
+  font-family: "Fredoka SemiExpanded Medium";
+  src: url("/fonts/Fredoka/static/Fredoka_SemiExpanded-Medium.ttf")
+    format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
