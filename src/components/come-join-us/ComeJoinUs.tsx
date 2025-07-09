@@ -15,6 +15,7 @@ import {
   ContainerAll,
   ErrorSpan,
   ButtonContainer,
+  ContainerForm,
 } from "./ComeJoinUs.styles";
 import { renderTextWithBreaks } from "@/functions";
 import { useForm } from "react-hook-form";
@@ -152,6 +153,8 @@ const ComeJoinUs = () => {
               alt="cartoon study image"
               width={514}
               height={400}
+              style={{ objectFit: "contain" }}
+              loading="lazy"
             />
           </LeftContainer>
 
@@ -159,50 +162,52 @@ const ComeJoinUs = () => {
           {/* <SecondaryText>{STRINGS.COME_JOIN_US_PAGE.MEANTIME}</SecondaryText>
       <SecondaryText>{STRINGS.COME_JOIN_US_PAGE.EMAIL}</SecondaryText> */}
         </Container>
-        <Text>{STRINGS.COME_JOIN_US_PAGE.SOUNDS_GOOD}</Text>
-        <BoxStyleContainer>
-          <FieldGroup as="form" onSubmit={handleSubmit(onSubmit)}>
-            {fields.map((field) => {
-              if (field.name !== "cv") {
-                return (
-                  <Fragment key={field.label}>
-                    <InputHeader>{field.label}</InputHeader>
-                    <Input
-                      type={field.type}
-                      placeholder={field.placeholder}
-                      {...register(field.name, { required: true })}
-                    />
-                    {errors[field.name] && (
-                      <ErrorSpan style={{ color: "red" }}>
-                        {errors[field.name]?.message}
-                      </ErrorSpan>
-                    )}
-                  </Fragment>
-                );
-              } else {
-                return (
-                  <Fragment key={field.label}>
-                    <InputHeader>{field.label}</InputHeader>
-                    <Input
-                      type={field.type}
-                      placeholder={field.placeholder}
-                      {...register(field.name, { required: true })}
-                      accept=".pdf,.doc,.docx"
-                    />
-                    {errors[field.name] && (
-                      <ErrorSpan style={{ color: "red" }}>
-                        {errors[field.name]?.message}
-                      </ErrorSpan>
-                    )}
-                  </Fragment>
-                );
-              }
-            })}
-            <ButtonContainer>
-              <Button type="submit" text="הצטרפו אלינו!" $width={"5rem"} />
-            </ButtonContainer>
-          </FieldGroup>
-        </BoxStyleContainer>
+        <ContainerForm>
+          <Text>{STRINGS.COME_JOIN_US_PAGE.SOUNDS_GOOD}</Text>
+          <BoxStyleContainer>
+            <FieldGroup as="form" onSubmit={handleSubmit(onSubmit)}>
+              {fields.map((field) => {
+                if (field.name !== "cv") {
+                  return (
+                    <Fragment key={field.label}>
+                      <InputHeader>{field.label}</InputHeader>
+                      <Input
+                        type={field.type}
+                        placeholder={field.placeholder}
+                        {...register(field.name, { required: true })}
+                      />
+                      {errors[field.name] && (
+                        <ErrorSpan style={{ color: "red" }}>
+                          {errors[field.name]?.message}
+                        </ErrorSpan>
+                      )}
+                    </Fragment>
+                  );
+                } else {
+                  return (
+                    <Fragment key={field.label}>
+                      <InputHeader>{field.label}</InputHeader>
+                      <Input
+                        type={field.type}
+                        placeholder={field.placeholder}
+                        {...register(field.name, { required: true })}
+                        accept=".pdf,.doc,.docx"
+                      />
+                      {errors[field.name] && (
+                        <ErrorSpan style={{ color: "red" }}>
+                          {errors[field.name]?.message}
+                        </ErrorSpan>
+                      )}
+                    </Fragment>
+                  );
+                }
+              })}
+              <ButtonContainer>
+                <Button type="submit" text="הצטרפו אלינו!" $width={"5rem"} />
+              </ButtonContainer>
+            </FieldGroup>
+          </BoxStyleContainer>
+        </ContainerForm>
       </ContainerAll>
       {!loader && openPopup && (
         <Popup

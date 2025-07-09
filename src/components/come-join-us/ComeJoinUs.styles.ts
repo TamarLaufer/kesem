@@ -2,35 +2,56 @@ import styled from "styled-components";
 
 export const ContainerAll = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 100%;
+  min-height: 100vh;
+  padding: 0 6rem;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+  }
 `;
 
 export const Container = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
-  min-height: 100vh;
   padding-top: 7rem;
 
   @media (max-width: 768px) {
     flex-direction: column;
+    align-items: stretch;
+  }
+`;
+
+export const ContainerForm = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 768px) {
   }
 `;
 
 export const Text = styled.h1`
   font-family: "Suez One", serif;
-  margin: 2.5rem 0 1rem 0;
+  margin: 1.8rem 0 1rem 0;
+  flex-wrap: wrap;
+  text-align: right;
 
   @media (max-width: 768px) {
     flex-direction: column;
-    font-size: 23px;
+    font-size: 28px;
+    padding: 0 1rem;
+    text-align: center;
   }
 `;
 
 export const SecondaryText = styled.h1`
+  display: flex;
   font-family: "Suez One", serif;
   line-height: 50px;
   font-size: 24px;
@@ -48,7 +69,6 @@ export const ParagraphText = styled.p`
   font-weight: bold;
 
   @media (max-width: 900px) {
-    flex-direction: column;
     font-size: 18px;
     line-height: 30px;
     padding: 0 1rem;
@@ -60,6 +80,12 @@ export const Reqiurements = styled.p`
   line-height: 25px;
   font-size: 18px;
   text-align: right;
+
+  @media (max-width: 900px) {
+    font-size: 18px;
+    line-height: 28px;
+    padding: 0 1rem;
+  }
 `;
 
 export const RightContainer = styled.div`
@@ -67,14 +93,24 @@ export const RightContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   flex-wrap: wrap;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    font-size: 18px;
+    width: 100%;
+  }
 `;
 
 export const LeftContainer = styled.div`
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  flex-wrap: wrap;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    // width: 50%;
+  }
 `;
 
 export const FieldGroup = styled.form`
@@ -130,7 +166,7 @@ export const BoxStyleContainer = styled.div`
   -webkit-box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.51);
   -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.51);
   border-radius: 24px;
-  margin: 0.5rem 0 2.5rem 0;
+  margin: 0.5rem 0 1rem 0;
 
   width: 100%;
   max-width: 650px;
