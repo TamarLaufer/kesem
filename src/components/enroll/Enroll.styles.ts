@@ -11,11 +11,12 @@ export const FormContainer = styled.form`
   overflow: hidden;
   background-image: url("/images/enroll_background3.png");
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
   width: 100%;
 
   @media (max-width: 768px) {
-    background-image: url("/images/enroll_background10.png");
+    // background-image: url("/images/5.png");
   }
 `;
 

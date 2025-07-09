@@ -21,6 +21,7 @@ export default function RootLayout({ children }: Props) {
   return (
     <html lang="he" dir="rtl">
       <head>
+        <meta name="color-scheme" content="light" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
