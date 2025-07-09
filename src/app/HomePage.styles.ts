@@ -14,6 +14,7 @@ export const HomeContainer = styled.main`
   position: relative;
   overflow: hidden;
   max-width: 100vw;
+  background: transparent !important;
 `;
 
 export const BackgroundVideo = styled.video`
@@ -59,7 +60,7 @@ export const ContentContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  z-index: 1;
+  z-index: 2;
   color: ${({ theme }) => theme.colors.white};
   text-align: center;
   padding: 6rem 2rem;
