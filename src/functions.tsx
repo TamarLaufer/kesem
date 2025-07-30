@@ -1,10 +1,20 @@
 export function renderTextWithBreaks(
   text: string,
-  Element: React.ElementType = "p"
+  Wrapper: React.ElementType = "p"
 ) {
-  return text
-    .split("\n")
-    .map((line, idx) =>
-      line === "" ? <br key={idx} /> : <Element key={idx}>{line}</Element>
-    );
+  return text.split("\n").map((line, index) => {
+    const highlightRegex = /\[\[HIGHLIGHT\]\](.*?)\[\[\/HIGHLIGHT\]\]/;
+    const match = line.match(highlightRegex);
+
+    if (match) {
+      const content = match[1];
+      return (
+        <Wrapper key={index}>
+          <span className="highlight-line">{content}</span>
+        </Wrapper>
+      );
+    }
+
+    return <Wrapper key={index}>{line}</Wrapper>;
+  });
 }
