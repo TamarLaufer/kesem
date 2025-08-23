@@ -14,8 +14,9 @@ export const ImagesContainer = styled.div`
 `;
 
 export const ImageStyle = styled(Image)`
-  width: 450px;
-  height: 230px;
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
   padding: 0 0.4rem;
 
   @media (max-width: 768px) {

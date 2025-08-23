@@ -158,7 +158,6 @@ export const StyledIframe = styled.iframe`
 
 export const DetailsContainer = styled.div`
   line-height: 3rem;
-  margin: 3.5rem 0;
 
   @media (max-width: 768px) {
     line-height: 3rem;

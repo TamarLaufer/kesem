@@ -52,7 +52,7 @@ export const STRINGS = {
     PLEASE_DETAIL: "פירוט על פרסום אחר",
     MATNAS_GS: "מתנס גבעת שמואל",
     FLAIERS: "פלאיירים",
-    SOCIAL_MEDIA: "רשתות חברתיות (פייסבוקאינסטגרם)",
+    SOCIAL_MEDIA: "רשתות חברתיות (פייסבוק, אינסטגרם)",
     SCHOOL: "בית ספר",
     WHATSAPP: "וואטסאפ",
     OTHER: "אחר:",
@@ -67,14 +67,17 @@ export const STRINGS = {
   },
   CENTER_DETAIL: "\n\nלפרטים ולקבלת מערכת שעות ניתן לדבר איתנו\n",
   CENTER_HOURS_GSH:
-    "שעות הפעילות של מרכז קסם גבעת שמואל: ימי רביעי 16:00-20:00",
-  CENTER_HOURS_RAANANA: "שעות הפעילות של מרכז קסם רעננה: ימי שני 15:00-20:00",
+    "שעות הפעילות של מרכז קסם גבעת שמואל: ימי רביעי 16:00-20:00\n",
+  CENTER_HOURS_RAANANA: "שעות הפעילות של מרכז קסם רעננה: ימי שני 15:00-20:00\n",
+  CENTER_HOURS_KRIYAT_EKRON:
+    "שעות הפעילות של מרכז קסם קריית עקרון: ימי שלישי \n16:00-19:00",
   CENTER_LOCATION_GSH: 'מיקום: אולם אודיטוריום ע"ש זמיר, גבעת שמואל',
-  CENTER_LOCATION_RAANANA: "מרכז קהילתי בן צבי, יהודה הנשיא 14, רעננה",
+  CENTER_LOCATION_RAANANA: "מיקום: מרכז קהילתי בן צבי, יהודה הנשיא 14, רעננה",
+  CENTER_LOCATION_KRIYAT_EKRON: "מיקום: המייסדים 1, קריית עקרון",
   CENTER_EMAIL: 'דוא"ל: kesem.gs@gmail.com',
   CENTER_PHONE: "מרכז קסם : 053-5566509",
   TALK_WITH_US_WHATSAPP: "דברו איתנו בוואטסאפ",
-  RANANA_GIVAT_SHMUEL: "גבעת שמואל | רעננה",
+  RANANA_GIVAT_SHMUEL: "גבעת שמואל | רעננה | קריית עקרון",
   ONLINE_LESSONS: {
     FUN_WITH_ONLINE_LESSONS_HEADER:
       "לומדים בכיף – סרטונים מומלצים במיוחד בשבילכם",
