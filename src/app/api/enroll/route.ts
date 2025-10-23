@@ -1,33 +1,22 @@
 import { NextResponse } from "next/server";
-import { initializeApp } from "firebase/app";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  serverTimestamp,
-  connectFirestoreEmulator,
-} from "firebase/firestore";
-import { firebaseConfig } from "@/firebase/firebaseConfig";
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-if (process.env.NEXT_PUBLIC_USE_FIRESTORE_EMULATOR === "true") {
-  console.log("Using Firestore Emulator!");
-
-  connectFirestoreEmulator(db, "localhost", 8080);
-}
 
 export async function POST(req: Request) {
   try {
     const data = await req.json();
 
-    const docRef = await addDoc(collection(db, "students"), {
-      ...data,
-      createdAt: serverTimestamp(),
+    const response = await fetch(process.env.FUNCTION_ADD_STUDENT as string, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
     });
 
-    return NextResponse.json({ message: "Enroll succeed", id: docRef.id });
+    if (!response.ok) {
+      const text = await response.text();
+      throw new Error(`Cloud Function error: ${text}`);
+    }
+
+    const json = await response.json();
+    return NextResponse.json({ message: "Enroll succeed", id: json.id });
   } catch (error) {
     console.error("❌ Enroll error:", error);
     return NextResponse.json(
