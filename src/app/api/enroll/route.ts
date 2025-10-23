@@ -29,7 +29,10 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ message: "Enroll succeed", id: docRef.id });
   } catch (error) {
-    console.error("Enroll error:", error);
-    return NextResponse.json({ message: "Error", error }, { status: 500 });
+    console.error("❌ Enroll error:", error);
+    return NextResponse.json(
+      { message: "Error", error: String(error) },
+      { status: 500 }
+    );
   }
 }
