@@ -1,16 +1,9 @@
 "use client";
-import { STRINGS } from "@/strings/common";
-import {
-  Container,
-  LessonsGridContainer,
-  LessonsHeader,
-  StyledIframe,
-  VideoWrapper,
-} from "./Lessons.styles";
 import { useState } from "react";
-import { VIDEO_BATCH } from "@/consts";
-import { ButtonContainer } from "./Lessons.styles";
 import Button from "@/components/Button";
+import { STRINGS } from "@/strings/common";
+import { VIDEO_BATCH } from "@/consts";
+import s from "./Lessons.module.css";
 
 const videoListIds = [
   "Y2nrZEF5kNQ",
@@ -33,35 +26,32 @@ const videoListIds = [
 const Lessons = () => {
   const [videoToDisplay, setVideoToDisplay] = useState(VIDEO_BATCH);
 
-  const handleShowMoreVideo = () => {
-    setVideoToDisplay((prev) => prev + videoToDisplay);
-  };
-
-  const handleShowLessVideo = () => {
-    setVideoToDisplay(VIDEO_BATCH);
-  };
+  const handleShowMoreVideo = () =>
+    setVideoToDisplay((prev) => prev + VIDEO_BATCH);
+  const handleShowLessVideo = () => setVideoToDisplay(VIDEO_BATCH);
 
   return (
-    <Container>
-      <LessonsHeader>
+    <div className={s.container}>
+      <h1 className={s.lessonsHeader}>
         {STRINGS.ONLINE_LESSONS.FUN_WITH_ONLINE_LESSONS_HEADER}
-      </LessonsHeader>
-      <LessonsGridContainer>
-        {videoListIds.slice(0, videoToDisplay).map((id) => {
-          return (
-            <VideoWrapper key={id}>
-              <StyledIframe
-                src={`https://www.youtube.com/embed/${id}`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title={`YouTube video ${id}`}
-                loading="lazy"
-              />
-            </VideoWrapper>
-          );
-        })}
-      </LessonsGridContainer>
-      <ButtonContainer>
+      </h1>
+
+      <div className={s.lessonsGridContainer}>
+        {videoListIds.slice(0, videoToDisplay).map((id) => (
+          <div key={id} className={s.videoWrapper}>
+            <iframe
+              className={s.styledIframe}
+              src={`https://www.youtube.com/embed/${id}`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title={`YouTube video ${id}`}
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+
+      <div className={s.buttonContainer}>
         <Button
           onClick={
             videoToDisplay < videoListIds.length
@@ -73,9 +63,10 @@ const Lessons = () => {
               ? STRINGS.ONLINE_LESSONS.SHOW_MORE
               : STRINGS.ONLINE_LESSONS.SHOW_LESS
           }
+          $width="12rem"
         />
-      </ButtonContainer>
-    </Container>
+      </div>
+    </div>
   );
 };
 

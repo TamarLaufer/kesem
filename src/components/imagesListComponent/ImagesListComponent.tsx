@@ -1,6 +1,7 @@
 "use client";
 
-import { ImagesContainer, ImageStyle } from "./ImagesListComponent.styles";
+import Image from "next/image";
+import s from "./ImagesListComponent.module.css";
 
 const imagesList = [
   "kesem_center1.jpeg",
@@ -10,19 +11,18 @@ const imagesList = [
 
 const ImagesListComponent = () => {
   return (
-    <ImagesContainer>
-      {imagesList.map((oneImg) => {
-        return (
-          <ImageStyle
-            key={oneImg}
-            src={`/images/${oneImg}`}
-            alt="image"
-            width={400}
-            height={250}
-          />
-        );
-      })}
-    </ImagesContainer>
+    <div className={s.imagesContainer}>
+      {imagesList.map((oneImg) => (
+        <Image
+          key={oneImg}
+          className={s.imageStyle}
+          src={`/images/${oneImg}`}
+          alt="image"
+          width={400}
+          height={250}
+        />
+      ))}
+    </div>
   );
 };
 

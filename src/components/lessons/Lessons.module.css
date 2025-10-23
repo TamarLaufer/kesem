@@ -1,64 +1,70 @@
-import { theme } from "@/theme";
-import styled from "styled-components";
-
-export const Container = styled.div`
+.container {
   background-image: url("/images/enroll_background5.png");
   background-size: cover;
   background-position: center;
+}
 
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
+  .container {
     background-image: url("/images/enroll_background8.png");
   }
-`;
+}
 
-export const LessonsGridContainer = styled.div`
+.lessonsHeader {
+  padding-top: 8rem;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 26px;
+  color: var(--color-turquoise);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .lessonsHeader {
+    padding: 9rem 2rem;
+  }
+}
+
+.lessonsGridContainer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   padding: 2rem;
+}
 
-  @media (max-width: 900px) {
+@media (max-width: 900px) {
+  .lessonsGridContainer {
     grid-template-columns: repeat(2, 1fr);
   }
-  @media (max-width: 600px) {
+}
+
+@media (max-width: 600px) {
+  .lessonsGridContainer {
     grid-template-columns: 1fr;
   }
-`;
+}
 
-export const VideoWrapper = styled.div`
+.videoWrapper {
   position: relative;
   padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
   border-radius: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-`;
+}
 
-export const StyledIframe = styled.iframe`
+.styledIframe {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   border: 0;
-`;
+}
 
-export const LessonsHeader = styled.h1`
-  padding-top: 8rem;
-  font-family: "M PLUS Rounded 1c", sans-serif;
-  font-size: 26px;
-  color: ${({}) => theme.colors.turquoise};
-  text-align: center;
-
-  @media (max-width: 768px) {
-    padding: 9 2rem;
-  }
-`;
-
-export const ButtonContainer = styled.div`
+.buttonContainer {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   margin: 1.5rem;
-`;
+}

@@ -1,45 +1,44 @@
+import Link from "next/link";
+import s from "./HomePage.module.css";
 import { STRINGS } from "@/strings/common";
-import {
-  HomeContainer,
-  Text,
-  Header,
-  ContentContainer,
-  SecondaryText,
-  EnrollButton,
-  TextRight,
-  TextContainer,
-  BulletBlock,
-} from "./HomePage.styles";
 import { renderTextWithBreaks } from "@/functions";
 import ImagesListComponent from "@/components/imagesListComponent/ImagesListComponent";
 
-const text1 = STRINGS.HOME_PAGE.HOME_PARAGRAPH;
-const text2 = STRINGS.HOME_PAGE.DETAILED_PARAGRAPH;
-const text3 = STRINGS.HOME_PAGE.MORE_TEXT;
+function Text({ children }: { children: React.ReactNode }) {
+  return <p className={s.text}>{children}</p>;
+}
+function TextRight({ children }: { children: React.ReactNode }) {
+  return <p className={s.textRight}>{children}</p>;
+}
 
-export default async function Page() {
+export default function Page() {
+  const text1 = STRINGS.HOME_PAGE.HOME_PARAGRAPH;
+  const text2 = STRINGS.HOME_PAGE.DETAILED_PARAGRAPH;
+  const text3 = STRINGS.HOME_PAGE.MORE_TEXT;
+
   return (
-    <HomeContainer>
-      {/* <BackgroundVideo
-        src="/videos/students.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-      /> */}
-      <ContentContainer>
-        <Header>{STRINGS.HOME_PAGE.WELCOME_TO_KESEM}</Header>
-        <SecondaryText>{STRINGS.HOME_PAGE.SECONDARY_HEADER}</SecondaryText>
+    <main className={s.homeContainer}>
+      {/* אם תרצי להחזיר וידאו/אוברליי:
+      <video className={s.backgroundVideo} src="/videos/students.mp4" autoPlay muted loop playsInline />
+      <div className={s.backgroundVideoOverlay} />
+      */}
+      <div className={s.contentContainer}>
+        <h1 className={s.header}>{STRINGS.HOME_PAGE.WELCOME_TO_KESEM}</h1>
+        <h2 className={s.secondaryText}>
+          {STRINGS.HOME_PAGE.SECONDARY_HEADER}
+        </h2>
         {renderTextWithBreaks(text1, Text)}
-        <TextContainer>
-          <BulletBlock>{renderTextWithBreaks(text2, TextRight)}</BulletBlock>
-        </TextContainer>
+        <div className={s.textContainer}>
+          <div className={s.bulletBlock}>
+            {renderTextWithBreaks(text2, TextRight)}
+          </div>
+        </div>
         {renderTextWithBreaks(text3, Text)}
-        <EnrollButton href={`/enroll`}>
+        <Link href="/enroll" className={s.enrollButton}>
           {STRINGS.HOME_PAGE.ADD_ME_TO_SUCCESS}
-        </EnrollButton>
+        </Link>
         <ImagesListComponent />
-      </ContentContainer>
-    </HomeContainer>
+      </div>
+    </main>
   );
 }

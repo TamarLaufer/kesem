@@ -1,7 +1,7 @@
 "use client";
 
-import { ImageWrapper, PartnersContainer } from "./OurPartners.styles";
 import Image from "next/image";
+import s from "./OurPartners.module.css";
 
 const images = [
   { src: "/images/gs.jpeg", alt: "לוגו גבעת שמואל", width: 200, height: 200 },
@@ -19,23 +19,24 @@ const images = [
     height: 200,
   },
 ];
-const renderImages = images.map((i) => {
-  return (
-    <ImageWrapper key={i.alt}>
-      <Image
-        src={i.src}
-        alt={i.alt}
-        style={{ objectFit: "contain" }}
-        width={i.width}
-        height={i.height}
-        priority
-      />
-    </ImageWrapper>
-  );
-});
 
 const OurPartners = () => {
-  return <PartnersContainer>{renderImages}</PartnersContainer>;
+  return (
+    <div className={s.partnersContainer}>
+      {images.map((img) => (
+        <div key={img.alt} className={s.imageWrapper}>
+          <Image
+            src={img.src}
+            alt={img.alt}
+            width={img.width}
+            height={img.height}
+            style={{ objectFit: "contain" }}
+            priority
+          />
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default OurPartners;

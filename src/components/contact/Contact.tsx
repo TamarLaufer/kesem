@@ -4,26 +4,10 @@ import Popup from "@/components/popup/Popup";
 import { STRINGS } from "@/strings/common";
 import { theme } from "@/theme";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import {
-  ContactContainer,
-  DetailsContainer,
-  ErrorSpan,
-  FieldGroup,
-  FieldsContainer,
-  FormContainer,
-  Header,
-  StyledIframe,
-  IframeContainer,
-  Input,
-  InputHeader,
-  Text,
-  TextContainer,
-  Textarea,
-} from "./Contact.styles";
-import { ButtonContainer } from "./Contact.styles";
+import styles from "./Contact.module.css";
 import { CheckCircle } from "lucide-react";
 
 type ContactDataType = {
@@ -66,6 +50,8 @@ const Contact = () => {
   });
 
   const [openPopup, setOpenPopup] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => setIsClient(true), []);
 
   const fields: InputType[] = [
     {
@@ -111,17 +97,15 @@ const Contact = () => {
     STRINGS.CENTER_LOCATION_GSH,
     STRINGS.CENTER_HOURS_RAANANA,
     STRINGS.CENTER_LOCATION_RAANANA,
-    STRINGS.CENTER_HOURS_KRIYAT_EKRON,
-    STRINGS.CENTER_LOCATION_KRIYAT_EKRON,
+    STRINGS.CENTER_HOURS_KRIYAT_ONO,
+    STRINGS.CENTER_LOCATION_KRIYAT_ONO,
   ];
 
   const onSubmit = async (formData: ContactDataType) => {
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
@@ -130,97 +114,110 @@ const Contact = () => {
         throw new Error(errorData.message || "Unknown error");
       }
 
-      const result = await response.json();
-      console.log("✅ Enroll succeeded:", result);
+      await response.json();
       setOpenPopup(true);
       reset();
     } catch (error: unknown) {
       const firebaseError = error as Error;
-      console.error("🔥 Firestore submission error:", firebaseError);
       alert("שגיאה: " + (firebaseError.message || "לא ידועה"));
     }
   };
 
   return (
-    <ContactContainer as="form" onSubmit={handleSubmit(onSubmit)}>
-      <TextContainer>
-        <Header>{STRINGS.CONTACT_PAGE.WE_WANT_TO_HERE_FROM_YOU}</Header>
-      </TextContainer>
-      <FormContainer>
-        <FieldsContainer>
-          {fields.map((field) => {
-            return (
-              <FieldGroup key={field.label}>
-                <InputHeader>{field.label}</InputHeader>
-                {field.name === "subject" ? (
-                  <>
-                    <Textarea
-                      placeholder={field.placeholder}
-                      maxLength={250}
-                      {...register(field.name, { required: true })}
-                    />
-                    <Text
-                      style={{
-                        fontSize: "0.75rem",
-                        color: theme.colors.grey,
-                        marginTop: "4px",
-                      }}
-                    >
-                      {watch("subject")?.length || 0}/250
-                    </Text>
-                  </>
-                ) : (
-                  <Input
-                    key={field.name}
-                    type={field.type}
+    <form className={styles.contactContainer} onSubmit={handleSubmit(onSubmit)}>
+      <div className={styles.textContainer}>
+        <h1 className={styles.header}>
+          {STRINGS.CONTACT_PAGE.WE_WANT_TO_HERE_FROM_YOU}
+        </h1>
+      </div>
+
+      <div className={styles.formContainer}>
+        <div className={styles.fieldsContainer}>
+          {fields.map((field) => (
+            <div key={field.label} className={styles.fieldGroup}>
+              <legend className={styles.inputHeader}>{field.label}</legend>
+              {field.name === "subject" ? (
+                <>
+                  <textarea
+                    className={styles.textarea}
                     placeholder={field.placeholder}
+                    maxLength={250}
                     {...register(field.name, { required: true })}
                   />
-                )}
-                {errors[field.name] && (
-                  <ErrorSpan style={{ color: "red" }}>
-                    {errors[field.name]?.message}
-                  </ErrorSpan>
-                )}
-              </FieldGroup>
-            );
-          })}
-          <ButtonContainer>
+                  <p
+                    id="subject-counter"
+                    className={`${styles.text} ${styles.counter}`}
+                    aria-live="polite"
+                  >
+                    {watch("subject")?.length || 0}/250
+                  </p>
+                </>
+              ) : (
+                <input
+                  className={styles.input}
+                  type={field.type}
+                  placeholder={field.placeholder}
+                  {...register(field.name, { required: true })}
+                />
+              )}
+              {errors[field.name] && (
+                <span className={styles.errorSpan}>
+                  {errors[field.name]?.message}
+                </span>
+              )}
+            </div>
+          ))}
+          <div className={styles.buttonContainer}>
             <Button
               type="submit"
               text={STRINGS.CONTACT_PAGE.FORM.DONE_SEND_REQUEST}
               $backgroundColor={theme.colors.turquoise}
               color={theme.colors.white}
+              $width="15rem"
             />
-          </ButtonContainer>
-        </FieldsContainer>
-        <IframeContainer>
-          <DetailsContainer>
-            <Text style={{ fontSize: 22, fontWeight: 500 }}>
+          </div>
+        </div>
+
+        <div className={styles.iframeContainer}>
+          <div className={styles.detailsContainer}>
+            <p
+              className={styles.text}
+              style={{ fontSize: 22, fontWeight: 500 }}
+            >
               {STRINGS.CONTACT_PAGE.CENTER_DETAIL}
-            </Text>
-            {contactText.map((text) => {
-              return text.includes("\n") ? (
-                <Text style={{ fontWeight: "700", marginTop: 10 }} key={text}>
+            </p>
+            {contactText.map((text) =>
+              text.includes("\n") ? (
+                <p
+                  key={text}
+                  className={styles.text}
+                  style={{ fontWeight: "700", marginTop: 10 }}
+                >
                   {text}
-                </Text>
+                </p>
               ) : (
-                <Text key={text}>{text}</Text>
-              );
-            })}
-            <Text style={{ marginTop: 20 }}>
+                <p key={text} className={styles.text}>
+                  {text}
+                </p>
+              )
+            )}
+            <p className={styles.text} style={{ marginTop: 20 }}>
               {STRINGS.CONTACT_PAGE.CENTER_EMAIL}
-            </Text>
-            <Text>{STRINGS.CONTACT_PAGE.CENTER_PHONE}</Text>
-          </DetailsContainer>
-          <StyledIframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1690.4625520853324!2d34.8537098!3d32.0712744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d4b97cdd24a19%3A0x55c47045165d9c15!2z15DXldeT15nXmNeV16jXmdeV150g16LXmdeo15XXoNeZ!5e0!3m2!1siw!2sil!4v1751149352749!5m2!1siw!2sil"
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-        </IframeContainer>
-      </FormContainer>
+            </p>
+            <p className={styles.text}>{STRINGS.CONTACT_PAGE.CENTER_PHONE}</p>
+          </div>
+          {isClient && (
+            <iframe
+              className={styles.styledIframe}
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1690.4625520853324!2d34.8537098!3d32.0712744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d4b97cdd24a19%3A0x55c47045165d9c15!2z15DXldeT15nXmNeV16jXmdeV150g16LXmdeo15XXoNeZ!5e0!3m2!1siw!2sil!4v1751149352749!5m2!1siw!2sil"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          )}
+        </div>
+      </div>
+
       {openPopup && (
         <Popup
           onClick={() => setOpenPopup(false)}
@@ -231,7 +228,7 @@ const Contact = () => {
           $buttonTextColor={theme.colors.white}
         />
       )}
-    </ContactContainer>
+    </form>
   );
 };
 

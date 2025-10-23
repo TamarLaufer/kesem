@@ -1,0 +1,170 @@
+.formContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding-top: 8rem;
+  overflow: hidden;
+  background-image: url("/images/enroll_background3.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .formContainer {
+    /* TODO: another background maybe*/
+  }
+}
+
+.backgroundVideo,
+.backgroundVideoOverlay {
+  position: absolute;
+  top: var(--header-height);
+  left: 0;
+  width: 100%;
+  height: calc(100% - var(--header-height));
+  object-fit: cover;
+  z-index: -1;
+}
+
+.backgroundVideoOverlay {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.headerText {
+  display: flex;
+  padding: 2rem 0;
+  font-family: "Suez One", serif;
+  font-size: 28px;
+}
+
+@media (max-width: 768px) {
+  .headerText {
+    font-size: 24px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 5.5rem;
+    padding-bottom: 1.5rem;
+    flex-direction: column;
+  }
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .inputContainer {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+}
+
+.headerContainer {
+  margin-bottom: 0.5rem;
+}
+
+.inputHeader {
+  font-weight: bold;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: var(--color-gray);
+}
+
+@media (max-width: 768px) {
+  .inputHeader {
+    font-size: 16px;
+    font-weight: normal;
+  }
+}
+
+.input,
+.textarea {
+  width: 25rem;
+  padding: 0.75rem;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 16px;
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--color-turquoise);
+  box-shadow: 0 0 0 2px rgb(26 188 156 / 0.2);
+}
+
+@media (max-width: 768px) {
+  .input,
+  .textarea {
+    font-size: 14px;
+    width: 17rem;
+  }
+}
+
+.sendButton {
+  grid-column: span 2;
+  margin: 4rem;
+  padding: 1rem 8rem;
+  border: none;
+  border-radius: 30px;
+  background-color: var(--color-turquoise);
+  color: var(--color-white);
+  font-size: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: "Rubik Dirt", sans-serif;
+}
+
+.sendButton:hover {
+  background-color: var(--color-gray);
+}
+
+@media (max-width: 767px) {
+  .sendButton {
+    grid-column: span 1;
+    padding: 1rem 6.5rem;
+  }
+}
+
+.errorSpan {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.inputCheckBox {
+  display: block;
+}
+
+.ceckBoxLabel {
+  display: flex;
+  flex-direction: row;
+  gap: 1.2rem;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.buttonContainer {
+  margin: 2rem;
+}

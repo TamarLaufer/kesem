@@ -1,0 +1,181 @@
+.header {
+  position: fixed;
+  width: 100%;
+  background: var(--color-white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  direction: rtl;
+  padding: 0.5rem 2rem;
+  z-index: 10;
+  box-shadow: 0 3px 18px rgba(0, 0, 0, 0.56);
+  font-family: "M PLUS Rounded 1c", Arial, sans-serif;
+}
+.logoAndHam {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.logoContainer {
+  flex: 0 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+.logoText {
+  position: absolute;
+  top: 3.7rem;
+  font-family: "Playpen Sans Hebrew", cursive;
+  font-size: 13px;
+  font-style: italic;
+  z-index: -1;
+}
+
+.navBar {
+  display: flex;
+  justify-content: flex-start;
+}
+.ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+}
+.li {
+  text-align: center;
+}
+
+.navLink {
+  color: var(--color-black);
+  font-weight: 500;
+  text-decoration: none;
+  padding: 1rem;
+  font-size: 18px;
+  transition:
+    color 0.2s,
+    font-weight 0.2s,
+    background 0.2s;
+}
+.navLink:hover {
+  border-radius: 8px;
+  text-decoration: underline;
+  color: var(--color-gold);
+}
+.navLinkActive {
+  color: var(--color-gold);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 7rem;
+  height: 3rem;
+  padding: 0 1rem;
+  border-radius: 30px;
+  color: #fff;
+  text-decoration: none;
+  font:
+    200 16px "Playpen Sans Hebrew",
+    cursive;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+.ctaGold {
+  background: var(--color-gold);
+}
+.ctaTurq {
+  background: var(--color-turquoise);
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--color-gold);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 999;
+  display: none;
+}
+
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 80vw;
+  background: var(--color-white);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.1);
+  padding: 2rem 2.3rem;
+  gap: 2rem;
+  color: var(--color-gold);
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 18px;
+  list-style: none;
+  display: none;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--color-gold);
+  cursor: pointer;
+  z-index: 110;
+}
+
+@media (max-width: 768px) {
+  .header {
+    justify-content: center;
+    padding: 0.6rem 1rem;
+  }
+  .navBar {
+    display: none;
+  }
+  .hamburger {
+    display: block;
+    position: absolute;
+    right: 1rem;
+    top: 1.6rem;
+  }
+  .mobileMenu.show {
+    display: flex;
+  }
+  .overlay.show {
+    display: block;
+  }
+  .cta {
+    display: none;
+  }
+}
+@media (max-width: 1290px) {
+  .ul {
+    padding: 0.3rem;
+  }
+}

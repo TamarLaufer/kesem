@@ -1,11 +1,12 @@
 "use client";
 import { theme } from "@/theme";
-import { ButtonStyle } from "./Button.styles";
+import s from "./Button.module.css";
+import React from "react";
 
 type ButtonPropsType = {
   text: string;
   onClick?: () => void;
-  type?: "button" | "submit" | "reset" | undefined;
+  type?: "button" | "submit" | "reset";
   $backgroundColor?: string;
   color?: string;
   $hoverBackgroundColor?: string;
@@ -13,7 +14,7 @@ type ButtonPropsType = {
   $height?: string;
 };
 
-const Button = ({
+const Button: React.FC<ButtonPropsType> = ({
   text,
   onClick,
   type = "button",
@@ -22,19 +23,28 @@ const Button = ({
   $backgroundColor = theme.colors.turquoise,
   color = theme.colors.white,
   $hoverBackgroundColor = theme.colors.dark_grey,
-}: ButtonPropsType) => {
+}) => {
   return (
-    <ButtonStyle
-      onClick={onClick && onClick}
-      $width={$width}
-      $height={$height}
-      $backgroundColor={$backgroundColor}
-      color={color}
-      $hoverBackgroundColor={$hoverBackgroundColor}
+    <button
       type={type}
+      onClick={onClick}
+      className={s.button}
+      style={{
+        width: $width,
+        height: $height,
+        backgroundColor: $backgroundColor,
+        color,
+      }}
+      onMouseEnter={(e) =>
+        (e.currentTarget.style.backgroundColor = $hoverBackgroundColor)
+      }
+      onMouseLeave={(e) =>
+        (e.currentTarget.style.backgroundColor = $backgroundColor)
+      }
     >
       {text}
-    </ButtonStyle>
+    </button>
   );
 };
+
 export default Button;

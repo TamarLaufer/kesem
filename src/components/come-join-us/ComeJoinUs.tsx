@@ -1,22 +1,6 @@
 "use client";
-
+import s from "./ComeJoinUs.module.css";
 import { STRINGS } from "@/strings/common";
-import {
-  Container,
-  Text,
-  Reqiurements,
-  ParagraphText,
-  RightContainer,
-  LeftContainer,
-  FieldGroup,
-  InputHeader,
-  Input,
-  BoxStyleContainer,
-  ContainerAll,
-  ErrorSpan,
-  ButtonContainer,
-  ContainerForm,
-} from "./ComeJoinUs.styles";
 import { renderTextWithBreaks } from "@/functions";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -59,6 +43,10 @@ const text = STRINGS.COME_JOIN_US_PAGE.FIRST_PARAGRAPH;
 const text2 = STRINGS.COME_JOIN_US_PAGE.JOB_REQIUREMENTS;
 const text3 = STRINGS.COME_JOIN_US_PAGE.WHY_US_CONTENT;
 
+const Paragraph = (props: React.HTMLAttributes<HTMLParagraphElement>) => (
+  <p {...props} className={s.paragraphText} />
+);
+
 const fields: FieldsType[] = [
   {
     name: "firstName",
@@ -86,7 +74,7 @@ const fields: FieldsType[] = [
   },
 ];
 
-const ComeJoinUs = () => {
+export default function ComeJoinUs() {
   const {
     register,
     handleSubmit,
@@ -95,11 +83,10 @@ const ComeJoinUs = () => {
   } = useForm<FormDataType>({
     resolver: zodResolver(formSchema),
   });
+
   const [loader, setLoader] = useState(false);
   const [openPopup, setOpenPopup] = useState(false);
-  const handleClosePopup = () => {
-    setOpenPopup(false);
-  };
+  const handleClosePopup = () => setOpenPopup(false);
 
   const onSubmit = async (formData: FormDataType) => {
     setLoader(true);
@@ -108,46 +95,47 @@ const ComeJoinUs = () => {
       data.append("firstName", formData.firstName);
       data.append("lastName", formData.lastName);
       data.append("phone", formData.phone);
-
       if (formData.cv && formData.cv.length > 0) {
         data.append("cv", formData.cv[0]);
       }
 
-      const response = await fetch("/api/comeJoinUs", {
+      const res = await fetch("/api/comeJoinUs", {
         method: "POST",
         body: data,
       });
+      if (!res.ok)
+        throw new Error((await res.json()).message || "Unknown error");
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Unknown error");
-      }
-
-      const result = await response.json();
-      console.log("✅ succeeded:", result);
+      await res.json();
       setLoader(false);
       setOpenPopup(true);
       reset();
-    } catch (error: unknown) {
+    } catch (err: unknown) {
       setLoader(false);
-      const firebaseError = error as Error;
-      alert("שגיאה: " + (firebaseError.message || "לא ידועה"));
+      if (err instanceof Error) {
+        alert("שגיאה: " + (err.message || "לא ידועה"));
+      } else {
+        alert("שגיאה לא ידועה");
+      }
     }
   };
 
   return (
     <>
       {loader && <Spinner color={theme.colors.dark_turquoise} />}
-      <ContainerAll>
-        <Container>
-          <RightContainer>
-            {renderTextWithBreaks(text, ParagraphText)}
-            <Text>{STRINGS.COME_JOIN_US_PAGE.WHY_US}</Text>
-            {renderTextWithBreaks(text3, Reqiurements)}
-            <Text>{STRINGS.COME_JOIN_US_PAGE.WHO_ARE_WE_LOOKIG_FOR}</Text>
-            {renderTextWithBreaks(text2, Reqiurements)}
-          </RightContainer>
-          <LeftContainer>
+      <div className={s.containerAll}>
+        <div className={s.container}>
+          <div className={s.rightContainer}>
+            {renderTextWithBreaks(text, Paragraph)}
+            <h1 className={s.text}>{STRINGS.COME_JOIN_US_PAGE.WHY_US}</h1>
+            {renderTextWithBreaks(text3, Paragraph)}
+            <h1 className={s.text}>
+              {STRINGS.COME_JOIN_US_PAGE.WHO_ARE_WE_LOOKIG_FOR}
+            </h1>
+            {renderTextWithBreaks(text2, Paragraph)}
+          </div>
+
+          <div className={s.leftContainer}>
             <Image
               src="/images/5834.jpg"
               alt="cartoon study image"
@@ -156,59 +144,40 @@ const ComeJoinUs = () => {
               style={{ objectFit: "contain" }}
               loading="lazy"
             />
-          </LeftContainer>
+          </div>
+        </div>
 
-          {/* <Text>{STRINGS.COME_JOIN_US_PAGE.COMING_SOON}</Text> */}
-          {/* <SecondaryText>{STRINGS.COME_JOIN_US_PAGE.MEANTIME}</SecondaryText>
-      <SecondaryText>{STRINGS.COME_JOIN_US_PAGE.EMAIL}</SecondaryText> */}
-        </Container>
-        <ContainerForm>
-          <Text>{STRINGS.COME_JOIN_US_PAGE.SOUNDS_GOOD}</Text>
-          <BoxStyleContainer>
-            <FieldGroup as="form" onSubmit={handleSubmit(onSubmit)}>
-              {fields.map((field) => {
-                if (field.name !== "cv") {
-                  return (
-                    <Fragment key={field.label}>
-                      <InputHeader>{field.label}</InputHeader>
-                      <Input
-                        type={field.type}
-                        placeholder={field.placeholder}
-                        {...register(field.name, { required: true })}
-                      />
-                      {errors[field.name] && (
-                        <ErrorSpan style={{ color: "red" }}>
-                          {errors[field.name]?.message}
-                        </ErrorSpan>
-                      )}
-                    </Fragment>
-                  );
-                } else {
-                  return (
-                    <Fragment key={field.label}>
-                      <InputHeader>{field.label}</InputHeader>
-                      <Input
-                        type={field.type}
-                        placeholder={field.placeholder}
-                        {...register(field.name, { required: true })}
-                        accept=".pdf,.doc,.docx"
-                      />
-                      {errors[field.name] && (
-                        <ErrorSpan style={{ color: "red" }}>
-                          {errors[field.name]?.message}
-                        </ErrorSpan>
-                      )}
-                    </Fragment>
-                  );
-                }
-              })}
-              <ButtonContainer>
-                <Button type="submit" text="הצטרפו אלינו!" $width={"5rem"} />
-              </ButtonContainer>
-            </FieldGroup>
-          </BoxStyleContainer>
-        </ContainerForm>
-      </ContainerAll>
+        <div className={s.containerForm}>
+          <h1 className={s.text}>{STRINGS.COME_JOIN_US_PAGE.SOUNDS_GOOD}</h1>
+          <div className={s.boxStyleContainer}>
+            <form className={s.fieldGroup} onSubmit={handleSubmit(onSubmit)}>
+              {fields.map((field) => (
+                <Fragment key={field.label}>
+                  <legend className={s.inputHeader}>{field.label}</legend>
+                  <input
+                    type={field.type}
+                    placeholder={field.placeholder}
+                    {...register(field.name, { required: true })}
+                    className={s.input}
+                    accept={
+                      field.type === "file" ? ".pdf,.doc,.docx" : undefined
+                    }
+                  />
+                  {errors[field.name] && (
+                    <span className={s.errorSpan}>
+                      {errors[field.name]?.message}
+                    </span>
+                  )}
+                </Fragment>
+              ))}
+              <div className={s.buttonContainer}>
+                <Button type="submit" text="הצטרפו אלינו!" $width="15rem" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
       {!loader && openPopup && (
         <Popup
           icon={<CheckCircle />}
@@ -221,6 +190,4 @@ const ComeJoinUs = () => {
       )}
     </>
   );
-};
-
-export default ComeJoinUs;
+}

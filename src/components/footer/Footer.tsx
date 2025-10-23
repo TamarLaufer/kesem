@@ -1,11 +1,4 @@
-"use client";
-import {
-  FooterContainer,
-  LeftContent,
-  RightContent,
-  Text,
-  IconLink,
-} from "./Footer.styles";
+import s from "./Footer.module.css";
 import {
   Facebook,
   Youtube,
@@ -17,6 +10,7 @@ import {
   Notes,
 } from "@/assets/icons";
 import { STRINGS } from "@/strings/common";
+import React from "react";
 
 type SocialLinksType = {
   SocialIcon: React.FC<React.SVGProps<SVGSVGElement>>;
@@ -33,7 +27,7 @@ const iconMap: Record<string, IconType> = {
   Notes,
 };
 
-const Footer = () => {
+export default function Footer() {
   const socialLinks: SocialLinksType[] = [
     {
       SocialIcon: Facebook,
@@ -55,35 +49,35 @@ const Footer = () => {
   ];
 
   return (
-    <FooterContainer>
-      <LeftContent>
+    <div className={s.footerContainer}>
+      <div className={s.leftContent}>
         {footerInfo.map(({ icon, text }, idx) => {
-          const Icon = icon && iconMap[icon];
+          const Icon = icon ? iconMap[icon] : null;
           return (
-            <div
-              key={idx}
-              style={{ display: "flex", alignItems: "center", gap: "1rem" }}
-            >
-              {Icon && <Icon width={22} height={22} />}
-              <Text>{text}</Text>
+            <div key={idx} className={s.row}>
+              <div className={s.icon}>
+                {Icon && <Icon width={22} height={22} />}
+              </div>
+              <p className={s.text}>{text}</p>
             </div>
           );
         })}
-      </LeftContent>
-      <RightContent>
+      </div>
+
+      <div className={s.rightContent}>
         {socialLinks.map(({ SocialIcon, url }, index) => (
-          <IconLink
+          <a
             key={index}
             href={url}
             target="_blank"
             rel="noopener noreferrer"
+            className={s.iconLink}
+            aria-label="social link"
           >
             <SocialIcon width={50} height={50} />
-          </IconLink>
+          </a>
         ))}
-      </RightContent>
-    </FooterContainer>
+      </div>
+    </div>
   );
-};
-
-export default Footer;
+}

@@ -1,45 +1,48 @@
-import styled from "styled-components";
-
-export const BackgroundWrapper = styled.div`
+.backgroundWrapper {
   background-image: url("/images/enroll_background4.png");
-  background-repeat: repeat-y;
-  // background-size: contain;
   background-repeat: no-repeat;
+  background-size: cover;
   min-height: 100vh;
-`;
+}
 
-export const AboutUsContainer = styled.div`
+.aboutUsContainer {
   display: flex;
   flex-direction: column;
   padding: 10rem 18rem;
+}
 
-  @media (max-width: 767px) {
+@media (max-width: 767px) {
+  .aboutUsContainer {
     padding: 9rem 1.5rem 2rem 1.5rem;
   }
-`;
+}
 
-export const AboutUsText = styled.p`
+.aboutUsText {
   font-family: "M PLUS Rounded 1c", sans-serif;
   flex-wrap: wrap;
   font-size: 22px;
   line-height: 38px;
+}
 
-  @media (max-width: 767px) {
+@media (max-width: 767px) {
+  .aboutUsText {
     font-size: 18px;
     line-height: 30px;
   }
-`;
+}
 
-export const TextContainer = styled.div`
+.textContainer {
   margin-bottom: 1rem;
+}
 
-  @media (max-width: 767px) {
+@media (max-width: 767px) {
+  .textContainer {
     margin: 0;
   }
-`;
+}
 
-export const KesemImages = styled.img`
+.kesemImages {
   display: flex;
   align-items: center;
   justify-content: center;
-`;
+}

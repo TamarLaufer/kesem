@@ -1,27 +1,15 @@
 "use client";
+import styles from "./Enroll.module.css";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  FormContainer,
-  Input,
-  HeaderText,
-  InputContainer,
-  SendButton,
-  InputHeader,
-  ErrorSpan,
-  FieldGroup,
-  HeaderContainer,
-  CeckBoxLabel,
-  InputCheckBox,
-  Textarea,
-} from "./Enroll.styles";
 import React, { useCallback, useState } from "react";
 import Popup from "@/components/popup/Popup";
 import { CheckCircle } from "lucide-react";
 import { STRINGS } from "@/strings/common";
 import Spinner from "../spiner/Spinner";
 import { theme } from "@/theme";
+import Button from "../Button";
 
 type FormDataType = {
   firstName: string;
@@ -73,7 +61,7 @@ const formSchema = z
     }
   );
 
-const Enroll = () => {
+export default function Enroll() {
   const {
     register,
     handleSubmit,
@@ -98,11 +86,9 @@ const Enroll = () => {
   const [openPopup, setOpenPopup] = useState(false);
   const [loader, setLoader] = useState(false);
   const rawValues = watch("howDidYouHereAboutUs") || [];
-
   const howDidYouHereAboutUsValues = Array.isArray(rawValues)
     ? rawValues
     : [rawValues];
-
   const isOtherChecked = howDidYouHereAboutUsValues.includes("פרסום אחר");
 
   const fields: InputType[] = [
@@ -180,108 +166,118 @@ const Enroll = () => {
     },
   ];
 
-  const handleClosePopup = useCallback(() => {
-    setOpenPopup(false);
-  }, []);
+  const handleClosePopup = useCallback(() => setOpenPopup(false), []);
 
   const onSubmit = async (formData: FormDataType) => {
     setLoader(true);
     try {
-      const response = await fetch("/api/enroll", {
+      const res = await fetch("/api/enroll", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      console.log("Trying to submit:", formData);
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Unknown error");
-      }
+      if (!res.ok)
+        throw new Error((await res.json()).message || "Unknown error");
 
-      const result = await response.json();
-      console.log("✅ Enroll succeeded:", result);
+      await res.json();
       setLoader(false);
       setOpenPopup(true);
       reset();
-    } catch (error: unknown) {
-      setLoader(false);
-      const firebaseError = error as Error;
-      console.error("🔥 Firestore submission error:", firebaseError);
-      alert("שגיאה: " + (firebaseError.message || "לא ידועה"));
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        alert("שגיאה: " + (err.message || "לא ידועה"));
+      } else {
+        alert("שגיאה לא ידועה");
+      }
     }
   };
 
   return (
     <>
       {loader && <Spinner color={theme.colors.dark_turquoise} />}
-      <FormContainer as="form" onSubmit={handleSubmit(onSubmit)}>
-        <HeaderText>{STRINGS.ENROLL_PAGE.JOIN_US_TO_KESEM}</HeaderText>
-        <InputContainer>
-          {fields.map((field) => {
-            //CheckBox buttons
-            if (field.name === "howDidYouHereAboutUs") {
-              return (
-                <FieldGroup key={field.label}>
-                  <HeaderContainer>
-                    <InputHeader>{field.label}</InputHeader>
-                  </HeaderContainer>
-                  {howDidYouHearOptions.map((option) => {
-                    return (
-                      <CeckBoxLabel key={option}>
-                        <InputCheckBox
-                          type="checkbox"
-                          value={option}
-                          {...register("howDidYouHereAboutUs")}
-                        />
-                        {option}
-                      </CeckBoxLabel>
-                    );
-                  })}
-                  {isOtherChecked && (
-                    <>
-                      <Textarea
-                        maxLength={100}
-                        placeholder={STRINGS.ENROLL_PAGE.PLEASE_DETAIL}
-                        {...register("howDidYouHereAboutUsField")}
-                      />
-                      {errors.howDidYouHereAboutUsField && (
-                        <ErrorSpan style={{ color: "red" }}>
-                          {errors.howDidYouHereAboutUsField?.message}
-                        </ErrorSpan>
-                      )}
-                    </>
-                  )}
-                  {errors[field.name] && (
-                    <ErrorSpan style={{ color: "red" }}>
-                      {errors[field.name]?.message}
-                    </ErrorSpan>
-                  )}
-                </FieldGroup>
-              );
-            }
-            return (
-              <FieldGroup key={field.label}>
-                <InputHeader>{field.label}</InputHeader>
-                <Input
-                  key={field.name}
-                  type={field.type}
-                  placeholder={field.placeholder}
-                  {...register(field.name, { required: true })}
-                />
-                {errors[field.name] && (
-                  <ErrorSpan style={{ color: "red" }}>
-                    {errors[field.name]?.message}
-                  </ErrorSpan>
+      <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
+        <p className={styles.headerText}>
+          {STRINGS.ENROLL_PAGE.JOIN_US_TO_KESEM}
+        </p>
+        <fieldset className={styles.inputContainer}>
+          {fields.map((field) =>
+            field.name === "howDidYouHereAboutUs" ? (
+              <div key={field.label} className={styles.fieldGroup}>
+                <div className={styles.headerContainer}>
+                  <legend className={styles.inputHeader}>{field.label}</legend>
+                </div>
+
+                {howDidYouHearOptions.map((option) => (
+                  <label key={option} className={styles.ceckBoxLabel}>
+                    <input
+                      type="checkbox"
+                      value={option}
+                      {...register("howDidYouHereAboutUs")}
+                      className={styles.inputCheckBox}
+                    />
+                    {option}
+                  </label>
+                ))}
+
+                {isOtherChecked && (
+                  <>
+                    <textarea
+                      maxLength={100}
+                      placeholder={STRINGS.ENROLL_PAGE.PLEASE_DETAIL}
+                      {...register("howDidYouHereAboutUsField")}
+                      className={styles.textarea}
+                    />
+                    {errors.howDidYouHereAboutUsField && (
+                      <span className={styles.errorSpan}>
+                        {errors.howDidYouHereAboutUsField.message}
+                      </span>
+                    )}
+                  </>
                 )}
-              </FieldGroup>
-            );
-          })}
-        </InputContainer>
-        <SendButton type="submit">{STRINGS.ENROLL_PAGE.SEND}</SendButton>
-      </FormContainer>
+                {errors[field.name] && (
+                  <span className={styles.errorSpan}>
+                    {errors[field.name]?.message}
+                  </span>
+                )}
+              </div>
+            ) : (
+              <div key={field.label} className={styles.fieldGroup}>
+                <legend className={styles.inputHeader}>{field.label}</legend>
+                {field.name === "comments" ? (
+                  <textarea
+                    {...register(field.name)}
+                    placeholder={field.placeholder}
+                    className={styles.textarea}
+                  />
+                ) : (
+                  <input
+                    type={field.type}
+                    placeholder={field.placeholder}
+                    {...register(field.name)}
+                    className={styles.input}
+                  />
+                )}
+                {errors[field.name] && (
+                  <span className={styles.errorSpan}>
+                    {errors[field.name]?.message}
+                  </span>
+                )}
+              </div>
+            )
+          )}
+        </fieldset>
+        <div className={styles.buttonContainer}>
+          <Button
+            type="submit"
+            text={STRINGS.ENROLL_PAGE.SEND}
+            $backgroundColor={theme.colors.turquoise}
+            color={theme.colors.white}
+            $width="15rem"
+          />
+        </div>
+      </form>
+
       {!loader && openPopup && (
         <Popup
           icon={<CheckCircle />}
@@ -294,6 +290,4 @@ const Enroll = () => {
       )}
     </>
   );
-};
-
-export default Enroll;
+}

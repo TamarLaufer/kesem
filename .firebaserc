@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "kesem-be97f"
-  }
+    "default": "kesem-be97f",
+    "dev": "kesem-dev"
+  },
+  "targets": {},
+  "etags": {}
 }

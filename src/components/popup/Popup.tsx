@@ -1,15 +1,9 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import {
-  TextContent,
-  PopupContainer,
-  PopupOverlay,
-  ButtonText,
-  Header,
-} from "./Popup.styles";
 import { motion } from "framer-motion";
 import { theme } from "@/theme";
+import s from "./Popup.module.css";
 
 type PopupPropsType = {
   text?: string;
@@ -30,43 +24,49 @@ const Popup = ({
   color = theme.colors.black,
   onClick,
 }: PopupPropsType) => {
-  const AnimatedPopup = motion(PopupContainer);
+  const AnimatedPopup = motion.div;
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (buttonRef.current) {
-      buttonRef.current.focus();
-      console.log("Popup focused!", buttonRef.current);
-    }
+    buttonRef.current?.focus();
   }, []);
 
-  const $onClick = () => {
+  const handleClick = () => {
     onClick();
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
   return (
-    <PopupOverlay>
+    <div className={s.popupOverlay}>
       <AnimatedPopup
+        className={s.popupContainer}
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.4 }}
       >
-        <PopupContainer>
-          {icon && <div style={{ fontSize: "48px", color }}>{icon}</div>}
-          {title && <Header $color={color}>{title}</Header>}
-          {text && <TextContent>{text}</TextContent>}
-          {buttonText && (
-            <ButtonText
-              $buttonTextColor={$buttonTextColor}
-              ref={buttonRef}
-              onClick={$onClick}
-            >
-              {buttonText}
-            </ButtonText>
-          )}
-        </PopupContainer>
+        {icon && (
+          <div style={{ fontSize: "48px", color, textAlign: "center" }}>
+            {icon}
+          </div>
+        )}
+        {title && (
+          <h2 className={s.header} style={{ color }}>
+            {title}
+          </h2>
+        )}
+        {text && <p className={s.textContent}>{text}</p>}
+        {buttonText && (
+          <button
+            ref={buttonRef}
+            className={s.buttonText}
+            style={{ color: $buttonTextColor }}
+            onClick={handleClick}
+          >
+            {buttonText}
+          </button>
+        )}
       </AnimatedPopup>
-    </PopupOverlay>
+    </div>
   );
 };
 
