@@ -90,6 +90,7 @@ export default function Enroll() {
     ? rawValues
     : [rawValues];
   const isOtherChecked = howDidYouHereAboutUsValues.includes("פרסום אחר");
+  // const [isEnroll, setEnroll] = useState(false);
 
   const fields: InputType[] = [
     {
@@ -185,7 +186,9 @@ export default function Enroll() {
       setOpenPopup(true);
       reset();
     } catch (err: unknown) {
+      setLoader(false);
       if (err instanceof Error) {
+        // setEnroll(true);
         alert("שגיאה: " + (err.message || "לא ידועה"));
       } else {
         alert("שגיאה לא ידועה");

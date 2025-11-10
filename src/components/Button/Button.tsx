@@ -12,11 +12,13 @@ type ButtonPropsType = {
   $hoverBackgroundColor?: string;
   $width?: string;
   $height?: string;
+  disabled?: boolean;
 };
 
 const Button: React.FC<ButtonPropsType> = ({
   text,
   onClick,
+  disabled,
   type = "button",
   $width = "9rem",
   $height = "3rem",
@@ -29,6 +31,7 @@ const Button: React.FC<ButtonPropsType> = ({
       type={type}
       onClick={onClick}
       className={s.button}
+      disabled={disabled}
       style={{
         width: $width,
         height: $height,

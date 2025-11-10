@@ -31,7 +31,9 @@ export async function POST(req: Request) {
 
       await resend.emails.send({
         from: "Kesem Website <info@kesemproject.co.il>",
+        // from: "Kesem Website <onboarding@resend.dev>", //for test on dev
         to: "kesem.gs@gmail.com",
+        // to: "tamarlaufer@gmail.com", //for test on dev
         subject: "קובץ קורות חיים חדש מהאתר",
         html: `
           <h2>קיבלת פנייה חדשה מהאתר:</h2>

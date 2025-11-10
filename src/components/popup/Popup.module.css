@@ -1,19 +1,50 @@
-.spinnerOverlay {
+/* Popup.module.css */
+
+.popupOverlay {
   position: fixed;
-  inset: 0;
-  z-index: 9999;
+  inset: 0; /* מחליף top/right/bottom/left: 0 */
+  background-color: rgba(0, 0, 0, 0.4);
   display: flex;
-  align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.3);
+  align-items: center;
+  z-index: 1000;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+.popupContainer {
+  background: white;
+  border-radius: 16px;
+  padding: 24px 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  z-index: 1001;
 }
 
-.spinnerIcon {
-  animation: spin 1s linear infinite;
+.header {
+  margin: 16px 0 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.textContent {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.buttonText {
+  background-color: #309898;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background 0.3s;
+  color: rebeccapurple;
+}
+
+.buttonText:hover {
+  background: rgba(0, 0, 0, 0.1);
 }
