@@ -1,4 +1,4 @@
-import s from "./Footer.module.css";
+import styles from "./Footer.module.css";
 import {
   Facebook,
   Youtube,
@@ -11,6 +11,7 @@ import {
 } from "@/assets/icons";
 import { STRINGS } from "@/strings/common";
 import React from "react";
+import Image from "next/image";
 
 type SocialLinksType = {
   SocialIcon: React.FC<React.SVGProps<SVGSVGElement>>;
@@ -49,34 +50,54 @@ export default function Footer() {
   ];
 
   return (
-    <div className={s.footerContainer}>
-      <div className={s.leftContent}>
-        {footerInfo.map(({ icon, text }, idx) => {
-          const Icon = icon ? iconMap[icon] : null;
-          return (
-            <div key={idx} className={s.row}>
-              <div className={s.icon}>
-                {Icon && <Icon width={22} height={22} />}
+    <div className={styles.footerContainer}>
+      <div className={styles.footerDirection}>
+        <div className={styles.leftContent}>
+          {footerInfo.map(({ icon, text }, idx) => {
+            const Icon = icon ? iconMap[icon] : null;
+            return (
+              <div key={idx} className={styles.row}>
+                <div className={styles.icon}>
+                  {Icon && <Icon width={22} height={22} />}
+                </div>
+                <p className={styles.text}>{text}</p>
               </div>
-              <p className={s.text}>{text}</p>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
+
+        <div className={styles.rightContent}>
+          {socialLinks.map(({ SocialIcon, url }, index) => (
+            <a
+              key={index}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.iconLink}
+              aria-label="social link"
+            >
+              <SocialIcon width={50} height={50} />
+            </a>
+          ))}
+        </div>
       </div>
 
-      <div className={s.rightContent}>
-        {socialLinks.map(({ SocialIcon, url }, index) => (
-          <a
-            key={index}
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={s.iconLink}
-            aria-label="social link"
-          >
-            <SocialIcon width={50} height={50} />
-          </a>
-        ))}
+      <div className={styles.businessLogo}>
+        <p className={styles.businessLogoText}>
+          Designed & Developed by <strong>SEAL Studio</strong> – Web & Mobile
+          Experiences | 📱 052-6240776
+        </p>
+        <Image
+          src="/images/SEAL_Studio_Design_logo.png"
+          alt="SEAL Studio logo"
+          width={190}
+          height={68}
+          className={styles.logoImage}
+        />
+        {/* <p className={styles.businessLogoText}>
+          Designed by SEAL Studio Design & Web Development sealstudio.co.il | ✉️
+          tamar@sealstudio.co.il | 📱 052-6240776
+        </p> */}
       </div>
     </div>
   );

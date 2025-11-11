@@ -29,7 +29,7 @@ export default function RootLayout({ children }: Props) {
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&?family=Varela+Round&family=Rubik+Dirt&family=Suez+One&family=Playpen+Sans+Hebrew:wght@100..800&display=swap&subset=hebrew"
+          href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&family=Varela+Round&family=Rubik+Dirt&family=Suez+One&family=Playpen+Sans+Hebrew:wght@100..800&display=swap&subset=hebrew"
           rel="stylesheet"
         />
         {/* Google Analytics script #1 */}

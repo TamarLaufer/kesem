@@ -1,18 +1,18 @@
 .footerContainer {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
   background-color: var(--color-gray);
-  height: 15rem;
-  gap: 2rem;
+  margin: 0;
+  padding-top: 2%;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
-@media (max-width: 767px) {
-  .footerContainer {
-    flex-direction: column;
-    height: auto;
-    padding: 2rem 0;
-  }
+.footerDirection {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  width: 100%;
 }
 
 .text {
@@ -21,32 +21,21 @@
   font-size: 20px;
 }
 
-@media (max-width: 767px) {
-  .text {
-    font-size: 19px;
-  }
-}
-
 .leftContent {
   display: flex;
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-  flex: 1;
   gap: 1rem;
-  padding: 0 10rem;
-}
-
-@media (max-width: 767px) {
-  .leftContent {
-    padding: 2rem;
-  }
+  padding: 0 5%;
+  flex: 1;
 }
 
 .rightContent {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-right: 15%;
   flex: 1;
   gap: 0.65rem;
 }
@@ -66,4 +55,56 @@
 .icon {
   padding-left: 5px;
   padding-top: 3px;
+}
+
+.businessLogo {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 2px;
+  width: 100%;
+  /* background-color: aqua; */
+  padding: 10px 0;
+  align-self: flex-end;
+}
+
+.businessLogoText {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 15px;
+  color: azure;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .leftContent {
+    padding: 10% 10%;
+  }
+  .rightContent {
+    padding: 10% 10%;
+  }
+}
+
+@media (max-width: 767px) {
+  .text {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 767px) {
+  .footerContainer {
+    flex-direction: column;
+    height: auto;
+  }
+  .footerDirection {
+    flex-direction: column;
+  }
+  .businessLogo {
+    flex-direction: column;
+    gap: 0;
+    padding: 2% 5% 0 5%;
+    align-items: center;
+  }
+  .businessLogoText {
+    text-align: center;
+  }
 }
