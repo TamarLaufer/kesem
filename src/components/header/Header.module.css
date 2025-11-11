@@ -52,7 +52,7 @@
   color: var(--color-black);
   font-weight: 500;
   text-decoration: none;
-  /* padding: 1rem; */
+  padding: 1rem;
   font-size: 18px;
   transition:
     color 0.2s,
@@ -157,6 +157,9 @@
   }
   .navBar {
     display: none;
+  }
+  .navLink {
+    padding: 0;
   }
   .hamburger {
     display: block;
