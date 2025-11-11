@@ -22,7 +22,7 @@ export default function HeaderClient() {
   const [isOpen, setOpen] = useState(false);
 
   const handleLinkPress = () => {
-    setOpen(!isOpen);
+    setOpen((prev) => !prev);
   };
 
   return (
@@ -63,7 +63,7 @@ export default function HeaderClient() {
           <Link
             key={link.href}
             href={link.href}
-            onClick={() => setOpen(false)}
+            onClick={handleLinkPress}
             className={`${styles.navLink} ${pathname === link.href ? styles.navLinkActive : ""}`}
           >
             {link.name}
